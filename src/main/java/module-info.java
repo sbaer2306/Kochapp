@@ -12,4 +12,7 @@ module main {
 
     opens main to javafx.fxml;
     exports main;
+
+    opens homepage to javafx.fxml;
+    exports homepage;
 }
