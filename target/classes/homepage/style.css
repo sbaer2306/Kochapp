@@ -1,0 +1,36 @@
+#searchBar {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: black transparent black transparent;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-background-color: white;
+
+}
+
+.btn_banner{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: black black black black;
+    -fx-background-color: white;
+
+}
+
+.btn_banner:hover{
+    -fx-background-color: whitesmoke;
+}
+
+/* .menu-item:focused{
+    -fx-background-color: transparent;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: black;
+} */
+
+
+
+/* .dxm-disabled.menuHover span{
+    fx-color: black;
+} */
+
