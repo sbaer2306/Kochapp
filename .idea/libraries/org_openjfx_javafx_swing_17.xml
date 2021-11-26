@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="org.openjfx:javafx-swing:17" type="repository">
+    <properties maven-id="org.openjfx:javafx-swing:17">
+      <exclude>
+        <dependency maven-id="org.openjfx:javafx-base" />
+        <dependency maven-id="org.openjfx:javafx-base" />
+        <dependency maven-id="org.openjfx:javafx-graphics" />
+        <dependency maven-id="org.openjfx:javafx-graphics" />
+      </exclude>
+    </properties>
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17-win.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/17/javafx-swing-17-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

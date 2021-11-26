@@ -18,4 +18,10 @@ module main {
 
     opens login to javafx.fxml;
     exports login;
+
+    requires java.sql;
+    requires java.desktop;
+    requires javafx.swing;
+    opens database to java.sql;
+    exports database;
 }
