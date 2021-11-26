@@ -15,4 +15,7 @@ module main {
 
     opens homepage to javafx.fxml;
     exports homepage;
+
+    opens login to javafx.fxml;
+    exports login;
 }

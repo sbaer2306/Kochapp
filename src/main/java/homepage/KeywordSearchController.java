@@ -1,10 +1,12 @@
 package homepage;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import login.Login;
 
 public class KeywordSearchController {
     @FXML
@@ -29,6 +31,10 @@ public class KeywordSearchController {
         hbox.getChildren().add(extendedSearch);
         hbox.getChildren().remove(2);
 
+    }
+
+    public void startLogin(ActionEvent actionEvent) {
+        new Login();
     }
 
     /*
