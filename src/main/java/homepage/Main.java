@@ -1,5 +1,6 @@
 package homepage;
 
+import DBController.UserDBController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ public class Main extends Application {
         primaryStage.setTitle("Startseite");
         primaryStage.setScene(scene);
         primaryStage.show();
+        UserDBController userDBController = new UserDBController();
 
         // ExtendedSearchController extendedSearchController = new ExtendedSearchController();
         // root.setController(extendedSearchController);

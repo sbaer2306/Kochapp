@@ -9,7 +9,6 @@ module main {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires java.sql;
 
     opens main to javafx.fxml;
     exports main;
@@ -23,8 +22,6 @@ module main {
     requires java.sql;
     requires java.desktop;
     requires javafx.swing;
-    opens database to java.sql;
-    exports database;
     exports Datastructures;
     opens Datastructures to java.sql;
 }
