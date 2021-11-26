@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import login.Login;
 
+import java.sql.SQLException;
+
 public class KeywordSearchController {
     @FXML
     public TextField keywordField;
@@ -34,7 +36,7 @@ public class KeywordSearchController {
     }
 
     @FXML
-    public void loginButtonPress(ActionEvent actionEvent) {
+    public void loginButtonPress(ActionEvent actionEvent) throws SQLException {
         new Login();
     }
 

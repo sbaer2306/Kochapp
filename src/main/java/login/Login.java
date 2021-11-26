@@ -5,10 +5,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Login {
 
-    public Login(){
+    public Login() throws SQLException {
         Stage loginInterface = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
 

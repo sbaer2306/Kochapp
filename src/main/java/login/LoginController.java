@@ -1,5 +1,7 @@
 package login;
 
+import DBController.UserDBController;
+import Datastructures.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import org.controlsfx.control.Notifications;
 
 import javax.net.ssl.SSLSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -22,6 +25,7 @@ public class LoginController {
     //TODO: DBAccountController fehlt noch!
     //private DBController dbController = new DBController();
 
+    UserDBController controller=new UserDBController();
 
     @FXML
     private TextField usernameField;
@@ -70,9 +74,18 @@ public class LoginController {
     }
 
     //TODO: DBAccountController fehlt noch! -> return value muss noch auf SSLSession geändert werden!
-    public void login(){    //Öffnet das UI und wartet bis der Nutzer den Login eingibt.
+    public void login() {    //Öffnet das UI und wartet bis der Nutzer den Login eingibt.
                             //Soll SSLSession zurückgeben, wenn Eingabe richtig war.
                             //Gibt null zurück, wenn Login abgebrochen oder Fehler auftritt.
+
+
+        UserModel user = new UserModel(usernameField.getText(),null,passwordField.getText());
+        try {
+            loginConfirmed=controller.validateLogin(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         if(loginConfirmed){
             note.text("Sie wurden erfolgreich als " + usernameField.getText() + " angemeldet!");
             note.show();
