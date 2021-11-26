@@ -33,16 +33,12 @@ public class KeywordSearchController {
 
     }
 
-    public void startLogin(ActionEvent actionEvent) {
+    @FXML
+    public void loginButtonPress(ActionEvent actionEvent) {
         new Login();
     }
 
     /*
-    @FXML
-    public void loginButtonPress(){
-        new Login().login();
-    }
-
     @FXML
     public void registrationButtonPress(){
         new Registration().register();
