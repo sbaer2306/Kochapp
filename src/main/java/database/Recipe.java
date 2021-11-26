@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.sql.Blob;
+import java.util.ArrayList;
 
 public class Recipe {
     private String id;
@@ -24,11 +25,15 @@ public class Recipe {
     private String creationTime;
     private String difficulty;
     private String author;
-    //TODO Kategorien
-
+    private ArrayList<String> kategorien;
 
     @Override
     public String toString() {
+        String listkategorie = "";
+        for (String s : kategorien)
+        {
+            listkategorie += s + "\t";
+        }
         return "RecipeModel{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
@@ -43,6 +48,7 @@ public class Recipe {
                 ", creationTime='" + creationTime + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", author='" + author + '\'' +
+                ", kategorien='" + listkategorie + '\'' +
                 '}';
     }
 
@@ -150,5 +156,13 @@ public class Recipe {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public ArrayList<String> getKategorien() {
+        return kategorien;
+    }
+
+    public void setKategorien(ArrayList<String> kategorien) {
+        this.kategorien = kategorien;
     }
 }
