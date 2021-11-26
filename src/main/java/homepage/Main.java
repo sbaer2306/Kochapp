@@ -1,12 +1,16 @@
 package homepage;
 
+import Clerks.HashingClerk;
 import DBController.UserDBController;
+import Datastructures.UserModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 public class Main extends Application {
 
@@ -21,7 +25,13 @@ public class Main extends Application {
         // root.setController(extendedSearchController);
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws SQLException {
+//        launch(args);
+        UserDBController udb = new UserDBController();
+        UserModel user= new UserModel("nichtmarkus","mail","Bier24/7");
+        boolean loggedin=udb.validateLogin(user);
+        System.out.println("Log in successful:"+loggedin);
+
+
     }
 }

@@ -3,6 +3,7 @@ package DBController;
 import Clerks.HashingClerk;
 import Datastructures.UserModel;
 import java.sql.*;
+import java.util.Objects;
 
 public class UserDBController extends DBConnectionController{
 
@@ -37,44 +38,38 @@ public class UserDBController extends DBConnectionController{
     //Login
     public boolean validateLogin(UserModel user) throws SQLException {
 
-        //TODO: Aufbau so sinnvoll?
-        if(userExists(user.getUsername())){ //--> user in DB vorhanden
+        String sql= "select  * from users WHERE username_uid=?";
 
-            String sql= "select  pwd from users WHERE username_uid=?";
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, user.getUsername());
 
-            PreparedStatement pstmt= connection.prepareStatement(sql);
-            pstmt.setString(1, user.getUsername());
+        ResultSet resSet = pstmt.executeQuery();
 
-            ResultSet resSet = pstmt.executeQuery();
-
-            String DBhash=null;
-
-            while (resSet.next()){
-                DBhash= resSet.getString(1); //hashwert des pwds des users in der DB
-            }
-
+        String DBhash=new String();
+        while (resSet.next()){
+            DBhash = resSet.getString(3); //hashwert des pwds des users in der DB
+        }
+        System.out.println(DBhash);
             HashingClerk carl = new HashingClerk();
             String enteredPwd =  carl.hash(user.getPwd()); //lokales pwd hashen
 
-            if (DBhash.equals(enteredPwd)) return true; //passwörter vergleichen
-            else return false; //passwort falsch
+        if (Objects.equals(DBhash,enteredPwd)) return true; //username und pwd stimmern überein
 
-        }
 
         return false; //username oder passwort falsch
 
     }
 
-    //Check ob User existiert
-    private boolean userExists(String username) throws SQLException {
-        String sql= "select  * from users WHERE username_uid=?";
-
-        PreparedStatement pstmt= connection.prepareStatement(sql);
-        pstmt.setString(1, username);
-
-        ResultSet resSet = pstmt.executeQuery();
-
-        return resSet != null;
-
-    }
+//    //Check ob User existiert
+//    private boolean userExists(String username) throws SQLException {
+//        String sql= "select  * from users WHERE username_uid=?";
+//
+//        PreparedStatement pstmt= connection.prepareStatement(sql);
+//        pstmt.setString(1, username);
+//
+//        ResultSet resSet = pstmt.executeQuery();
+//
+//        return resSet != null;
+//
+//    }
 }
