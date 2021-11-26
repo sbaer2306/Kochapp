@@ -25,4 +25,6 @@ module main {
     requires javafx.swing;
     opens database to java.sql;
     exports database;
+    exports Datastructures;
+    opens Datastructures to java.sql;
 }
