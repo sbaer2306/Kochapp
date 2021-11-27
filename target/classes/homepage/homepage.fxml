@@ -2,224 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.CustomMenuItem?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane accessibleRole="CHECK_BOX" accessibleText="Frühstück" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1000.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.KeywordSearchController">
-    <top>
-        <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <center>
-                <HBox alignment="CENTER_LEFT" prefHeight="100.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Button fx:id="search" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="btn_banner">
-                            <graphic>
-                                <ImageView pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@fx-images/1x/outline_search_black_24dp.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <TextField fx:id="searchBar" alignment="CENTER" minWidth="400.0" onAction="#getSearchResults" prefHeight="40.0" promptText="Search" />
-                        <MenuButton fx:id="extension" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner" >
-                            <graphic>
-                                <ImageView pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@fx-images/1x/outline_reorder_black_24dp.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <!--<items>
-                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" styleClass="menuHover">
-                                    <content>
-                                        <HBox>
-                                            <children>
-                                                <Label prefWidth="50.0" text="Preis">
-                                                    <HBox.margin>
-                                                        <Insets top="4.0" />
-                                                    </HBox.margin>
-                                                </Label>
-                                                <TextField fx:id="minPrice" prefHeight="20" prefWidth="50" />
-                                                <Separator prefWidth="20.0">
-                                                    <HBox.margin>
-                                                        <Insets bottom="5.0" left="7.5" right="7.5" top="10.0" />
-                                                    </HBox.margin>
-                                                </Separator>
-                                                <TextField fx:id="maxPrice" prefHeight="20" prefWidth="50" />
-                                                <Label text="€">
-                                                    <HBox.margin>
-                                                        <Insets left="5" top="4.0" />
-                                                    </HBox.margin>
-                                                </Label>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="10.0" />
-                                            </padding>
-                                        </HBox>
-                                    </content>
-                                </CustomMenuItem>
-                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" styleClass="menuHover">
-                                    <content>
-                                        <HBox>
-                                            <children>
-                                                <Label prefWidth="50.0" text="Dauer">
-                                                    <HBox.margin>
-                                                        <Insets top="4.0" />
-                                                    </HBox.margin>
-                                                </Label>
-                                                <TextField fx:id="duration" prefHeight="20" prefWidth="50" />
-                                                <Label text="Minuten">
-                                                    <HBox.margin>
-                                                        <Insets left="5" top="4.0" />
-                                                    </HBox.margin>
-                                                </Label>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="10.0" />
-                                            </padding>
-                                        </HBox>
-                                    </content>
-                                </CustomMenuItem>
-                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
-                                    <content>
-                                        <MenuButton fx:id="categories" mnemonicParsing="false" text="Kategorien">
-                                            <items>
-                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
-                                                    <content>
-                                                        <CheckBox mnemonicParsing="false" text="Allgemein" />
-                                                    </content>
-                                                </CustomMenuItem>
-                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
-                                                    <content>
-                                                        <CheckBox text="Season" />
-                                                    </content>
-                                                </CustomMenuItem>
-                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
-                                                    <content>
-                                                        <CheckBox text="Gang" />
-                                                    </content>
-                                                </CustomMenuItem>
-                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
-                                                    <content>
-                                                        <CheckBox text="Zubereitungsart" />
-                                                    </content>
-                                                </CustomMenuItem>
-                                            </items>
-                                        </MenuButton>
-                                    </content>
-                                </CustomMenuItem>
-                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
-                                    <content>
-                                        <VBox>
-                                            <children>
-                                                <Label text="Schwierigkeit" />
-                                                <Separator prefWidth="75.0">
-                                                    <VBox.margin>
-                                                        <Insets />
-                                                    </VBox.margin>
-                                                    <padding>
-                                                        <Insets bottom="5.0" />
-                                                    </padding></Separator>
-                                                <HBox>
-                                                    <RadioButton fx:id="easy" mnemonicParsing="false" text="Leicht">
-                                                        <padding>
-                                                            <Insets right="25.0" />
-                                                        </padding>
-                                                        <toggleGroup>
-                                                            <ToggleGroup fx:id="group" />
-                                                        </toggleGroup>
-                                                    </RadioButton>
-                                                    <RadioButton fx:id="normal" mnemonicParsing="false" text="Mittel">
-                                                        <padding>
-                                                            <Insets right="25.0" />
-                                                        </padding>
-                                                        <toggleGroup>
-                                                            <fx:reference source="group" />
-                                                        </toggleGroup>
-                                                    </RadioButton>
-                                                    <RadioButton fx:id="hard" mnemonicParsing="false" text="Schwer">
-                                                        <toggleGroup>
-                                                            <fx:reference source="group" />
-                                                        </toggleGroup>
-                                                    </RadioButton>
-                                                </HBox>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="10.0" />
-                                            </padding>
-                                        </VBox>
-                                    </content>
-                                </CustomMenuItem>
-                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
-                                    <content>
-                                        <HBox>
-                                            <children>
-                                                <Button mnemonicParsing="false" text="Abbrechen">
-                                                    <HBox.margin>
-                                                        <Insets right="90.0" />
-                                                    </HBox.margin></Button>
-                                                <Button mnemonicParsing="false" text="Sichern" />
-                                            </children>
-                                        </HBox>
-                                    </content>
-                                </CustomMenuItem>
-                            </items>-->
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </MenuButton>
-                    </children>
-                </HBox>
-            </center>
-            <left>
-                <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                    <image>
-                        <Image url="@fx-images/cooking_logo.jpg" />
-                    </image>
-                    <BorderPane.margin>
-                        <Insets right="100.0" />
-                    </BorderPane.margin>
-                </ImageView>
-            </left>
-            <right>
-                <MenuButton alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner" BorderPane.alignment="CENTER">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@fx-images/1x/outline_account_circle_black_24dp.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem fx:id="loginButton" mnemonicParsing="false" text="login" onAction="#loginButtonPress"/>
-                        <MenuItem fx:id="registrationButton" mnemonicParsing="false" text="Registration" onAction="#registrationButtonPress" />
-                    </items>
-                    <BorderPane.margin>
-                        <Insets right="20.0" />
-                    </BorderPane.margin>
-
-                </MenuButton>
-            </right>
-        </BorderPane>
-    </top>
-    <bottom>
-        <ScrollPane prefWidth="800.0" BorderPane.alignment="CENTER">
-            <content>
-                <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-            </content></ScrollPane>
-    </bottom>
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1000.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.ViewController">
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="47.0" layoutY="148.0" text="Bitte hier einloggen:" />
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>

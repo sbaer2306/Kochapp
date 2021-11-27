@@ -16,8 +16,20 @@
 
 }
 
+.image{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: white;
+}
+
 .btn_banner:hover{
     -fx-background-color: whitesmoke;
+}
+
+.entryBorder{
+    -fx-border-color: black transparent transparent transparent;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
 }
 
 /* .menu-item:focused{

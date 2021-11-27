@@ -109,7 +109,7 @@
                                     <Insets right="25.0" />
                                 </padding>
                                 <toggleGroup>
-                                    <ToggleGroup fx:id="difficlutyToggleGroup" />
+                                    <ToggleGroup fx:id="difficultyToggleGroup" />
                                 </toggleGroup>
                             </RadioButton>
                             <RadioButton fx:id="normal" mnemonicParsing="false" text="Mittel">
@@ -117,12 +117,12 @@
                                     <Insets right="25.0" />
                                 </padding>
                                 <toggleGroup>
-                                    <fx:reference source="difficlutyToggleGroup" />
+                                    <fx:reference source="difficultyToggleGroup" />
                                 </toggleGroup>
                             </RadioButton>
                             <RadioButton fx:id="hard" mnemonicParsing="false" text="Schwer">
                                 <toggleGroup>
-                                    <fx:reference source="difficlutyToggleGroup" />
+                                    <fx:reference source="difficultyToggleGroup" />
                                 </toggleGroup>
                             </RadioButton>
                         </HBox>
@@ -141,7 +141,7 @@
                             <HBox.margin>
                                 <Insets right="90.0" />
                             </HBox.margin></Button>
-                        <Button mnemonicParsing="false" onAction="#save" text="Sichern" />
+                        <Button mnemonicParsing="false" onAction="#getSearchResults" text="Sichern" />
                     </children>
                 </HBox>
             </content>

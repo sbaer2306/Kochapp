@@ -1,5 +1,6 @@
 package homepage;
 
+import Datastructures.Recipe;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,35 +8,32 @@ import java.util.ArrayList;
 
 public class ExtendedSearchController {
 
-    private ArrayList<String> extendedSearch;
-    private ArrayList<String> categoriesList;
+    private ArrayList<String> extendedSearch = new ArrayList<String>();
+    private ArrayList<String> categoriesList = new ArrayList<String>();
 
     @FXML
     public TextField maxPrice;
     @FXML
     public TextField duration;
     @FXML
-    public ToggleGroup difficlutyToggleGroup;
+    public ToggleGroup difficultyToggleGroup;
     @FXML
     public MenuButton showExtendedSearchMenu;
     @FXML
     public MenuButton categories;
 
     @FXML
-    public void save(Event event) {
-        extendedSearch = new ArrayList<>();
-        categoriesList = new ArrayList<String>();
+    public ArrayList<Recipe> getSearchResults(Event event) {
 
         for(int i = 0; i < categories.getItems().size(); i++) {
             CustomMenuItem customMenuItem = (CustomMenuItem) categories.getItems().get(i);
             CheckBox checkBox = (CheckBox) customMenuItem.getContent();
             if(checkBox.isSelected()) {
-                // extendedSearch.add(checkBox.getText());
                 categoriesList.add(checkBox.getText());
             }
         }
 
-        RadioButton selectedRadioButton = (RadioButton) difficlutyToggleGroup.getSelectedToggle();
+        RadioButton selectedRadioButton = (RadioButton) difficultyToggleGroup.getSelectedToggle();
 
         if(selectedRadioButton != null){
             String radioButtonValue = selectedRadioButton.getText();
@@ -45,13 +43,8 @@ public class ExtendedSearchController {
         extendedSearch.add(maxPrice.getText());
         extendedSearch.add(duration.getText());
 
-
-        /*for(int i = 0; i < extendedSearch.size(); i++) {
-            System.out.println(extendedSearch.get(i));
-        }
-        System.out.println(categoriesList.get(0));*/
-
         clearExtension(event);
+        return null;
     }
 
     public void clearExtension(Event event) {
@@ -64,12 +57,11 @@ public class ExtendedSearchController {
                 checkBox.setSelected(false);
             }
         }
-        RadioButton selectedRadioButton = (RadioButton) difficlutyToggleGroup.getSelectedToggle();
-        selectedRadioButton.setSelected(false);
-        hidePopup();
-    }
-
-    public void hidePopup(){
+        RadioButton selectedRadioButton = (RadioButton) difficultyToggleGroup.getSelectedToggle();
+        if(selectedRadioButton != null) {
+            selectedRadioButton.setSelected(false);
+        }
         showExtendedSearchMenu.hide();
     }
+
 }

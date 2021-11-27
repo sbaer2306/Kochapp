@@ -1,5 +1,6 @@
 package homepage;
 
+import Datastructures.Recipe;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import login.Login;
 import registration.Registration;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class KeywordSearchController {
     @FXML
@@ -18,13 +20,10 @@ public class KeywordSearchController {
     public MenuButton extension;
 
     @FXML
-    public String getSearchResults(){
+    public ArrayList<Recipe> getSearchResults(Event event){
         String query = keywordField.getText();
         keywordField.clear();
-        //DBSearchController dbS = new DBSearchController();
-        //dbS.searchQuery(query); -> ArrayList aus Recipe
-
-        return query; //ArrayList<Recipe>
+        return null; //ArrayList<Recipe>
     }
 
     @FXML
@@ -33,7 +32,6 @@ public class KeywordSearchController {
         HBox hbox = (HBox) extension.getParent();
         hbox.getChildren().add(extendedSearch);
         hbox.getChildren().remove(2);
-
     }
 
     @FXML
