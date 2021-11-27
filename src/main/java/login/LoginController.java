@@ -4,7 +4,6 @@ import DBController.UserDBController;
 import Datastructures.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -12,20 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
-import javax.net.ssl.SSLSession;
-import java.io.IOException;
-import java.sql.SQLException;
-
 public class LoginController {
 
     public LoginController(){
     }
     public Notifications note = Notifications.create();
 
-    //TODO: DBAccountController fehlt noch!
-    //private DBController dbController = new DBController();
-
-    UserDBController controller=new UserDBController();
+    UserDBController dbController =new UserDBController();
 
     @FXML
     private TextField usernameField;
@@ -62,29 +54,22 @@ public class LoginController {
         return true;
     }
 
-    //TODO: DBAccountController fehlt noch!
-    private boolean checkUserExists() { //Überprüft, ob der Nutzername und das Passwort mit einem Nutzer in der DB übereinstimmen.
-        //if(dbController.userExists(usernameField.getText(), passwordField.getText()){
+    //TODO: validiert bereits den Login --> vllt Methodennamen anpassen
+    private boolean checkUserExists() {
+        UserModel user = new UserModel(usernameField.getText(),passwordField.getText());
+        if (dbController.validateLogin(user)){
             return true;
-        //}
-        /*else{
+        }
+        else{
             notificationLabel.setText("Nutzer oder Passwort falsch!");
             return false;
-         }*/
+         }
     }
 
-    //TODO: DBAccountController fehlt noch! -> return value muss noch auf SSLSession geändert werden!
     public void login() {    //Öffnet das UI und wartet bis der Nutzer den Login eingibt.
                             //Soll SSLSession zurückgeben, wenn Eingabe richtig war.
                             //Gibt null zurück, wenn Login abgebrochen oder Fehler auftritt.
-
-
-        UserModel user = new UserModel(usernameField.getText(),null,passwordField.getText());
-        try {
-            loginConfirmed=controller.validateLogin(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //TODO: Session establishen
 
         if(loginConfirmed){
             note.text("Sie wurden erfolgreich als " + usernameField.getText() + " angemeldet!");

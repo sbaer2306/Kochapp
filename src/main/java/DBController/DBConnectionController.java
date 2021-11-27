@@ -1,9 +1,6 @@
 package DBController;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public abstract class DBConnectionController {
     private String url = "jdbc:mysql://phpmyadmin.kartoffelkoepfe.de:2225/Kochapp";
@@ -19,6 +16,16 @@ public abstract class DBConnectionController {
             this.statement =connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e);
+        }
+    }
+
+    //Zum testen der Datenbankverbindung
+    public boolean connectionUp(){
+        try {
+            return statement.execute("SELECT * FROM difficulties");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

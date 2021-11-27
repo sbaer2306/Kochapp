@@ -26,12 +26,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-//        launch(args);
-        UserDBController udb = new UserDBController();
-        UserModel user= new UserModel("nichtmarkus","mail","Bier24/7");
-        boolean loggedin=udb.validateLogin(user);
-        System.out.println("Log in successful:"+loggedin);
-
-
+        launch(args);
     }
 }

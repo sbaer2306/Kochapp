@@ -36,40 +36,53 @@ public class UserDBController extends DBConnectionController{
     }
 
     //Login
-    public boolean validateLogin(UserModel user) throws SQLException {
+    public boolean validateLogin(UserModel user) {
 
-        String sql= "select  * from users WHERE username_uid=?";
+        try {
+            ResultSet result = getUserByUsername(user.getUsername());
 
-        PreparedStatement pstmt= connection.prepareStatement(sql);
-        pstmt.setString(1, user.getUsername());
+            if(result == null) return false;
 
-        ResultSet resSet = pstmt.executeQuery();
+            String dbPwd = new String();
 
-        String DBhash=new String();
-        while (resSet.next()){
-            DBhash = resSet.getString(3); //hashwert des pwds des users in der DB
+            while (result.next()){
+                dbPwd = result.getString("pwd");
+            }
+
+            HashingClerk charles = new HashingClerk();
+            String localPwdHash= charles.hash(user.getPwd());
+
+            return localPwdHash.equals(dbPwd);
+        }catch (SQLException e){
+            System.out.println(e);
+            return false;
         }
-        System.out.println(DBhash);
-            HashingClerk carl = new HashingClerk();
-            String enteredPwd =  carl.hash(user.getPwd()); //lokales pwd hashen
-
-        if (Objects.equals(DBhash,enteredPwd)) return true; //username und pwd stimmern überein
-
-
-        return false; //username oder passwort falsch
 
     }
 
-//    //Check ob User existiert
-//    private boolean userExists(String username) throws SQLException {
-//        String sql= "select  * from users WHERE username_uid=?";
-//
-//        PreparedStatement pstmt= connection.prepareStatement(sql);
-//        pstmt.setString(1, username);
-//
-//        ResultSet resSet = pstmt.executeQuery();
-//
-//        return resSet != null;
-//
-//    }
+    //User in der Datenbank mit usernamen finden
+    private ResultSet getUserByUsername(String username) throws SQLException {
+        String sql= "select  * from users WHERE username_uid=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, username);
+
+        ResultSet resSet = pstmt.executeQuery();
+
+        return resSet;
+
+    }
+
+    public boolean checkUserExists(String username){
+        try {
+            ResultSet res= getUserByUsername(username);
+            return res != null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
+    }
+
 }

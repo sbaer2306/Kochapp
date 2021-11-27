@@ -11,6 +11,11 @@ public class UserModel {
         this.pwd = pwd;
     }
 
+    public UserModel(String username, String pwd) {
+        this.username = username;
+        this.pwd = pwd;
+    }
+
     @Override
     public String toString() {
         return "UserModel{" +
