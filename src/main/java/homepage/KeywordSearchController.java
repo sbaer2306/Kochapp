@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import login.Login;
+import registration.Registration;
 
 import java.sql.SQLException;
 
@@ -40,10 +41,9 @@ public class KeywordSearchController {
         new Login();
     }
 
-    /*
+
     @FXML
     public void registrationButtonPress(){
-        new Registration().register();
+        new Registration();
     }
-     */
 }

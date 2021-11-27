@@ -10,6 +10,10 @@ module main {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
+    requires java.sql;
+    requires java.desktop;
+    requires javafx.swing;
+
     opens main to javafx.fxml;
     exports main;
 
@@ -19,9 +23,9 @@ module main {
     opens login to javafx.fxml;
     exports login;
 
-    requires java.sql;
-    requires java.desktop;
-    requires javafx.swing;
-    exports Datastructures;
+    opens registration to javafx.fxml;
+    exports registration;
+
     opens Datastructures to java.sql;
+    exports Datastructures;
 }

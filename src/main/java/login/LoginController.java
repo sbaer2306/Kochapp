@@ -15,9 +15,9 @@ public class LoginController {
 
     public LoginController(){
     }
-    public Notifications note = Notifications.create();
+    private Notifications note = Notifications.create();
 
-    UserDBController dbController =new UserDBController();
+    private UserDBController dbController =new UserDBController();
 
     @FXML
     private TextField usernameField;
@@ -40,13 +40,13 @@ public class LoginController {
     }
     @FXML
     private void confirmLogin(ActionEvent actionEvent) { //Funktion vom confirmButton → Überprüft Eingabe und löst den Login aus, wenn Eingabe richtig ist.
-        if(validateInput() && checkUserExists()){
+        if(checkForEmptyTextFields() && checkUserExists()){
             loginConfirmed = true;
             Stage stage = (Stage)confirmButton.getScene().getWindow();
             stage.close();
         }
     }
-    private boolean validateInput(){ //Überprüft, ob eine richtige Eingabe in den Textfeldern ist.
+    private boolean checkForEmptyTextFields(){ //Überprüft, ob eine Eingabe in den Textfeldern gemacht wurde.
         if(usernameField.getText().equals("") || passwordField.getText().equals("")){
             notificationLabel.setText("Alle Felder müssen ausgefüllt sein!");
             return false;
@@ -54,7 +54,6 @@ public class LoginController {
         return true;
     }
 
-    //TODO: validiert bereits den Login --> vllt Methodennamen anpassen
     private boolean checkUserExists() {
         UserModel user = new UserModel(usernameField.getText(),passwordField.getText());
         if (dbController.validateLogin(user)){
@@ -80,7 +79,6 @@ public class LoginController {
             note.show();
             //return null;
         }
-
     }
 
     @FXML

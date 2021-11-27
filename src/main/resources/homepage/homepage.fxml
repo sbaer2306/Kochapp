@@ -206,7 +206,7 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="loginButton" mnemonicParsing="false" text="login" onAction="#loginButtonPress"/>
-                        <MenuItem fx:id="registrationButton" mnemonicParsing="false" text="Registration" />
+                        <MenuItem fx:id="registrationButton" mnemonicParsing="false" text="Registration" onAction="#registrationButtonPress" />
                     </items>
                     <BorderPane.margin>
                         <Insets right="20.0" />
