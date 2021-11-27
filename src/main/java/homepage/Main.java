@@ -1,6 +1,7 @@
 package homepage;
 
 import Clerks.HashingClerk;
+import DBController.DBSearchController;
 import DBController.UserDBController;
 import Datastructures.UserModel;
 import javafx.application.Application;

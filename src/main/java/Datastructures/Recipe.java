@@ -30,10 +30,10 @@ public class Recipe {
     @Override
     public String toString() {
         String listkategorie = "";
-        for (String s : kategorien)
+        /*for (String s : kategorien)
         {
             listkategorie += s + "\t";
-        }
+        }*/
         return "RecipeModel{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
@@ -48,7 +48,7 @@ public class Recipe {
                 ", creationTime='" + creationTime + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", author='" + author + '\'' +
-                ", kategorien='" + listkategorie + '\'' +
+                //", kategorien='" + listkategorie + '\'' +
                 '}';
     }
 
@@ -73,7 +73,7 @@ public class Recipe {
     }
 
     public void setImage(Blob blob) throws IOException, SQLException {
-        InputStream is = blob.getBinaryStream(0, blob.length());
+        InputStream is = blob.getBinaryStream();
         BufferedImage bufferedImage= ImageIO.read(is);
         this.image = SwingFXUtils.toFXImage(bufferedImage, null);
     }
