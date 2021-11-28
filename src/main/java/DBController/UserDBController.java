@@ -1,13 +1,10 @@
 package DBController;
 
-import Clerks.HashingClerk;
 import Datastructures.UserModel;
 import java.sql.*;
-import java.util.Objects;
 
 public class UserDBController extends DBConnectionController{
 
-    //TODO: warum ist die connection null
     public UserDBController()  {
         super();
     }
@@ -17,14 +14,11 @@ public class UserDBController extends DBConnectionController{
         try {
             String sql = "INSERT INTO users (username_uid,email,pwd) VALUES (?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(sql);
+
             pstmt.setString(1,user.getUsername());
             pstmt.setString(2,user.getEmail());
+            pstmt.setString(3, user.getPwdHash());
 
-            //Passwort hashen
-            HashingClerk carl = new HashingClerk();
-            String hashedPwd = carl.hash(user.getPwd());
-
-            pstmt.setString(3, hashedPwd);
             pstmt.execute();
 
         } catch (SQLException e) {
@@ -49,8 +43,7 @@ public class UserDBController extends DBConnectionController{
                 dbPwd = result.getString("pwd");
             }
 
-            HashingClerk charles = new HashingClerk();
-            String localPwdHash= charles.hash(user.getPwd());
+            String localPwdHash= user.getPwdHash();
 
             return localPwdHash.equals(dbPwd);
         }catch (SQLException e){
@@ -73,6 +66,18 @@ public class UserDBController extends DBConnectionController{
 
     }
 
+    //User mit per Email Adresse finden
+    private ResultSet getUserByEmail(String email) throws SQLException {
+        String sql= "select  * from users WHERE email=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, email);
+
+        ResultSet resSet = pstmt.executeQuery();
+
+        return resSet;
+    }
+
     public boolean checkUserExists(String username){
         try {
             ResultSet res= getUserByUsername(username);
@@ -83,6 +88,16 @@ public class UserDBController extends DBConnectionController{
         }
 
 
+    }
+
+    public boolean checkEmailExists(String email){
+        try {
+            ResultSet res= getUserByEmail(email);
+            return res != null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

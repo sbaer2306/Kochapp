@@ -1,19 +1,25 @@
 package Datastructures;
 
+import Clerks.HashingClerk;
+
 public class UserModel {
     private String username;
     private String email;
-    private String pwd; //TODO: Passwort hier schon gehashed speichern?
+    private String pwdHash;
 
+    //Für die Registrierung
     public UserModel(String username, String email, String pwd) {
+        HashingClerk alan = new HashingClerk();
         this.username = username;
         this.email = email;
-        this.pwd = pwd;
+        this.pwdHash = alan.hash(pwd);
     }
 
+    //Für den Login
     public UserModel(String username, String pwd) {
+        HashingClerk carl = new HashingClerk();
         this.username = username;
-        this.pwd = pwd;
+        this.pwdHash = carl.hash(pwd);
     }
 
     @Override
@@ -40,11 +46,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPwdHash() {
+        return pwdHash;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPwdHash(String pwdHash) {
+        this.pwdHash = pwdHash;
     }
 }
