@@ -49,6 +49,14 @@ public class DBSearchController extends DBConnectionController{
                 }
 
             }
+            String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=" + recipe.getId();
+            Statement statement1 = connection.createStatement();
+            ResultSet resultSetCategories = statement1.executeQuery(sqlCategories);
+            ArrayList<String> categories = new ArrayList<String>();
+            while (resultSetCategories.next()){
+                categories.add(resultSetCategories.getString(2));
+            }
+            recipe.setCategories(categories);
             recipeArrayList.add(recipe);
         }
         return recipeArrayList;

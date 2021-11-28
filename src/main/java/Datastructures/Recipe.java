@@ -25,15 +25,17 @@ public class Recipe {
     private String creationTime;
     private String difficulty;
     private String author;
-    private ArrayList<String> kategorien;
+    private ArrayList<String> categories;
 
     @Override
     public String toString() {
-        String listkategorie = "";
-        /*for (String s : kategorien)
-        {
-            listkategorie += s + "\t";
-        }*/
+        String listcategories = "";
+        if (categories!=null){
+            for (String s : categories)
+            {
+                listcategories += s + "\t";
+            }
+        }
         return "RecipeModel{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
@@ -48,7 +50,7 @@ public class Recipe {
                 ", creationTime='" + creationTime + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", author='" + author + '\'' +
-                //", kategorien='" + listkategorie + '\'' +
+                ", kategorien='" + listcategories + '\'' +
                 '}';
     }
 
@@ -158,11 +160,11 @@ public class Recipe {
         this.author = author;
     }
 
-    public ArrayList<String> getKategorien() {
-        return kategorien;
+    public ArrayList<String> getCategories() {
+        return categories;
     }
 
-    public void setKategorien(ArrayList<String> kategorien) {
-        this.kategorien = kategorien;
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
     }
 }
