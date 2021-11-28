@@ -22,9 +22,10 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         //TESTDBsearch
         DBSearchController dbSearchController = new DBSearchController();
-        ArrayList<Recipe> recipeArrayList = dbSearchController.searchQuery("Apfelblechkuchen",1);
+        //ArrayList<Recipe> recipeArrayList = dbSearchController.searchQuery("Apfelblechkuchen",1);
+        ArrayList<Recipe> recipeArrayList = dbSearchController.getTopFiveRecipes();
         for (Recipe recipe : recipeArrayList){
-            System.out.println(recipe);
+            System.out.println(recipe.getId());
         }
         ImageView imageView = new ImageView(recipeArrayList.get(0).getImage());
         HBox hbox = new HBox(imageView);
