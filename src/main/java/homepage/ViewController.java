@@ -15,7 +15,7 @@ public class ViewController {
 
     public void initialize() throws Exception{
         BorderPane searchBar = (BorderPane) FXMLLoader.load(getClass().getResource("/homepage/SearchBar.fxml"));
-        ScrollPane previewTop5 = (ScrollPane) FXMLLoader.load(getClass().getResource("/homepage/PreviewTop5_2.fxml"));
+        ScrollPane previewTop5 = (ScrollPane) FXMLLoader.load(getClass().getResource("/homepage/previewtop5_2.fxml"));
         bp.setTop(searchBar);
         //((ScrollPane)(bp.getCenter())).setContent(previewTop5);
         bp.setCenter(previewTop5);
