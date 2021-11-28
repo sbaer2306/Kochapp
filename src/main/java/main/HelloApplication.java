@@ -20,16 +20,16 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        /*TESTDBsearch
+        //TESTDBsearch
         DBSearchController dbSearchController = new DBSearchController();
         ArrayList<Recipe> recipeArrayList = dbSearchController.searchQuery("Apfelblechkuchen",1);
         for (Recipe recipe : recipeArrayList){
-            System.out.println(recipe.toString());
+            System.out.println(recipe);
         }
         ImageView imageView = new ImageView(recipeArrayList.get(0).getImage());
         HBox hbox = new HBox(imageView);
-        Scene scene = new Scene(hbox, 320, 240);*/
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(hbox, 320, 240);
+        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

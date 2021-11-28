@@ -32,19 +32,22 @@ public class DBSearchController extends DBConnectionController{
                             break;
                     case 5: recipe.setIngredients(resultSet.getString(i));
                             break;
-                    case 6: recipe.setDuration(resultSet.getString(i));
+                    case 6: recipe.setDescription(resultSet.getString(i));
                             break;
-                    case 7: recipe.setIngredientsCost(resultSet.getString(i));
+                    case 7: recipe.setDuration(resultSet.getString(i));
                             break;
-                    case 8: recipe.setLikes(resultSet.getString(i));
+                    case 8: recipe.setIngredientsCost(resultSet.getString(i));
                             break;
-                    case 9: recipe.setDislikes(resultSet.getString(i));
+                    case 9: recipe.setLikes(resultSet.getString(i));
                             break;
-                    case 10: recipe.setCreationTime(resultSet.getString(i));
+                    case 10: recipe.setDislikes(resultSet.getString(i));
                             break;
-                    case 11: recipe.setDifficulty(resultSet.getString(i));
+                    case 11: recipe.setCreationTime(resultSet.getString(i));
                             break;
-                    case 12: recipe.setAuthor(resultSet.getString(i));
+                    case 12: recipe.setDifficulty(resultSet.getString(i));
+                            break;
+                    case 13: recipe.setAuthor(resultSet.getString(i));
+                            break;
                     default: break;
                 }
 
