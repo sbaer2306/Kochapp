@@ -19,7 +19,7 @@ public class RegistrationController {
 
     private UserDBController dbController = new UserDBController();
 
-    private UserModel registeredUser = null;
+    private UserModel registeredUser = null; //Hier wird der Nutzer gespeichert, der dann in die Datenbank geschrieben wird
 
     @FXML
     private TextField emailField;
@@ -36,13 +36,14 @@ public class RegistrationController {
     @FXML
     private Label notificationLabel;
 
-    //TODO: Wäre es nicht besser, ein UserModel an den DBController zu übergeben?
-    // Es dürfen schließlich Nutzername und E-Mail nicht mehrmals vorkommen
-    // -> dann müssten wir für Nutzername und E-Mail nur ein mal durch die DB durch zum prüfen!
-    // (Passwort kann bei der Überprüfung ignoriert werden)
+
     private boolean checkUserExists(UserModel user){ //Überprüft, ob ein Account mit den angegebenen Nutzernamen und E-Mail bereits existiert
-        if(dbController.checkUserExists(user.getUsername())){
-            notificationLabel.setText("Nutzername oder E-Mail-Adresse bereits vergeben!");
+        if(dbController.checkUserExists(user.getUsername())){ //Überprüft ob Nutzername schon existiert
+            notificationLabel.setText("Nutzername bereits vergeben!");
+            return false;
+        }
+        else if(dbController.checkEmailExists(user.getEmail())){ //Überprüft ob Email schon existiert
+            notificationLabel.setText("E-Mail-Adresse bereits vergeben!");
             return false;
         }
         else return true;
@@ -57,13 +58,21 @@ public class RegistrationController {
         else return true;
     }
 
-    //TODO: bessere Überprüfung der E-Mail
+    //TODO: bessere Überprüfung der E-Mail?
     private boolean validateEmail(){ //Überprüft, ob eine gültige E-Mail eingegeben wurde
-        if(emailField.getText().contains("@")) return true;
-        else {
-            notificationLabel.setText("E-Mail-Adresse existiert nicht!");
-            return false;
+        String email = emailField.getText();
+        if(email.contains("@")) {   //Überprüft ob ein @ in der email ist
+            int at = email.indexOf('@');
+
+            if(!(at == 0 || at == email.length()-1)){ //Überprüft ob vor und nach dem @ noch text steht
+                String beforeAt = email.substring(0, at-1);
+                String afterAt = email.substring(at+1, email.length()-1);
+                if(afterAt.contains(".")) return true; //Überprüft ob nach dem at ein . für die adresse des email-anbieters drin steht (z.B. gmail.com)
+            }
+
         }
+        notificationLabel.setText("E-Mail-Adresse ist ungültig");
+        return false;
     }
 
     private boolean checkMatchingPasswords(){ //Überprüft, ob die beiden Passwortfelder dieselbe Eingabe haben.
@@ -73,12 +82,6 @@ public class RegistrationController {
             return false;
         }
     }
-
-    //TODO: ist die Methode hier noch nötig?
-    // Laut Klassendiagramm soll die hier implementiert werden, aber der DBController hat die bereits eingebaut
-    /*private String hashPassword(){ //Verschlüsselt das Passwort
-        return new HashingClerk().hash(passwordField.getText());
-    }*/
 
     private UserModel createUser(){ //erstellt einen Nutzer, um ihn später mit der DB zu vergleichen und dann dort einzufügen
         return new UserModel(usernameField.getText(), emailField.getText(), passwordField.getText());
@@ -96,23 +99,18 @@ public class RegistrationController {
         if(checkForEmptyTextFields() && validateEmail() && checkMatchingPasswords()){
             UserModel user = createUser();
 
-            /*
-            if(checkUserExists(user){
-            */
+            if(checkUserExists(user)){
                 registeredUser = user;
                 Stage stage = (Stage)confirmButton.getScene().getWindow();
                 stage.close();
-            /*
             }
-            */
         }
     }
-    //TODO: Überprüfungen fertig machen
     public boolean register() {
         if(registeredUser != null){
             note.text("Es wurde erfolgreich ein Account für " + registeredUser.getUsername() + " erstellt!\n" +
                     "Sie  können sich jetzt auf diesem Account anmelden!");
-            //dbController.insertNewUser(registeredUser);
+            dbController.insertNewUser(registeredUser);
             note.show();
             return true;
         }
