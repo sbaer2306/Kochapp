@@ -1,6 +1,5 @@
 package registration;
 
-import Clerks.HashingClerk;
 import DBController.UserDBController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,22 +57,21 @@ public class RegistrationController {
         else return true;
     }
 
-    //TODO: bessere Überprüfung der E-Mail?
-    private boolean validateEmail(){ //Überprüft, ob eine gültige E-Mail eingegeben wurde
-        String email = emailField.getText();
-        if(email.contains("@")) {   //Überprüft ob ein @ in der email ist
-            int at = email.indexOf('@');
-
-            if(!(at == 0 || at == email.length()-1)){ //Überprüft ob vor und nach dem @ noch text steht
-                String beforeAt = email.substring(0, at-1);
-                String afterAt = email.substring(at+1, email.length()-1);
-                if(afterAt.contains(".")) return true; //Überprüft ob nach dem at ein . für die adresse des email-anbieters drin steht (z.B. gmail.com)
-            }
-
+    public boolean checkEmailInput(String email){
+        boolean valid = isValidEmailAddress(email);
+        if(!valid) {
+            notificationLabel.setText("E-Mail-Adresse ist ungültig");
+            return false;
         }
-        notificationLabel.setText("E-Mail-Adresse ist ungültig");
-        return false;
-    }
+        else return true;
+    } //Informiert Benutzer ob Email adresse valide ist
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    } //validiert Email Adresse
 
     private boolean checkMatchingPasswords(){ //Überprüft, ob die beiden Passwortfelder dieselbe Eingabe haben.
         if(passwordField.getText().equals(passwordVerificationField.getText())) return true;
@@ -96,7 +94,7 @@ public class RegistrationController {
 
     @FXML
     public void confirmButtonPressed(ActionEvent actionEvent) {
-        if(checkForEmptyTextFields() && validateEmail() && checkMatchingPasswords()){
+        if(checkForEmptyTextFields() && checkEmailInput(emailField.getText()) && checkMatchingPasswords()){
             UserModel user = createUser();
 
             if(checkUserExists(user)){
