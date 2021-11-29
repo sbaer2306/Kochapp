@@ -106,6 +106,7 @@ public class RegistrationController {
             }
         }
     }
+
     public boolean register() {
         if(registeredUser != null){
             note.text("Es wurde erfolgreich ein Account für " + registeredUser.getUsername() + " erstellt!\n" +

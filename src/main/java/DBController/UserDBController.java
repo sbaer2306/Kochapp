@@ -81,19 +81,17 @@ public class UserDBController extends DBConnectionController{
     public boolean checkUserExists(String username){
         try {
             ResultSet res= getUserByUsername(username);
-            return res != null;
+            return  res.isBeforeFirst();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
-
-
     }
 
     public boolean checkEmailExists(String email){
         try {
             ResultSet res= getUserByEmail(email);
-            return res != null;
+            return  res.isBeforeFirst();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
