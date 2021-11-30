@@ -31,9 +31,12 @@ public class RecipePreviewController {
     }
 
     public void assemblePreview(ArrayList<Recipe> recipeList) throws IOException{
-        containter = new VBox();
-        containter.setPrefWidth(790);
+        ScrollPane sp = (ScrollPane) bp.getCenter();
+        VBox containter = (VBox) sp.getContent();
+        // VBox containter = ((ScrollPane) (bp.getCenter()).getContent());
+        // containter.setPrefWidth(790);
 
+        containter.getChildren().clear();
 
         for(int i = 0; i < recipeList.size(); i++) {
             previewElement = FXMLLoader.load(getClass().getResource("/homepage/previewElement.fxml"));
@@ -62,26 +65,26 @@ public class RecipePreviewController {
 
             //Für Zeit
             Label  duration = (Label) pane.getChildren().get(4);
-            duration.setText(recipeList.get(i).getCreationTime());
+            duration.setText(recipeList.get(i).getDuration());
 
             //Für Schwierigkeit
-            Label difficulty = (Label) pane.getChildren().get(6);
+            Label difficulty = (Label) pane.getChildren().get(8);
             difficulty.setText(recipeList.get(i).getDifficulty());
 
             //Für Preis
-            Label price = (Label) pane.getChildren().get(8);
+            Label price = (Label) pane.getChildren().get(6);
             price.setText(recipeList.get(i).getIngredientsCost());
 
             //recipeView.add(previewElement);
             containter.getChildren().add(previewElement);
         }
 
-        ScrollPane sp = new ScrollPane();
-        sp.setPrefWidth(800);
+        // ScrollPane sp = new ScrollPane();
+        // sp.setPrefWidth(800);
 
-        sp.setContent(containter);
+        // sp.setContent(containter);
 
-        bp.setCenter(sp);
+        // bp.setCenter(sp);
     }
 
 
