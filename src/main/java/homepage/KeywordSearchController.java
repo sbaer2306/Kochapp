@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import login.Login;
 import registration.Registration;
 
@@ -52,6 +53,18 @@ public class KeywordSearchController {
         HBox hbox = (HBox) extension.getParent();
         hbox.getChildren().add(extendedSearch);
         hbox.getChildren().remove(2);
+    }
+
+    @FXML
+    public void loadHomePage(Event event){
+        Button btn = (Button) event.getSource();
+        BorderPane bp = (BorderPane) btn.getParent().getParent();
+        ScrollPane sp = (ScrollPane) bp.getCenter();
+
+        ((VBox) (sp.getContent())).getChildren().clear();
+
+        ViewController vC = new ViewController();
+        vC.displayMostLikedRecipes(sp);
     }
 
     @FXML

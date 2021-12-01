@@ -40,14 +40,19 @@
         </HBox>
     </center>
     <left>
-        <ImageView fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-            <image>
-                <Image url="@fx-images/cooking_logo.jpg" />
-            </image>
+        <Button  prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="btn_home" onAction="#loadHomePage">
+            <graphic>
+                <ImageView styleClass="btn_home" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@fx-images/cooking_logo.jpg" />
+                    </image>
+                </ImageView>
+            </graphic>
             <BorderPane.margin>
                 <Insets right="100.0" />
             </BorderPane.margin>
-        </ImageView>
+        </Button>
+
     </left>
     <right>
         <MenuButton alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner" BorderPane.alignment="CENTER">
@@ -59,7 +64,7 @@
                 </ImageView>
             </graphic>
             <items>
-                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPress" text="login" />
+                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPress" text="Login" />
                 <MenuItem fx:id="registrationButton" mnemonicParsing="false" onAction="#registrationButtonPress" text="Registration" />
             </items>
             <BorderPane.margin>
