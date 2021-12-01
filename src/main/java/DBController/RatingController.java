@@ -85,7 +85,7 @@ public class RatingController extends DBConnectionController{
 
     //getLikes == true --> gibt Like Anzahl zurück
     //getLikes == false --> gibt Dislike Anzahl zurück
-    public String getRecipeRatingCount(Recipe recipe, boolean getLikes) throws SQLException {
+    private String getRecipeRatingCount(Recipe recipe, boolean getLikes) throws SQLException {
         String count="";
 
         String sql= "select  * from recipes WHERE recipe_rid=?";
