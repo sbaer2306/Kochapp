@@ -13,12 +13,28 @@ public class DBSearchController extends DBConnectionController{
     }
     //Simple Search Query for Recipe Title
     public ArrayList<Recipe> searchQuery(String buzzword, int returnQuantity) throws SQLException, IOException {
-        String sql = "select  * from recipes where title LIKE '%"+ buzzword + "%' LIMIT " + returnQuantity;
+        String sql = "select  *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference  from recipes where title LIKE '%"+ buzzword + "%' ORDER BY difference DESC LIMIT " + returnQuantity;
         return this.getRecipesFromSQLStatement(sql);
     }
     //Get Top 5 Recipes for Startingpage
     public ArrayList<Recipe> getTopFiveRecipes() throws SQLException, IOException{
         String sql ="SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ORDER BY difference DESC LIMIT 5";
+        return this.getRecipesFromSQLStatement(sql);
+    }
+    public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMin, String priceMax, int durationMin, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
+        String sql ="" +
+                "SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` " +
+                "WHERE (title LIKE '%"+ buzzword + "%' ) " +
+                "AND (ingredients_cost BETWEEN " + priceMin + " AND " + priceMax+   " ) " +
+                "AND (duration BETWEEN " + durationMin + " AND " + durationMax + " ) " +
+                "AND (difficulty_did ='" + difficulty + "' ) ";
+        if(!categories.isEmpty()){
+            for(String s:categories){
+                sql = sql + "AND recipes.recipe_rid in ( select recipe_rid from recipe_categories where recipe_categories.category_name_cid = '" + s + "')";
+            }
+        }
+        sql = sql + "ORDER BY difference DESC";
+        System.out.println(sql);
         return this.getRecipesFromSQLStatement(sql);
     }
     //Search a recipe by using a simple sql statement
