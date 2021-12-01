@@ -2,6 +2,7 @@ package homepage;
 
 import Clerks.HashingClerk;
 import DBController.DBSearchController;
+import DBController.RatingController;
 import DBController.UserDBController;
 import Datastructures.UserModel;
 import javafx.application.Application;
@@ -30,6 +31,5 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch(args);
-
     }
 }

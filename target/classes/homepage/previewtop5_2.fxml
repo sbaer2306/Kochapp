@@ -24,281 +24,281 @@
                   <Insets bottom="15.0" left="10.0" />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
-                <children>
-                  <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
-                      <graphic>
-                          <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
-                              <image>
-                                  <Image url="@fx-images/testbilder/blob_output0.jpg" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <HBox.margin>
-                        <Insets left="10.0" />
-                      </HBox.margin>
-                  </Button>
-                    <AnchorPane prefHeight="203.0" prefWidth="309.0">
-                        <children>
-                            <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
-                            <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
-                            <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                        </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                    </AnchorPane>
-                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
-                <children>
-                    <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
-                        <graphic>
-                            <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
-                                <image>
-                                    <Image url="@fx-images/testbilder/blob_output2.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets left="10.0" />
-                        </HBox.margin>
-                    </Button>
-                    <AnchorPane prefHeight="203.0" prefWidth="309.0">
-                        <children>
-                            <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
-                            <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
-                            <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                        </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                    </AnchorPane>
-                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
-                <children>
-                    <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
-                        <graphic>
-                            <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
-                                <image>
-                                    <Image url="@fx-images/testbilder/blob_output3.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets left="10.0" />
-                        </HBox.margin>
-                    </Button>
-                    <AnchorPane prefHeight="203.0" prefWidth="309.0">
-                        <children>
-                            <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
-                            <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
-                            <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                        </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                    </AnchorPane>
-                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
-                <children>
-                    <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
-                        <graphic>
-                            <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
-                                <image>
-                                    <Image url="@fx-images/testbilder/blob_output4.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets left="10.0" />
-                        </HBox.margin>
-                    </Button>
-                    <AnchorPane prefHeight="203.0" prefWidth="309.0">
-                        <children>
-                            <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
-                            <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
-                            <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                        </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                    </AnchorPane>
-                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" top="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
-                <children>
-                    <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
-                        <graphic>
-                            <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
-                                <image>
-                                    <Image url="@fx-images/testbilder/blob_output5.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                        <HBox.margin>
-                            <Insets left="10.0" />
-                        </HBox.margin>
-                    </Button>
-                    <AnchorPane prefHeight="203.0" prefWidth="309.0">
-                        <children>
-                            <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
-                            <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
-                            <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                            <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
-                            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
-                                </image>
-                            </ImageView>
-                        </children>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                    </AnchorPane>
-                </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="15.0" top="15.0" />
-               </padding>
-            </HBox>
+             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
+                 <children>
+                     <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
+                         <graphic>
+                             <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
+                                 <image>
+                                     <Image url="@fx-images/testbilder/blob_output0.jpg" />
+                                 </image>
+                             </ImageView>
+                         </graphic>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                     <AnchorPane prefHeight="203.0" prefWidth="309.0">
+                         <children>
+                             <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
+                             <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
+                             <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                         </children>
+                         <HBox.margin>
+                             <Insets left="50.0" />
+                         </HBox.margin>
+                     </AnchorPane>
+                 </children>
+                 <VBox.margin>
+                     <Insets bottom="15.0" />
+                 </VBox.margin>
+                 <padding>
+                     <Insets bottom="15.0" top="15.0" />
+                 </padding>
+             </HBox>
+             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
+                 <children>
+                     <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
+                         <graphic>
+                             <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
+                                 <image>
+                                     <Image url="@fx-images/testbilder/blob_output2.jpg" />
+                                 </image>
+                             </ImageView>
+                         </graphic>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                     <AnchorPane prefHeight="203.0" prefWidth="309.0">
+                         <children>
+                             <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
+                             <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
+                             <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                         </children>
+                         <HBox.margin>
+                             <Insets left="50.0" />
+                         </HBox.margin>
+                     </AnchorPane>
+                 </children>
+                 <VBox.margin>
+                     <Insets bottom="15.0" />
+                 </VBox.margin>
+                 <padding>
+                     <Insets bottom="15.0" top="15.0" />
+                 </padding>
+             </HBox>
+             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
+                 <children>
+                     <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
+                         <graphic>
+                             <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
+                                 <image>
+                                     <Image url="@fx-images/testbilder/blob_output3.jpg" />
+                                 </image>
+                             </ImageView>
+                         </graphic>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                     <AnchorPane prefHeight="203.0" prefWidth="309.0">
+                         <children>
+                             <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
+                             <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
+                             <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                         </children>
+                         <HBox.margin>
+                             <Insets left="50.0" />
+                         </HBox.margin>
+                     </AnchorPane>
+                 </children>
+                 <VBox.margin>
+                     <Insets bottom="15.0" />
+                 </VBox.margin>
+                 <padding>
+                     <Insets bottom="15.0" top="15.0" />
+                 </padding>
+             </HBox>
+             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
+                 <children>
+                     <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
+                         <graphic>
+                             <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
+                                 <image>
+                                     <Image url="@fx-images/testbilder/blob_output4.jpg" />
+                                 </image>
+                             </ImageView>
+                         </graphic>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                     <AnchorPane prefHeight="203.0" prefWidth="309.0">
+                         <children>
+                             <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
+                             <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
+                             <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                         </children>
+                         <HBox.margin>
+                             <Insets left="50.0" />
+                         </HBox.margin>
+                     </AnchorPane>
+                 </children>
+                 <VBox.margin>
+                     <Insets bottom="15.0" />
+                 </VBox.margin>
+                 <padding>
+                     <Insets bottom="15.0" top="15.0" />
+                 </padding>
+             </HBox>
+             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="entryBorder">
+                 <children>
+                     <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="image">
+                         <graphic>
+                             <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" styleClass="previewImage">
+                                 <image>
+                                     <Image url="@fx-images/testbilder/blob_output5.jpg" />
+                                 </image>
+                             </ImageView>
+                         </graphic>
+                         <HBox.margin>
+                             <Insets left="10.0" />
+                         </HBox.margin>
+                     </Button>
+                     <AnchorPane prefHeight="203.0" prefWidth="309.0">
+                         <children>
+                             <Label layoutX="17.0" layoutY="14.0" prefHeight="34.0" prefWidth="260.0" text="Rezeptname" />
+                             <Text layoutX="18.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam" wrappingWidth="383.13671875" />
+                             <Label layoutX="67.0" layoutY="103.0" prefHeight="29.0" prefWidth="161.0" text="100 Bewertungen" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="67.0" layoutY="157.0" prefHeight="23.0" prefWidth="129.0" text="Mittel" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_subject_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="157.0" prefHeight="22.0" prefWidth="65.0" text="Zeit" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="18.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_schedule_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                             <Label layoutX="358.0" layoutY="100.0" prefHeight="34.0" prefWidth="86.0" text="Preis" />
+                             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="297.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
+                                 </image>
+                             </ImageView>
+                         </children>
+                         <HBox.margin>
+                             <Insets left="50.0" />
+                         </HBox.margin>
+                     </AnchorPane>
+                 </children>
+                 <VBox.margin>
+                     <Insets bottom="15.0" />
+                 </VBox.margin>
+                 <padding>
+                     <Insets bottom="15.0" top="15.0" />
+                 </padding>
+             </HBox>
          </children>
       </VBox>
    </content>

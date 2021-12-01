@@ -7,6 +7,10 @@ public class UserModel {
     private String email;
     private String pwdHash;
 
+    //TODO: Beim Login evtl noch speichern welche Rezepte geliked und/oder
+    //Favorisiert wurden
+    //--> später schnellere Darstellung auf dem UI
+
     //Für die Registrierung
     public UserModel(String username, String email, String pwd) {
         HashingClerk alan = new HashingClerk();
@@ -20,6 +24,10 @@ public class UserModel {
         HashingClerk carl = new HashingClerk();
         this.username = username;
         this.pwdHash = carl.hash(pwd);
+    }
+
+    public UserModel() {
+        //um mit Gettern und Settern zu arbeiten falls nötig
     }
 
     @Override
