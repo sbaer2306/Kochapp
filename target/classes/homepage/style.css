@@ -16,6 +16,13 @@
 
 }
 
+.btn_home{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: white;
+    -fx-cursor: hand;
+}
+
 .image{
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;

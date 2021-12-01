@@ -4,6 +4,7 @@ import Clerks.HashingClerk;
 import DBController.DBSearchController;
 import DBController.RatingController;
 import DBController.UserDBController;
+import Datastructures.Recipe;
 import Datastructures.UserModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,5 +32,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch(args);
+
     }
 }
