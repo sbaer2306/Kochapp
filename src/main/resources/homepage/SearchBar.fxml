@@ -59,7 +59,7 @@
                 </ImageView>
             </graphic>
             <items>
-                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPress" text="login" />
+                <MenuItem fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPress" text="Login" />
                 <MenuItem fx:id="registrationButton" mnemonicParsing="false" onAction="#registrationButtonPress" text="Registration" />
             </items>
             <BorderPane.margin>
