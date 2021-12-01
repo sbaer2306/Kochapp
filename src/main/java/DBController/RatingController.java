@@ -37,7 +37,7 @@ public class RatingController extends DBConnectionController{
             pstmt.execute();
 
             //likes in recipes Tabelle um eins erhöhen
-            String currentLikes= getRecipeLikeCount(recipe); //altuelle Like Anzahl
+            String currentLikes= getRecipeRatingCount(recipe, like); //altuelle Like Anzahl
             int newLikeCount = Integer.parseInt(currentLikes);
             newLikeCount++; //Erhöhen
 
@@ -83,8 +83,10 @@ public class RatingController extends DBConnectionController{
         return rateRecipe(user, recipe, like);
     }
 
-    private String getRecipeLikeCount(Recipe recipe) throws SQLException {
-        String likes="";
+    //getLikes == true --> gibt Like Anzahl zurück
+    //getLikes == false --> gibt Dislike Anzahl zurück
+    public String getRecipeRatingCount(Recipe recipe, boolean getLikes) throws SQLException {
+        String count="";
 
         String sql= "select  * from recipes WHERE recipe_rid=?";
 
@@ -94,9 +96,25 @@ public class RatingController extends DBConnectionController{
         ResultSet res = pstmt.executeQuery();
 
         while(res.next()) {
-            likes= res.getString    ("likes");
+            if(getLikes)count= res.getString("likes");
+            else count=res.getString("dislikes");
         }
 
-        return likes;
+        return count;
+    }
+
+    public boolean undoRating(UserModel user, Recipe recipe, boolean likedRecipe) throws SQLException {
+
+        String sql="DELETE FROM user_recipes_ratings WHERE user_uid=? AND recipe_rid=?";
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, user.getUsername());
+        pstmt.setString(2, recipe.getId());
+
+        String temp= getRecipeRatingCount(recipe, likedRecipe);
+        int newLikeCount= Integer.parseInt(temp);
+        if(likedRecipe)newLikeCount--;
+
+        pstmt.executeQuery();
+        return updateRecipeLikes(recipe, newLikeCount, likedRecipe);
     }
 }
