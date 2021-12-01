@@ -4,6 +4,7 @@ import Datastructures.Recipe;
 import Datastructures.UserModel;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
@@ -34,7 +35,13 @@ public class RatingController extends DBConnectionController{
             pstmt.setString(3, String.valueOf(liked));
 
             pstmt.execute();
-            return true;
+
+            //likes in recipes Tabelle um eins erhöhen
+            String currentLikes= getRecipeLikeCount(recipe); //altuelle Like Anzahl
+            int newLikeCount = Integer.parseInt(currentLikes);
+            newLikeCount++; //Erhöhen
+
+            return updateRecipeLikes(recipe,newLikeCount,like); //aktualisieren
 
         }
         //PK bereits vorhanden --> SQLIntegrityConstraintViolationException
@@ -50,6 +57,20 @@ public class RatingController extends DBConnectionController{
         }
     }
 
+    private boolean updateRecipeLikes(Recipe recipe, int newLikeCount, boolean like) throws SQLException {
+
+        String sql= "UPDATE recipes SET likes=? WHERE recipe_rid=?";
+        if(!like)sql = "UPDATE recipes SET dislikes=? WHERE recipe_rid=?";
+
+         PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            //pstmt.setString(1,column);
+            pstmt.setString(1, String.valueOf(newLikeCount));
+            pstmt.setString(2, recipe.getId());
+
+            return pstmt.execute();
+    }
+
     //Falls Strings als Übergabeparameter
     //Wenn möglich obere Funktion nehmen
     public boolean rateRecipe(String username, String recipeid, boolean like){
@@ -60,5 +81,22 @@ public class RatingController extends DBConnectionController{
         recipe.setId(recipeid);
 
         return rateRecipe(user, recipe, like);
+    }
+
+    private String getRecipeLikeCount(Recipe recipe) throws SQLException {
+        String likes="";
+
+        String sql= "select  * from recipes WHERE recipe_rid=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, recipe.getId());
+
+        ResultSet res = pstmt.executeQuery();
+
+        while(res.next()) {
+            likes= res.getString    ("likes");
+        }
+
+        return likes;
     }
 }
