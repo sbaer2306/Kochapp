@@ -47,8 +47,8 @@
                </padding>
             </Label>
             <Label fx:id="notificationLabel" text="Bitte Nutzername und Passwort eingeben!" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="usernameField" GridPane.columnIndex="1" />
+             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets left="20.0" right="20.0" top="20.0" />
