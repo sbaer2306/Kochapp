@@ -4,56 +4,57 @@ import Datastructures.Recipe;
 import Datastructures.UserModel;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class RatingDBController extends DBConnectionController{
+public class RatingDBController extends DBConnectionController {
 
-    public RatingDBController(){
+    public RatingDBController() {
         super();
     }
 
     //Bewerten
 
     //Like von user auf likedRecipe eintragen
-    public boolean insertNewLike(UserModel user, Recipe likedRecipe){
-        return rateRecipe(user,likedRecipe,true);
+    public boolean insertNewLike(UserModel user, Recipe likedRecipe) {
+        return rateRecipe(user, likedRecipe, true);
     }
 
     //Like von user auf dislikedRecipe eintragen
-    public boolean insertNewDisLike(UserModel user, Recipe dislikedRecipe){
-        return rateRecipe(user,dislikedRecipe,false);
+    public boolean insertNewDisLike(UserModel user, Recipe dislikedRecipe) {
+        return rateRecipe(user, dislikedRecipe, false);
     }
 
     //like == true --> user hat geliked
     //like == false --> dislike
     private boolean rateRecipe(UserModel user, Recipe recipe, boolean like) {
 
-        String username=user.getUsername();
-        String recipeid= recipe.getId();
+        String username = user.getUsername();
+        String recipeid = recipe.getId();
 
         String sql = "INSERT INTO user_recipes_ratings (user_uid, recipe_rid, liked) VALUES (?,?,?)";
         PreparedStatement pstmt = null;
         try {
             pstmt = connection.prepareStatement(sql);
 
-            pstmt.setString(1,username);
+            pstmt.setString(1, username);
             pstmt.setString(2, recipeid);
 
             //tinyint in DB --> 0 gleich false, positive Werte gleich true
             //--> liked == Wert in DB
-            int liked=1;
-            if(!like)liked=0;
+            int liked = 1;
+            if (!like) liked = 0;
             pstmt.setString(3, String.valueOf(liked));
 
-            int affected= pstmt.executeUpdate(); //Die beeinflussten Rows in der DB
-            boolean statementSuccessfull= (affected==1);
+            int affected = pstmt.executeUpdate(); //Die beeinflussten Rows in der DB
+            boolean statementSuccessfull = (affected == 1);
 
             //likes in recipes Tabelle um eins erhöhen und user
-            if(like) return ( statementSuccessfull && incrementLikes(recipe.getId()));
-            return ( statementSuccessfull && incrementDislikes(recipe.getId()));
+            if (like) return (statementSuccessfull && incrementLikes(recipe.getId()));
+            return (statementSuccessfull && incrementDislikes(recipe.getId()));
 
-        }
-        catch (SQLException e ) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -64,11 +65,11 @@ public class RatingDBController extends DBConnectionController{
 
         PreparedStatement pstmt = null;
 
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, recipeId);
-            int affected = pstmt.executeUpdate();
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, recipeId);
+        int affected = pstmt.executeUpdate();
 
-            return affected==1;
+        return affected == 1;
 
     }
 
@@ -81,7 +82,7 @@ public class RatingDBController extends DBConnectionController{
             pstmt.setString(1, recipeId);
             int affected = pstmt.executeUpdate();
 
-            return affected==1;
+            return affected == 1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
@@ -93,25 +94,25 @@ public class RatingDBController extends DBConnectionController{
 
     //Like zurücknehmen
     public boolean revokeLike(UserModel user, Recipe recipe) throws SQLException {
-        return undoRating(user,recipe,true);
+        return undoRating(user, recipe, true);
     }
 
     //Dislike zurücknehmen
     public boolean revokeDislike(UserModel user, Recipe recipe) throws SQLException {
-        return undoRating(user,recipe,false);
+        return undoRating(user, recipe, false);
     }
 
     private boolean undoRating(UserModel user, Recipe recipe, boolean likedRecipe) throws SQLException {
 
-        String sql="DELETE FROM user_recipes_ratings WHERE user_uid=? AND recipe_rid=?";
-        PreparedStatement pstmt= connection.prepareStatement(sql);
+        String sql = "DELETE FROM user_recipes_ratings WHERE user_uid=? AND recipe_rid=?";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, user.getUsername());
         pstmt.setString(2, recipe.getId());
 
-        int affected= pstmt.executeUpdate(); //affected --> betroffene rows in der DB
+        int affected = pstmt.executeUpdate(); //affected --> betroffene rows in der DB
 
-        if(likedRecipe) return (affected==1 && decrementLikes(recipe.getId()));
-        else return (affected==1 && decrementDislikes(recipe.getId()));
+        if (likedRecipe) return (affected == 1 && decrementLikes(recipe.getId()));
+        else return (affected == 1 && decrementDislikes(recipe.getId()));
     }
 
     private boolean decrementLikes(String recipeId) {
@@ -123,7 +124,7 @@ public class RatingDBController extends DBConnectionController{
             pstmt.setString(1, recipeId);
             int affected = pstmt.executeUpdate();
 
-            return affected==1;
+            return affected == 1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
@@ -139,10 +140,48 @@ public class RatingDBController extends DBConnectionController{
             pstmt.setString(1, recipeId);
             int affected = pstmt.executeUpdate();
 
-            return affected==1;
+            return affected == 1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
         }
     }
+
+
+    //Vom User bewertete Rezept IDs erhalten
+    public ArrayList<String> getLikedRecipeIDs(String user_uid){
+        return getRatedRecipeIDs(user_uid, true);
+    }
+
+    public ArrayList<String> getDislikedRecipeIDs(String user_uid){
+        return getRatedRecipeIDs(user_uid, false);
+    }
+
+    private ArrayList<String> getRatedRecipeIDs(String userID, boolean like) {
+        ArrayList<String> likes = new ArrayList<>();
+
+        String sql = "SELECT recipe_rid FROM user_recipes_ratings WHERE user_uid=? AND liked=?";
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, userID);
+
+            String l = "1";
+            if (!like) l = "0";
+
+            pstmt.setString(2, l);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
+                likes.add(resultSet.getString("recipe_rid"));
+            }
+            return likes;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }
+
