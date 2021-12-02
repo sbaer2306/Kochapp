@@ -1,15 +1,19 @@
 package Datastructures;
 
 import Clerks.HashingClerk;
+import DBController.RatingDBController;
+
+import java.util.ArrayList;
 
 public class UserModel {
     private String username;
     private String email;
     private String pwdHash;
 
-    //TODO: Beim Login evtl noch speichern welche Rezepte geliked und/oder
-    //Favorisiert wurden
-    //--> später schnellere Darstellung auf dem UI
+    private ArrayList<String> likedRecipeIDs;
+    private ArrayList<String> dislikedRecipeIDs;
+
+
 
     //Für die Registrierung
     public UserModel(String username, String email, String pwd) {
@@ -24,10 +28,35 @@ public class UserModel {
         HashingClerk carl = new HashingClerk();
         this.username = username;
         this.pwdHash = carl.hash(pwd);
+
+        //Bewertungen holen
+        RatingDBController peter= new RatingDBController();
+        this.likedRecipeIDs = peter.getLikedRecipeIDs(this.username);
+        this.dislikedRecipeIDs = peter.getDislikedRecipeIDs(this.username);
+
+        //falls Fehler bei der Abfrage
+        if(likedRecipeIDs == null) likedRecipeIDs= new ArrayList<>();
+        if(dislikedRecipeIDs == null) dislikedRecipeIDs= new ArrayList<>();
     }
 
     public UserModel() {
         //um mit Gettern und Settern zu arbeiten falls nötig
+    }
+
+    public ArrayList<String> getLikedRecipeIDs() {
+        return likedRecipeIDs;
+    }
+
+    public void setLikedRecipeIDs(ArrayList<String> likedRecipeIDs) {
+        this.likedRecipeIDs = likedRecipeIDs;
+    }
+
+    public ArrayList<String> getDislikedRecipeIDs() {
+        return dislikedRecipeIDs;
+    }
+
+    public void setDislikedRecipeIDs(ArrayList<String> dislikedRecipeIDs) {
+        this.dislikedRecipeIDs = dislikedRecipeIDs;
     }
 
     @Override
