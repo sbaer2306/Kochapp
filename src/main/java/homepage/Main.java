@@ -2,7 +2,7 @@ package homepage;
 
 import Clerks.HashingClerk;
 import DBController.DBSearchController;
-import DBController.RatingController;
+import DBController.RatingDBController;
 import DBController.UserDBController;
 import Datastructures.Recipe;
 import Datastructures.UserModel;
