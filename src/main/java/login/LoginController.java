@@ -2,6 +2,7 @@ package login;
 
 import DBController.UserDBController;
 import Datastructures.UserModel;
+import Session.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +33,8 @@ public class LoginController {
 
     private boolean loginConfirmed = false;
 
+    private UserModel user;
+
     @FXML
     private void cancelLogin(ActionEvent actionEvent) { //Funktion vom cancelButton → Bricht Login ab.
         note.text("Der Login wurde abgebrochen!");
@@ -57,6 +60,7 @@ public class LoginController {
     private boolean checkUserExists() {
         UserModel user = new UserModel(usernameField.getText(),passwordField.getText());
         if (dbController.validateLogin(user)){
+            this.user = user;
             return true;
         }
         else{
@@ -66,18 +70,17 @@ public class LoginController {
     }
 
     public void login() {    //Öffnet das UI und wartet bis der Nutzer den Login eingibt.
-                            //Soll SSLSession zurückgeben, wenn Eingabe richtig war.
-                            //Gibt null zurück, wenn Login abgebrochen oder Fehler auftritt.
         //TODO: Session establishen
 
         if(loginConfirmed){
+            new UserSession().loginSession(user);
             note.text("Sie wurden erfolgreich als " + usernameField.getText() + " angemeldet!");
             note.show();
-            // return dbController.getUserSession(usernameField.getText(), passwordField.getText());
+
+
         }
         else {
             note.show();
-            //return null;
         }
     }
 
