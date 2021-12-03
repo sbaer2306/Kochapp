@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.RangeSlider;
 
 import javax.swing.text.Element;
 import java.awt.*;
@@ -24,18 +25,18 @@ public class HelloApplication extends Application {
         DBSearchController dbSearchController = new DBSearchController();
         //ArrayList<Recipe> recipeArrayList = dbSearchController.searchQuery("Apfelblechkuchen",1);
         //ArrayList<Recipe> recipeArrayList = dbSearchController.getTopFiveRecipes();
-        /*ArrayList<String> categories = new ArrayList<>();
-        categories.add("Fisch");
-        categories.add("Hauptspeise");
-        categories.add("Kochen");
-        ArrayList<Recipe> recipeArrayList = dbSearchController.extendedSearchQuery("Lachs","5.00","50.00",0,100,"Leicht",categories);
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("Winter");
+        categories.add("Nachspeise");
+        ArrayList<Recipe> recipeArrayList = dbSearchController.extendedSearchQuery("Tiramisu","0.00","100.00",1,100000,"Leicht",categories);
         for (Recipe recipe : recipeArrayList){
-            System.out.println(recipe);
-        }*/
-        //ImageView imageView = new ImageView(recipeArrayList.get(0).getImage());
-        //HBox hbox = new HBox(imageView);
-        //cene scene = new Scene(hbox, 320, 240);
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            System.out.println(recipe.getId());
+        }
+        RangeSlider rangeSlider = new RangeSlider();
+        ImageView imageView = new ImageView(recipeArrayList.get(0).getImage());
+        HBox hbox = new HBox(imageView);
+        Scene scene = new Scene(hbox, 320, 240);
+        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

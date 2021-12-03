@@ -22,18 +22,21 @@ public class DBSearchController extends DBConnectionController{
         return this.getRecipesFromSQLStatement(sql);
     }
     public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMin, String priceMax, int durationMin, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
-        String sql ="" +
-                "SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` " +
-                "WHERE (title LIKE '%"+ buzzword + "%' ) " +
-                "AND (ingredients_cost BETWEEN " + priceMin + " AND " + priceMax+   " ) " +
-                "AND (duration BETWEEN " + durationMin + " AND " + durationMax + " ) " +
-                "AND (difficulty_did ='" + difficulty + "' ) ";
+        StringBuilder SBsql = new StringBuilder();
+        SBsql.append("SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ");
+        SBsql.append( "WHERE (ingredients_cost BETWEEN " + priceMin + " AND " + priceMax+   " ) ");
+        if(!buzzword.isEmpty()){
+            SBsql.append( "AND (title LIKE '%"+ buzzword + "%' ) ");
+        }
+        SBsql.append("AND (duration BETWEEN " + durationMin + " AND " + durationMax + " ) ");
+        SBsql.append(  "AND (difficulty_did ='" + difficulty + "' ) ");
+        StringBuilder SBcategories = new StringBuilder();
         if(!categories.isEmpty()){
             for(String s:categories){
-                sql = sql + "AND recipes.recipe_rid in ( select recipe_rid from recipe_categories where recipe_categories.category_name_cid = '" + s + "')";
+               SBcategories.append("AND recipes.recipe_rid in ( select recipe_rid from recipe_categories where recipe_categories.category_name_cid = '" + s + "')");
             }
         }
-        sql = sql + "ORDER BY difference DESC";
+        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC";
         System.out.println(sql);
         return this.getRecipesFromSQLStatement(sql);
     }
