@@ -20,23 +20,12 @@
                     </graphic>
                 </Button>
                 <TextField fx:id="keywordField" styleClass="no_focusedHover" alignment="CENTER" minWidth="400.0" onAction="#getSearchResults" prefHeight="40.0" promptText="Worauf hast du Lust?"/>
-                <MenuButton fx:id="extension" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@fx-images/1x/outline_reorder_black_24dp.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </MenuButton>
+                <fx:include fx:id="extensionID" source="extendedSearch.fxml" />
             </children>
         </HBox>
     </center>
     <left>
-        <Button  prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="no_focusedHover, backgroundColor, btn_home" onAction="#loadHomePage">
+        <Button  prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="no_focusedHover, backgroundColor, changeCursor" onAction="#loadHomePage">
             <graphic>
                 <ImageView styleClass="no_focusedHover, backgroundColor, btn_home" fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                     <image>
