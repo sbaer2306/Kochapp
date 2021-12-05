@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -33,21 +34,46 @@ public class RecipePreviewController {
     public void assemblePreview(ArrayList<Recipe> recipeList) throws IOException{
         ScrollPane sp = (ScrollPane) bp.getCenter();
         VBox containter = (VBox) sp.getContent();
-        // VBox containter = ((ScrollPane) (bp.getCenter()).getContent());
-        // containter.setPrefWidth(790);
 
-        containter.getChildren().clear();
+        if(recipeList.size() <= 1){
+            containter.setMinWidth(745);
+        }
+
+        containter.getChildren().remove(1, containter.getChildren().size());
+
+        Label mostLikedRecipes = (Label) containter.getChildren().get(0);
+
+        switch(recipeList.size()){
+            case 0: mostLikedRecipes.setText("Es wurden keine Rezepte gefunden");
+                break;
+            case 1: mostLikedRecipes.setText("Es wurde " + recipeList.size() + " Rezept gefunden");
+                break;
+            default: mostLikedRecipes.setText("Es wurden " + recipeList.size() + " Rezepte gefunden");
+                break;
+        }
+        mostLikedRecipes.getStyleClass().add("h2");
 
         for(int i = 0; i < recipeList.size(); i++) {
             previewElement = FXMLLoader.load(getClass().getResource("/homepage/previewElement.fxml"));
 
+            if(i % 2 == 0){
+                previewElement.getStyleClass().add("colorBoxes2");
+            }else{
+                previewElement.getStyleClass().add("colorBoxes1");
+            }
+
             //Für Bild
             Button b = (Button) previewElement.getChildren().get(0);
-            ImageView view = new ImageView();
-            view.setFitWidth(250);
-            view.setFitHeight(150);
+            ImageView view = (ImageView) b.getGraphic();
+
+            Rectangle clip = new Rectangle(
+                    view.getFitWidth(), view.getFitHeight()
+            );
             view.setImage(recipeList.get(i).getImage());
-            b.setGraphic(view);
+
+            clip.setArcWidth(30);
+            clip.setArcHeight(30);
+            view.setClip(clip);
 
             AnchorPane pane = (AnchorPane) previewElement.getChildren().get(1);
 
@@ -55,36 +81,25 @@ public class RecipePreviewController {
             Label title = (Label) pane.getChildren().get(0);
             title.setText(recipeList.get(i).getTitle());
 
-            //Für Beschreibung
-            Label description = (Label) pane.getChildren().get(1);
-            description.setText(recipeList.get(i).getDescription());
-
             //Für Bewertung
-            Label likes = (Label) pane.getChildren().get(2);
+            Label likes = (Label) pane.getChildren().get(1);
             likes.setText(recipeList.get(i).getLikes());
 
             //Für Zeit
-            Label  duration = (Label) pane.getChildren().get(4);
+            Label  duration = (Label) pane.getChildren().get(3);
             duration.setText(recipeList.get(i).getDuration());
 
             //Für Schwierigkeit
-            Label difficulty = (Label) pane.getChildren().get(8);
+            Label difficulty = (Label) pane.getChildren().get(5);
             difficulty.setText(recipeList.get(i).getDifficulty());
 
             //Für Preis
-            Label price = (Label) pane.getChildren().get(6);
+            Label price = (Label) pane.getChildren().get(7);
             price.setText(recipeList.get(i).getIngredientsCost());
 
             //recipeView.add(previewElement);
             containter.getChildren().add(previewElement);
         }
-
-        // ScrollPane sp = new ScrollPane();
-        // sp.setPrefWidth(800);
-
-        // sp.setContent(containter);
-
-        // bp.setCenter(sp);
     }
 
 

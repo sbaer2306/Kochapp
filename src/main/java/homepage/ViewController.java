@@ -11,6 +11,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -24,10 +25,7 @@ public class ViewController {
 
     public void initialize() throws Exception{
         BorderPane searchBar = (BorderPane) FXMLLoader.load(getClass().getResource("/homepage/SearchBar.fxml"));
-        // ScrollPane previewTop5 = (ScrollPane) FXMLLoader.load(getClass().getResource("/homepage/previewtop5_2.fxml"));
         bp.setTop(searchBar);
-        //((ScrollPane)(bp.getCenter())).setContent(previewTop5);
-        // bp.setCenter(previewTop5);
         displayMostLikedRecipes((ScrollPane) bp.getCenter());
     }
 
@@ -41,21 +39,35 @@ public class ViewController {
         }
         try {
             VBox container = (VBox) pane.getContent();
+            container.setMinWidth(733);
 
-            Label mostLikedRecipes = new Label("Unsere Top 5 Rezepte");
-            container.getChildren().add(mostLikedRecipes);
+            Label mostLikedRecipes = (Label) container.getChildren().get(0);
+            mostLikedRecipes.setText("Unsere Top 5 Rezepte");
+            mostLikedRecipes.getStyleClass().add("h1");
 
             for(int i = 1; i < 6; i++) {
-
                 HBox recipeContainer = (HBox) FXMLLoader.load(getClass().getResource("/homepage/previewElement.fxml"));
+
+
+
+                if(i % 2 == 0){
+                    recipeContainer.getStyleClass().add("colorBoxes1");
+                }else{
+                    recipeContainer.getStyleClass().add("colorBoxes2");
+                }
 
                 // Aufbaue des Images
                 Button imageContainer = (Button) recipeContainer.getChildren().get(0);
-                ImageView view = new ImageView();
-                view.setFitWidth(250);
-                view.setFitHeight(150);
+                ImageView view = (ImageView) imageContainer.getGraphic();
+
+                Rectangle clip = new Rectangle(
+                        view.getFitWidth(), view.getFitHeight()
+                );
                 view.setImage(mostLiked.get(i - 1).getImage());
-                imageContainer.setGraphic(view);
+
+                clip.setArcWidth(30);
+                clip.setArcHeight(30);
+                view.setClip(clip);
 
                 // Container für die Attribute des Rezepts
                 AnchorPane attributeContainer = (AnchorPane) recipeContainer.getChildren().get(1);
@@ -64,24 +76,20 @@ public class ViewController {
                 Label title = (Label) attributeContainer.getChildren().get(0);
                 title.setText(mostLiked.get(i - 1).getTitle());
 
-                // Aufbau der Beschreibung
-                Label description = (Label) attributeContainer.getChildren().get(1);
-                description.setText(mostLiked.get(i - 1).getDescription());
-
                 // Aufbau der Likes
-                Label likes = (Label) attributeContainer.getChildren().get(2);
+                Label likes = (Label) attributeContainer.getChildren().get(1);
                 likes.setText(mostLiked.get(i - 1).getLikes());
 
                 // Aufbau der Dauer
-                Label duration = (Label) attributeContainer.getChildren().get(4);
+                Label duration = (Label) attributeContainer.getChildren().get(3);
                 duration.setText(mostLiked.get(i - 1).getDuration());
 
                 // Aufbau der Schwierigkeit
-                Label difficulty = (Label) attributeContainer.getChildren().get(8);
+                Label difficulty = (Label) attributeContainer.getChildren().get(5);
                 difficulty.setText(mostLiked.get(i - 1).getDifficulty());
 
                 // Aufbau der Kosten
-                Label price = (Label) attributeContainer.getChildren().get(6);
+                Label price = (Label) attributeContainer.getChildren().get(7);
                 price.setText(mostLiked.get(i - 1).getIngredientsCost());
 
                 container.getChildren().add(recipeContainer);

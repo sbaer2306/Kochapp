@@ -53,6 +53,8 @@ public class KeywordSearchController {
         HBox hbox = (HBox) extension.getParent();
         hbox.getChildren().add(extendedSearch);
         hbox.getChildren().remove(2);
+
+        
     }
 
     @FXML
@@ -60,8 +62,9 @@ public class KeywordSearchController {
         Button btn = (Button) event.getSource();
         BorderPane bp = (BorderPane) btn.getParent().getParent();
         ScrollPane sp = (ScrollPane) bp.getCenter();
+        VBox list = (VBox) sp.getContent();
 
-        ((VBox) (sp.getContent())).getChildren().clear();
+        list.getChildren().remove(1, list.getChildren().size());
 
         ViewController vC = new ViewController();
         vC.displayMostLikedRecipes(sp);

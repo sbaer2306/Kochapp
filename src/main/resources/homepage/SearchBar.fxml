@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.KeywordSearchController">
+<BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" stylesheets="@style.css"  styleClass="backgroundColor" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.KeywordSearchController">
     <center>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" BorderPane.alignment="CENTER" styleClass="backgroundColor">
             <children>
-                <Button fx:id="search" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="btn_banner">
+                <Button fx:id="search" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -23,8 +19,8 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <TextField fx:id="keywordField" alignment="CENTER" minWidth="400.0" onAction="#getSearchResults" prefHeight="40.0" promptText="Search" />
-                <MenuButton fx:id="extension" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner">
+                <TextField fx:id="keywordField" styleClass="no_focusedHover" alignment="CENTER" minWidth="400.0" onAction="#getSearchResults" prefHeight="40.0" promptText="Worauf hast du Lust?"/>
+                <MenuButton fx:id="extension" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -40,22 +36,22 @@
         </HBox>
     </center>
     <left>
-        <Button  prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="btn_home" onAction="#loadHomePage">
+        <Button  prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="no_focusedHover, backgroundColor, btn_home" onAction="#loadHomePage">
             <graphic>
-                <ImageView styleClass="btn_home" fitHeight="100" fitWidth="100" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                <ImageView styleClass="no_focusedHover, backgroundColor, btn_home" fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                     <image>
-                        <Image url="@fx-images/cooking_logo.jpg" />
+                        <Image url="@fx-images/foodhub.png" />
                     </image>
                 </ImageView>
             </graphic>
             <BorderPane.margin>
-                <Insets right="100.0" />
+                <Insets right="50.0" left="20.0"/>
             </BorderPane.margin>
         </Button>
 
     </left>
     <right>
-        <MenuButton alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner" BorderPane.alignment="CENTER">
+        <MenuButton alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" BorderPane.alignment="CENTER">
             <graphic>
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <image>

@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<MenuButton fx:id="showExtendedSearchMenu" mnemonicParsing="false" prefHeight="40.0" styleClass="btn_banner" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.ExtendedSearchController">
+<MenuButton fx:id="showExtendedSearchMenu" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.ExtendedSearchController">
     <graphic>
         <ImageView pickOnBounds="true" preserveRatio="true">
             <image>

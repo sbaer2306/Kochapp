@@ -1,18 +1,11 @@
 package homepage;
 
-import Clerks.HashingClerk;
-import DBController.DBSearchController;
-import DBController.RatingDBController;
-import DBController.UserDBController;
-import Datastructures.Recipe;
-import Datastructures.UserModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import registration.RegistrationController;
 
 import java.sql.SQLException;
 
@@ -26,8 +19,7 @@ public class Main extends Application {
         primaryStage.setTitle("Startseite");
         primaryStage.setScene(scene);
         primaryStage.show();
-        // ExtendedSearchController extendedSearchController = new ExtendedSearchController();
-        // root.setController(extendedSearchController);
+        primaryStage.setMinWidth(1016);
     }
 
     public static void main(String[] args) throws SQLException {
