@@ -2,17 +2,18 @@ package homepage;
 
 import DBController.DBSearchController;
 import Datastructures.Recipe;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class ViewController {
     @FXML
     private BorderPane bp;
 
-    public void initialize() throws Exception{
+    public void initialize() throws Exception {
         BorderPane searchBar = (BorderPane) FXMLLoader.load(getClass().getResource("/homepage/SearchBar.fxml"));
         bp.setTop(searchBar);
         displayMostLikedRecipes((ScrollPane) bp.getCenter());
@@ -34,7 +35,7 @@ public class ViewController {
         try {
             DBSearchController dbSearchController = new DBSearchController();
             mostLiked = dbSearchController.getTopFiveRecipes();
-        }catch (SQLException | IOException | NullPointerException e) {
+        } catch (SQLException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
         try {
@@ -45,14 +46,12 @@ public class ViewController {
             mostLikedRecipes.setText("Unsere Top 5 Rezepte");
             mostLikedRecipes.getStyleClass().add("h1");
 
-            for(int i = 1; i < 6; i++) {
+            for (int i = 1; i < 6; i++) {
                 HBox recipeContainer = (HBox) FXMLLoader.load(getClass().getResource("/homepage/previewElement.fxml"));
 
-
-
-                if(i % 2 == 0){
+                if (i % 2 == 0) {
                     recipeContainer.getStyleClass().add("colorBoxes1");
-                }else{
+                } else {
                     recipeContainer.getStyleClass().add("colorBoxes2");
                 }
 
@@ -94,9 +93,8 @@ public class ViewController {
 
                 container.getChildren().add(recipeContainer);
             }
-        } catch(IOException | ClassCastException e) {
+        } catch (IOException | ClassCastException e) {
             e.printStackTrace();
         }
     }
-
 }

@@ -37,7 +37,7 @@ public class KeywordSearchController {
     public MenuButton extensionID;
 
     @FXML
-    public void getSearchResults(){
+    public ArrayList<Recipe> getSearchResults(){
         ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
         String query = keywordField.getText();
@@ -105,6 +105,8 @@ public class KeywordSearchController {
         } catch (SQLException | IOException | NullPointerException e) {
             e.printStackTrace();
         }
+
+        return recipes;
     }
 
     public void clearExtension() {

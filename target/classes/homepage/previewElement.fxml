@@ -6,9 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<HBox fx:id="previewElement" alignment="CENTER_LEFT" styleClass="entryBorder, box" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="previewElement" alignment="CENTER_LEFT" styleClass="entryBorder, box" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.RecipePreviewController">
     <children>
-        <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="no_focusedHover, roundCorners, changeCursor">
+        <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="no_focusedHover, roundCorners, changeCursor" onAction="#loadRecipe">
             <graphic>
                 <ImageView fitHeight="150.0" fitWidth="250.0"/>
             </graphic>

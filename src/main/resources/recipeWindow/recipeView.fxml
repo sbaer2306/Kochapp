@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0">
+         <children>
+            <ImageView fitHeight="262.0" fitWidth="300.0" layoutX="38.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="396.0" layoutY="63.0" prefHeight="70.0" prefWidth="305.0" text="Titel" />
+            <TextArea layoutX="396.0" layoutY="180.0" prefHeight="198.0" prefWidth="489.0" />
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
