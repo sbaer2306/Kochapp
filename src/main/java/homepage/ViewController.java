@@ -236,7 +236,20 @@ public class ViewController {
         Label title = (Label) root.getChildren().get(1);
         title.setText(recipe.getTitle());
 
-        TextArea area = (TextArea) root.getChildren().get(2);
-        area.setText(recipe.getDescription());
+        Label description = (Label) root.getChildren().get(2);
+        description.setText(recipe.getDescription());
+
+        Label likes = (Label) root.getChildren().get(6);
+        likes.setText(recipe.getLikes());
+
+        Label dislikes = (Label) root.getChildren().get(7);
+        dislikes.setText(recipe.getDislikes());
+
+        Label portions = (Label) root.getChildren().get(9);
+        portions.setText("Zutaten für " + recipe.getPortions() + " Person");
+
+        ListView ingredients = (ListView) root.getChildren().get(10);
+        ingredients.getItems().add(recipe.getIngredients());
+
     }
 }
