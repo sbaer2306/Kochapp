@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -26,6 +27,16 @@ public class Recipe {
     private String difficulty;
     private String author;
     private ArrayList<String> categories;
+
+    private File ImageFile;
+
+    public File getImageFile() {
+        return ImageFile;
+    }
+
+    public void setImageFile(File imageFile) {
+        ImageFile = imageFile;
+    }
 
     @Override
     public String toString() {
@@ -78,6 +89,12 @@ public class Recipe {
         InputStream is = blob.getBinaryStream();
         BufferedImage bufferedImage= ImageIO.read(is);
         this.image = SwingFXUtils.toFXImage(bufferedImage, null);
+    }
+
+    //Für die Rezepterstellung
+    public void setImage(File file){
+        setImageFile(file); //FileChooser liefert ein File zurück
+        this.image= new Image(file.toURI().toString());
     }
 
     public String getPortions() {
