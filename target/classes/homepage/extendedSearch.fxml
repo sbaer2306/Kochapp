@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<MenuButton fx:id="showExtendedSearchMenu" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.KeywordSearchController">
+<MenuButton fx:id="showExtendedSearchMenu" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.KeywordSearchController">
     <graphic>
         <ImageView pickOnBounds="true" preserveRatio="true">
             <image>

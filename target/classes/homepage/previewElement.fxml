@@ -6,9 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<HBox fx:id="previewElement" alignment="CENTER_LEFT" styleClass="entryBorder, box" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.RecipePreviewController">
+<HBox fx:id="previewElement" alignment="CENTER_LEFT" styleClass="entryBorder, box" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.ViewController">
     <children>
-        <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="no_focusedHover, roundCorners, changeCursor" onAction="#loadRecipe">
+        <Button maxHeight="150.0" maxWidth="250.0" minHeight="150.0" minWidth="250.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" styleClass="no_focusedHover, roundCorners, changeCursor" onMouseClicked="#loadRecipe">
             <graphic>
                 <ImageView fitHeight="150.0" fitWidth="250.0"/>
             </graphic>
@@ -19,7 +19,7 @@
         <AnchorPane prefHeight="200.0" prefWidth="300.0">
             <children>
                 <!--Titel-->
-                <Label layoutY="30.0" styleClass="h2, changeCursor" />
+                <Label layoutY="30.0" styleClass="h2, changeCursor" onMouseClicked="#loadRecipe"/>
 
                 <!--Für Bewertungen-->
                 <Label layoutX="35.0" layoutY="85.0" text="hallo" styleClass="h3"/>

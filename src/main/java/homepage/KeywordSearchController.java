@@ -92,7 +92,7 @@ public class KeywordSearchController {
 
         try {
             DBSearchController dbSearchController = new DBSearchController();
-            RecipePreviewController rpc= new RecipePreviewController(bp);
+            ViewController rpc= new ViewController(bp);
             if(price.equals("0") && duration.equals("0") && difficulty.equals("") && list.get(0).equals("")) {
                 recipes = dbSearchController.searchQuery(query, 100);
                 rpc.assemblePreview(recipes);
@@ -135,8 +135,8 @@ public class KeywordSearchController {
 
         list.getChildren().remove(1, list.getChildren().size());
 
-        ViewController vC = new ViewController();
-        vC.displayMostLikedRecipes(sp);
+        ViewController vC = new ViewController(bp);
+        vC.displayMostLikedRecipes();
     }
 
 
