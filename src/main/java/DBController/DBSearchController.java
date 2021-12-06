@@ -21,14 +21,14 @@ public class DBSearchController extends DBConnectionController{
         String sql ="SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ORDER BY difference DESC LIMIT 5";
         return this.getRecipesFromSQLStatement(sql);
     }
-    public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMin, String priceMax, int durationMin, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
+    public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMax, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
         StringBuilder SBsql = new StringBuilder();
         SBsql.append("SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ");
-        SBsql.append( "WHERE (ingredients_cost BETWEEN " + priceMin + " AND " + priceMax+   " ) ");
+        SBsql.append( "WHERE (ingredients_cost BETWEEN 0.00 AND " + priceMax+   " ) ");
         if(!buzzword.isEmpty()){
             SBsql.append( "AND (title LIKE '%"+ buzzword + "%' ) ");
         }
-        SBsql.append("AND (duration BETWEEN " + durationMin + " AND " + durationMax + " ) ");
+        SBsql.append("AND (duration BETWEEN 0 AND " + durationMax + " ) ");
         SBsql.append(  "AND (difficulty_did ='" + difficulty + "' ) ");
         StringBuilder SBcategories = new StringBuilder();
         if(!categories.isEmpty()){

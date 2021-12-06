@@ -28,7 +28,7 @@ public class HelloApplication extends Application {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("Winter");
         categories.add("Nachspeise");
-        ArrayList<Recipe> recipeArrayList = dbSearchController.extendedSearchQuery("Tiramisu","0.00","100.00",1,100000,"Leicht",categories);
+        ArrayList<Recipe> recipeArrayList = dbSearchController.extendedSearchQuery("Tiramisu","100.00",100000,"Leicht",categories);
         for (Recipe recipe : recipeArrayList){
             System.out.println(recipe.getId());
         }
