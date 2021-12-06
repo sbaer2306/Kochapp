@@ -98,8 +98,7 @@ public class KeywordSearchController {
                 rpc.assemblePreview(recipes);
             }
             else {
-                recipes = dbSearchController.extendedSearchQuery(query, null, price,
-                        0, Integer.parseInt(duration), difficulty, list);
+                recipes = dbSearchController.extendedSearchQuery(query, price, Integer.parseInt(duration), difficulty, list);
                 rpc.assemblePreview(recipes);
             }
         } catch (SQLException | IOException | NullPointerException e) {
