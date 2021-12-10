@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ViewController {
 
@@ -246,10 +247,29 @@ public class ViewController {
         dislikes.setText(recipe.getDislikes());
 
         Label portions = (Label) root.getChildren().get(9);
-        portions.setText("Zutaten für " + recipe.getPortions() + " Person");
+        portions.setText("Zutaten für " + recipe.getPortions() + " Portionen");
+        
+        // Label ingredientsView = (Label) root.getChildren().get(11);
+        // ingredientsView.setText(recipe.getIngredients());
 
-        ListView ingredients = (ListView) root.getChildren().get(10);
-        ingredients.getItems().add(recipe.getIngredients());
+        Label author = (Label) root.getChildren().get(11);
+        author.setText("Von: " + recipe.getAuthor() + ", " + recipe.getCreationTime());
 
+        String[] ingredients = recipe.getIngredients().split("\n");
+        ListView ingredientsView = (ListView) root.getChildren().get(12);
+        for(String ingredient : ingredients) ingredientsView.getItems().add(ingredient);
+
+        Label difficulty = (Label) root.getChildren().get(16);
+        difficulty.setText(recipe.getDifficulty());
+
+        Label duration = (Label) root.getChildren().get(17);
+        duration.setText(recipe.getDuration());
+
+        Label price = (Label) root.getChildren().get(18);
+        price.setText(recipe.getIngredientsCost());
+
+        Label categoryLabel = (Label) root.getChildren().get(19);
+        String categories = Arrays.toString(recipe.getCategories().toArray()).replace("[", "").replace("]", "");
+        categoryLabel.setText(categories);
     }
 }

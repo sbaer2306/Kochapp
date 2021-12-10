@@ -1,0 +1,15 @@
+#title {
+    -fx-font-family: Avanta Garde;
+    -fx-font-size: 25;
+    -fx-font-weight: 800;
+}
+
+.btn {
+    -fx-background-color: White;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#main {
+    -fx-background-color: White;
+}
