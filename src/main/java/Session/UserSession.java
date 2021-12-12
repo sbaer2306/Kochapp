@@ -1,6 +1,7 @@
 package Session;
 
 import Datastructures.UserModel;
+import org.controlsfx.control.Notifications;
 
 public class UserSession {
     private static UserModel activeUserSession = null; // activeUserSession ist global, alle UserSession-Objekte greifen auf dieselbe Variable zu
@@ -19,5 +20,8 @@ public class UserSession {
 
     public void logoutSession(){
         activeUserSession = null;
+        Notifications note = Notifications.create();
+        note.title("Abgemeldet");
+        note.text("Sie wurden erfolgreich abgemeldet!");
     } // meldet den User ab
 }
