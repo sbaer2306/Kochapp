@@ -1,9 +1,12 @@
 package recipeView;
 
 import Datastructures.Recipe;
+import Session.UserSession;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -12,12 +15,66 @@ import java.util.Arrays;
 public class RecipeViewController {
 
     private Recipe recipe;
+    private RatingController ratingController;
     
     @FXML
     private AnchorPane container;
 
+    @FXML
+    private Button thumbUp;
+    @FXML
+    private Button thumbDown;
+    @FXML
+    private Button favorite;
+
+    public void like() {
+        if(new UserSession().sessionExists()) {
+            if(!ratingController.like(recipe)) {
+                System.out.println("Recipe has been liked..");
+                Image image = new Image("resources/recipeView/fx-images/1x/baseline_thumb_up_black_24dp.png");
+                ImageView imageView = (ImageView) thumbUp.getGraphic();
+                imageView.setImage(image);
+            }
+            else {
+                ratingController.revokeLike(recipe);
+                System.out.println("Like has been revoked..");
+                Image image = new Image("resources/recipeView/fx-images/1x/outline_thumb_up_black_24dp.png");
+                ImageView imageView = (ImageView) thumbUp.getGraphic();
+                imageView.setImage(image);
+            }
+        }
+        else {
+            System.out.println("Please log into your account to use this function..");
+        }
+    }
+
+    public void dislike() {
+        if(new UserSession().sessionExists()) {
+            if(!ratingController.dislike(recipe)) {
+                System.out.println("Recipe has been disliked..");
+                Image image = new Image("resources/recipeView/fx-images/1x/baseline_thumb_down_black_24dp.png");
+                ImageView imageView = (ImageView) thumbDown.getGraphic();
+                imageView.setImage(image);
+            }
+            else {
+                ratingController.revokeDislike(recipe);
+                System.out.println("Dislike has been revoked..");
+                Image image = new Image("resources/recipeView/fx-images/1x/outline_thumb_down_black_24dp.png");
+                ImageView imageView = (ImageView) thumbDown.getGraphic();
+                imageView.setImage(image);
+            }
+        }
+        else {
+            System.out.println("Please log into your account use this function..");
+        }
+    }
+
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    public RecipeViewController() {
+        this.ratingController = new RatingController();
     }
 
     public void setRecipe(Recipe recipe) {
