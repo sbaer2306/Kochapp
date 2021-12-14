@@ -26,6 +26,9 @@ module main {
     opens registration to javafx.fxml;
     exports registration;
 
+    opens RecipeCreation to javafx.fxml;
+    exports RecipeCreation;
+
     opens Datastructures to java.sql;
     exports Datastructures;
 }
