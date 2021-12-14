@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.StackPane?>
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipeView.RecipeViewController">
   <content>
     <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0">
@@ -22,22 +23,44 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="thumbUp" layoutX="42.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#like">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                      </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="thumbDown" layoutX="133.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#dislike">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@fx-images/1x/outline_thumb_down_black_24dp.png" />
-                      </image>
-                  </ImageView>
-               </graphic></Button>
+             <StackPane layoutX="42.0" layoutY="361.0">
+                 <Button fx:id="thumbUpWhite" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#like">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic></Button>
+                 <Button visible="false" fx:id="thumbUpBlack" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#like">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/baseline_thumb_up_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic></Button>
+             </StackPane>
+             <StackPane layoutX="133.0" layoutY="361.0" >
+                 <Button fx:id="thumbDownWhite" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#dislike">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/outline_thumb_down_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic>
+                 </Button>
+                 <Button visible="false" fx:id="thumbDownBlack" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#dislike">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/baseline_thumb_down_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic>
+                 </Button>
+             </StackPane>
             <Button fx:id="favorite" layoutX="220.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -46,9 +69,9 @@
                       </image>
                   </ImageView>
                </graphic></Button>
-            <Label layoutX="88.0" layoutY="371.0" text="Likes" />
-            <Label layoutX="179.0" layoutY="371.0" text="Dislikes" />
-            <Label layoutX="266.0" layoutY="371.0" text="Rezept favorisieren" />
+            <Label fx:id="likesNumber" layoutX="88.0" layoutY="371.0" text="Likes" />
+            <Label fx:id="dislikesNumber" layoutX="179.0" layoutY="371.0" text="Dislikes" />
+            <Label  layoutX="266.0" layoutY="371.0" text="Rezept favorisieren" />
             <Label layoutX="414.0" layoutY="332.0" prefHeight="18.0" prefWidth="204.0" text="Zutaten" />
             <Label layoutX="414.0" layoutY="53.0" prefHeight="18.0" prefWidth="153.0" text="Zubereitung" />
             <Label layoutX="82.0" layoutY="313.0" prefHeight="18.0" prefWidth="244.0" text="Author und Datum" />

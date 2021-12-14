@@ -23,11 +23,11 @@
 
                 <!--Für Bewertungen-->
                 <Label layoutX="35.0" layoutY="85.0" text="hallo" styleClass="h3"/>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
-                    </image>
-                </ImageView>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@fx-images/1x/outline_thumb_up_black_24dp.png" />
+                        </image>
+                    </ImageView>
 
                <!-- Für Duration-->
                 <Label layoutX="35.0"  layoutY="135.0" styleClass="h3"/>
