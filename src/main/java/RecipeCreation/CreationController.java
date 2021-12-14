@@ -156,10 +156,6 @@ public class CreationController {
         setImage();
         if(recipeCancelled) return;
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        recipe.setCreationTime(dtf.format(now));
-
         recipeSet = true;
     }
 }
