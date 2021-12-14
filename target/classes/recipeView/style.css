@@ -1,3 +1,7 @@
+#container {
+    -fx-background-color: White;
+}
+
 #title {
     -fx-font-family: Avanta Garde;
     -fx-font-size: 25;

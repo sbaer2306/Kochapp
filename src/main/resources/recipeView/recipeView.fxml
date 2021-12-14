@@ -22,7 +22,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button layoutX="42.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
+            <Button fx:id="thumbUp" layoutX="42.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#like">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -30,7 +30,7 @@
                       </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="133.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
+            <Button fx:id="thumbDown" layoutX="133.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn" onAction="#dislike">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                       <image>
@@ -38,7 +38,7 @@
                       </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="220.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
+            <Button fx:id="favorite" layoutX="220.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                       <image>
