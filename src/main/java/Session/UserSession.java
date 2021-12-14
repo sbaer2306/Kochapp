@@ -23,5 +23,6 @@ public class UserSession {
         Notifications note = Notifications.create();
         note.title("Abgemeldet");
         note.text("Sie wurden erfolgreich abgemeldet!");
+        note.show();
     } // meldet den User ab
 }
