@@ -3,23 +3,291 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="bp" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.ViewController">
-   <center>
-      <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-      <content>
-            <VBox prefWidth="733.0" styleClass="backgroundColor">
-            <children>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
+    <top>
+        <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" stylesheets="@style.css"  styleClass="backgroundColor" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+            <center>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" BorderPane.alignment="CENTER" styleClass="backgroundColor">
+                    <children>
+                        <Button fx:id="keywordSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner" onAction="#displayKeywordSearchResults">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@fx-images/1x/outline_search_black_24dp.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <TextField fx:id="keywordField" styleClass="no_focusedHover" alignment="CENTER" minWidth="400.0"  prefHeight="40.0" promptText="Worauf hast du Lust?" onAction="#displayKeywordSearchResults"/>
+                        <MenuButton fx:id="extendedSearch" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@fx-images/1x/outline_reorder_black_24dp.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <items>
+                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" styleClass="menuHover">
+                                    <content>
+                                        <HBox>
+                                            <children>
+                                                <Label prefWidth="50.0" text="Preis bis">
+                                                    <HBox.margin>
+                                                        <Insets top="4.0" />
+                                                    </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="priceField" prefHeight="20" prefWidth="50">
+                                                    <HBox.margin>
+                                                        <Insets left="5" />
+                                                    </HBox.margin>
+                                                </TextField>
+                                                <Label text="€">
+                                                    <HBox.margin>
+                                                        <Insets left="5" top="4.0" />
+                                                    </HBox.margin>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" />
+                                            </padding>
+                                        </HBox>
+                                    </content>
+                                </CustomMenuItem>
+                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" styleClass="menuHover">
+                                    <content>
+                                        <HBox>
+                                            <children>
+                                                <Label prefWidth="50.0" text="Dauer bis">
+                                                    <HBox.margin>
+                                                        <Insets top="4.0" />
+                                                    </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="durationField" prefHeight="20" prefWidth="50">
+                                                    <HBox.margin>
+                                                        <Insets left="5" />
+                                                    </HBox.margin>
+                                                </TextField>
+                                                <Label text="Minuten">
+                                                    <HBox.margin>
+                                                        <Insets left="5" top="4.0" />
+                                                    </HBox.margin>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" />
+                                            </padding>
+                                        </HBox>
+                                    </content>
+                                </CustomMenuItem>
+                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
+                                    <content>
+                                        <MenuButton fx:id="categoriesMenuButton" mnemonicParsing="false" text="Kategorien">
+                                            <items>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Backen" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Beilage" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Braten" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Fisch" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Fleisch" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Frühstüeck" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Frühling" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Grillen" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Hauptspeise" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Herbst" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Kochen" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Nachspeise" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Sommer" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Vegan" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Vegetarisch" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Vorspeise" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                                                    <content>
+                                                        <CheckBox mnemonicParsing="false" text="Winter" />
+                                                    </content>
+                                                </CustomMenuItem>
+                                            </items>
+                                        </MenuButton>
+                                    </content>
+                                </CustomMenuItem>
+                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
+                                    <content>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Schwierigkeit" />
+                                                <Separator prefWidth="75.0">
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                    <padding>
+                                                        <Insets bottom="5.0" />
+                                                    </padding></Separator>
+                                                <HBox fx:id="difficultyHBox">
+                                                    <RadioButton fx:id="easy" mnemonicParsing="false" text="Leicht">
+                                                        <padding>
+                                                            <Insets right="25.0" />
+                                                        </padding>
+                                                        <toggleGroup>
+                                                            <ToggleGroup fx:id="difficultyToggleGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                    <RadioButton fx:id="normal" mnemonicParsing="false" text="Mittel">
+                                                        <padding>
+                                                            <Insets right="25.0" />
+                                                        </padding>
+                                                        <toggleGroup>
+                                                            <fx:reference source="difficultyToggleGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                    <RadioButton fx:id="hard" mnemonicParsing="false" text="Schwer">
+                                                        <toggleGroup>
+                                                            <fx:reference source="difficultyToggleGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" />
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                </CustomMenuItem>
+                                <CustomMenuItem hideOnClick="false" styleClass="menuHover">
+                                    <content>
+                                        <HBox>
+                                            <children>
+                                                <Button mnemonicParsing="false" text="Zurücksetzen">
+                                                    <HBox.margin>
+                                                        <Insets left="5.0" />
+                                                    </HBox.margin></Button>
+                                                <Button mnemonicParsing="false" text="Sichern" onAction="#displayExtendedSearchResults">
+                                                    <HBox.margin>
+                                                        <Insets left="60.0" />
+                                                    </HBox.margin></Button>
+                                            </children>
+                                        </HBox>
+                                    </content>
+                                </CustomMenuItem>
+                            </items>
+                        </MenuButton>
+                    </children>
+                </HBox>
+            </center>
+            <left>
+                <Button prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="no_focusedHover, backgroundColor, changeCursor" onAction="#loadHomePage">
+                    <graphic>
+                        <ImageView styleClass="no_focusedHover, backgroundColor, btn_home" fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                            <image>
+                                <Image url="@fx-images/foodhub.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <BorderPane.margin>
+                        <Insets right="50.0" left="20.0"/>
+                    </BorderPane.margin>
+                </Button>
+
+            </left>
+            <right>
+                <MenuButton fx:id="loginButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" BorderPane.alignment="CENTER">
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@fx-images/1x/outline_account_circle_black_24dp.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Login" />
+                        <MenuItem mnemonicParsing="false" text="Registrieren" />
+                    </items>
+                    <BorderPane.margin>
+                        <Insets right="20.0" />
+                    </BorderPane.margin>
+                </MenuButton>
+            </right>
+        </BorderPane>
+    </top>
+    <center>
+        <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
+            <content>
                 <Label prefWidth="733.0" />
+                <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+    <right>
+        <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="75.0" layoutY="148.0" text="Bitte hier einloggen:" />
             </children>
-            </VBox>
-         </content>
-      </ScrollPane>
-   </center>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="75.0" layoutY="148.0" text="Bitte hier einloggen:" />
-         </children>
-      </AnchorPane>
-   </right>
+        </AnchorPane>
+    </right>
 </BorderPane>
