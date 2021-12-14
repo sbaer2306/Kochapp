@@ -24,7 +24,9 @@ public class DBSearchController extends DBConnectionController{
     public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMax, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
         StringBuilder SBsql = new StringBuilder();
         SBsql.append("SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ");
-        SBsql.append( "WHERE (ingredients_cost BETWEEN 0.00 AND " + priceMax+   " ) ");
+        if(!priceMax.isEmpty()){
+            SBsql.append( "WHERE (ingredients_cost BETWEEN 0.00 AND " + priceMax+   " ) ");
+        }
         if(!buzzword.isEmpty()){
             SBsql.append( "AND (title LIKE '%"+ buzzword + "%' ) ");
         }
@@ -32,8 +34,10 @@ public class DBSearchController extends DBConnectionController{
         SBsql.append(  "AND (difficulty_did ='" + difficulty + "' ) ");
         StringBuilder SBcategories = new StringBuilder();
         if(!categories.isEmpty()){
-            for(String s:categories){
-               SBcategories.append("AND recipes.recipe_rid in ( select recipe_rid from recipe_categories where recipe_categories.category_name_cid = '" + s + "')");
+            if(!(categories.get(0)=="")){
+                for(String s:categories){
+                    SBcategories.append("AND recipes.recipe_rid in ( select recipe_rid from recipe_categories where recipe_categories.category_name_cid = '" + s + "')");
+                }
             }
         }
         String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC";
