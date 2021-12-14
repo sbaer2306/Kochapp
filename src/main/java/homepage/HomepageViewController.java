@@ -38,6 +38,8 @@ public class HomepageViewController {
     private MenuButton loginButton;
     @FXML
     private MenuButton logoutButton;
+    @FXML
+    private Label recipeCounter;
 
     public HomepageViewController() {
         this.searchController = new SearchController();
@@ -50,9 +52,13 @@ public class HomepageViewController {
     public void displayMostLikedRecipes(){
         TopFiveController topFiveController = new TopFiveController();
         displayedRecipe = topFiveController.getMostLikedRecipes();
+
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
+
+        recipeCounter.setText("Unsere Top 5 Rezepte");
+        recipeCounter.getStyleClass().add("h1");
     }
 
     private void displayPreview(int count){
@@ -65,21 +71,32 @@ public class HomepageViewController {
             e.fillInStackTrace();
         }
 
+        switch(displayedRecipe.size()){
+            case 0: recipeCounter.setText("Es wurden keine Rezepte gefunden");
+                break;
+            case 1: recipeCounter.setText("Es wurde " + displayedRecipe.size() + " Rezept gefunden");
+                break;
+            default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
+                break;
+        }
+        recipeCounter.getStyleClass().add("h2");
+
         PreviewViewController pvc = previewElement.getController();
         pvc.setRecipe(displayedRecipe.get(count));
         recipesContainer.getChildren().add(pvc.assemblePreview(previewElementContainer, count));
     }
 
     private void clearPreview(){
-        recipesContainer.getChildren().clear();
+        recipesContainer.getChildren().remove(1, recipesContainer.getChildren().size());
     }
 
     public void loadHomePage(){
-        recipesContainer.getChildren().clear();
+        clearPreview();
         displayMostLikedRecipes();
     }
 
     public void displayKeywordSearchResults() {
+        clearPreview();
         String buzzword = keywordField.getText();
         displayedRecipe = searchController.getKeywordSearchResult(buzzword);
 
@@ -90,6 +107,7 @@ public class HomepageViewController {
     }
 
     public void displayExtendedSearchResults() {
+        clearPreview();
         String buzzword = keywordField.getText();
 
         String price = priceField.getText();
