@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.geometry.Insets?>
 <BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
     <top>
-        <BorderPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" stylesheets="@style.css"  styleClass="backgroundColor" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+        <BorderPane prefHeight="100.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <center>
-                <HBox alignment="CENTER_LEFT" prefHeight="100.0" BorderPane.alignment="CENTER" styleClass="backgroundColor">
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" styleClass="backgroundColor" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="keywordSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner" onAction="#displayKeywordSearchResults">
+                        <Button fx:id="keywordSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#displayKeywordSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -21,7 +20,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <TextField fx:id="keywordField" styleClass="no_focusedHover" alignment="CENTER" minWidth="400.0"  prefHeight="40.0" promptText="Worauf hast du Lust?" onAction="#displayKeywordSearchResults"/>
+                        <TextField fx:id="keywordField" alignment="CENTER" minWidth="400.0" onAction="#displayKeywordSearchResults" prefHeight="40.0" promptText="Worauf hast du Lust?" styleClass="no_focusedHover" />
                         <MenuButton fx:id="extendedSearch" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
@@ -226,7 +225,7 @@
                                                     <HBox.margin>
                                                         <Insets left="5.0" />
                                                     </HBox.margin></Button>
-                                                <Button mnemonicParsing="false" text="Sichern" onAction="#displayExtendedSearchResults">
+                                                <Button mnemonicParsing="false" onAction="#displayExtendedSearchResults" text="Sichern">
                                                     <HBox.margin>
                                                         <Insets left="60.0" />
                                                     </HBox.margin></Button>
@@ -240,42 +239,63 @@
                 </HBox>
             </center>
             <left>
-                <Button prefHeight="100" prefWidth="100" mnemonicParsing="false" styleClass="no_focusedHover, backgroundColor, changeCursor" onAction="#loadHomePage">
+                <Button mnemonicParsing="false" onAction="#loadHomePage" prefHeight="100" prefWidth="100" styleClass="no_focusedHover, backgroundColor, changeCursor">
                     <graphic>
-                        <ImageView styleClass="no_focusedHover, backgroundColor, btn_home" fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" styleClass="no_focusedHover, backgroundColor, btn_home" BorderPane.alignment="CENTER">
                             <image>
                                 <Image url="@fx-images/foodhub.png" />
                             </image>
                         </ImageView>
                     </graphic>
                     <BorderPane.margin>
-                        <Insets right="50.0" left="20.0"/>
+                        <Insets left="20.0" right="50.0" />
                     </BorderPane.margin>
                 </Button>
 
             </left>
             <right>
-                <MenuButton fx:id="loginButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" BorderPane.alignment="CENTER">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@fx-images/1x/outline_account_circle_black_24dp.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Login" />
-                        <MenuItem mnemonicParsing="false" text="Registrieren" />
-                    </items>
-                    <BorderPane.margin>
-                        <Insets right="20.0" />
-                    </BorderPane.margin>
-                </MenuButton>
+                <StackPane>
+                    <children>
+                        <MenuButton fx:id="loginButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" StackPane.alignment="CENTER">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@fx-images/1x/outline_account_circle_black_24dp.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#loginButtonPress" text="Login" />
+                                <MenuItem mnemonicParsing="false" onAction="#registrationButtonPress" text="Registrieren" />
+                            </items>
+                     <StackPane.margin>
+                        <Insets right="50.0" />
+                     </StackPane.margin>
+                        </MenuButton>
+                        <MenuButton fx:id="logoutButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" visible="false" StackPane.alignment="CENTER">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@fx-images/1x/outline_account_circle_black_24dp.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Rezept erstellen" onAction="#createRecipe"/>
+                                <MenuItem mnemonicParsing="false" text="Account verwalten" />
+                                <MenuItem mnemonicParsing="false"  text="Logout" onAction="#logoutButtonPress"/>
+                            </items>
+                     <StackPane.margin>
+                        <Insets right="50.0" />
+                     </StackPane.margin>
+                        </MenuButton>
+                    </children>
+                </StackPane>
             </right>
         </BorderPane>
     </top>
     <center>
-        <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
+        <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
             <content>
                 <Label prefWidth="733.0" />
                 <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">

@@ -1,19 +1,26 @@
 package homepage;
 
 import Datastructures.Recipe;
+import RecipeCreation.CreationController;
+import Session.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import login.Login;
+import org.controlsfx.control.Notifications;
+import registration.Registration;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class HomepageViewController {
 
     private SearchController searchController;
     private ArrayList<Recipe> displayedRecipe;
+    private UserSession user;
 
     @FXML
     private TextField keywordField;
@@ -27,6 +34,10 @@ public class HomepageViewController {
     private HBox difficultyHBox;
     @FXML
     private VBox recipesContainer;
+    @FXML
+    private MenuButton loginButton;
+    @FXML
+    private MenuButton logoutButton;
 
     public HomepageViewController() {
         this.searchController = new SearchController();
@@ -71,7 +82,7 @@ public class HomepageViewController {
     public void displayKeywordSearchResults() {
         String buzzword = keywordField.getText();
         displayedRecipe = searchController.getKeywordSearchResult(buzzword);
-        // TODO Display Recipes..
+
         clearPreview();
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
@@ -116,11 +127,34 @@ public class HomepageViewController {
 
         displayedRecipe = searchController.getExtendedSearchResult(buzzword, price, Integer.parseInt(duration), difficulty, categories);
 
-        // TODO Display Recipes..
         clearPreview();
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
     }
 
+    public void loginButtonPress() throws SQLException, IOException{
+        user = new UserSession();
+        new Login();
+
+        if(user.sessionExists()) {
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+        }
+    }
+
+    public void registrationButtonPress(){
+        new Registration();
+    }
+
+    public void createRecipe(){
+        new CreationController();
+    }
+
+    public void logoutButtonPress(){
+        user.logoutSession();
+        loginButton.setVisible(true);
+        logoutButton.setVisible(false);
+
+    }
 }
