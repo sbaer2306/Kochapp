@@ -101,7 +101,7 @@ public class DBSearchController extends DBConnectionController{
 
             }
             //get categories specified by the id from the resultset before
-            String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=" + recipe.getId();
+            String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=" +"\""+recipe.getId()+"\"";
             Statement statement1 = connection.createStatement();
             ResultSet resultSetCategories = statement1.executeQuery(sqlCategories);
             ArrayList<String> categories = new ArrayList<String>();

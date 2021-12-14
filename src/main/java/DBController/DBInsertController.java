@@ -17,8 +17,9 @@ public class DBInsertController extends DBConnectionController{
     public boolean InsertRecipe(Recipe recipe) throws SQLException, FileNotFoundException {
         String sql = "INSERT INTO recipes (recipe_rid,title,image,portions,ingredients,description,duration,ingredients_cost,author_uid,difficulty_did) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-
-        pstmt.setString(1, createRecipeID(recipe.getAuthor(),recipe.getTitle()));
+        String id = createRecipeID(recipe.getAuthor(),recipe.getTitle());
+        recipe.setId(id);
+        pstmt.setString(1, id);
         pstmt.setString(2, recipe.getTitle());
 
 

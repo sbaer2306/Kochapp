@@ -30,6 +30,7 @@ public class RemaindersController {
     }
 
     //Prüft, ob in allen Feldern eine richtige Eingabe gemacht wurde
+    //TODO: Validierung des Preises nur für XXX.XX €
     private boolean validateInput(){
         String portions = getPortions();
         if(portions.equals("")) return false;
