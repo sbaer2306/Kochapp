@@ -1,12 +1,10 @@
 package homepage;
 
 import Datastructures.Recipe;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import recipeView.RecipeViewController;
 
 import java.io.IOException;
 
@@ -85,47 +84,19 @@ public class PreviewViewController {
         }
     }
 
-    public void loadRecipe() {
+    public void createRecipeViewStage() throws IOException {
+        FXMLLoader fxmlRecipeView = new FXMLLoader(getClass().getResource("/recipeView/recipeView.fxml"));
+        ScrollPane root = fxmlRecipeView.load();
+
+        RecipeViewController con  = fxmlRecipeView.getController();
+        con.setRecipe(recipe);
+
         Stage stage = new Stage();
-        ScrollPane root = new ScrollPane();
-
-        try {
-            root = (ScrollPane) FXMLLoader.load(getClass().getResource("/recipeWindow/recipeView.fxml"));
-        } catch (IOException e) {
-            e.fillInStackTrace();
-        }
-
         Scene scene = new Scene(root, 1000, 600, Color.WHITE);
-
         stage.setTitle(recipe.getTitle());
         stage.setScene(scene);
 
-        showRecipe((AnchorPane) root.getContent(), recipe);
+        con.showRecipe();
         stage.show();
     }
-
-    private void showRecipe(AnchorPane root, Recipe recipe){
-        ImageView img = (ImageView) root.getChildren().get(0);
-        img.setImage(recipe.getImage());
-
-        Label title = (Label) root.getChildren().get(1);
-        title.setText(recipe.getTitle());
-
-        Label description = (Label) root.getChildren().get(2);
-        description.setText(recipe.getDescription());
-
-        Label likes = (Label) root.getChildren().get(6);
-        likes.setText(recipe.getLikes());
-
-        Label dislikes = (Label) root.getChildren().get(7);
-        dislikes.setText(recipe.getDislikes());
-
-        Label portions = (Label) root.getChildren().get(9);
-        portions.setText("Zutaten für " + recipe.getPortions() + " Person");
-
-        ListView ingredients = (ListView) root.getChildren().get(10);
-        ingredients.getItems().add(recipe.getIngredients());
-
-    }
-
 }

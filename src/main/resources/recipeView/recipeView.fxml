@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.RatingController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipeView.RecipeViewController">
   <content>
-    <AnchorPane fx:id="main" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0">
+    <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0">
          <children>
             <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="41.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="title" layoutX="41.0" prefHeight="70.0" prefWidth="300.0" stylesheets="@style.css" text="Titel">

@@ -31,4 +31,7 @@ module main {
 
     opens Datastructures to java.sql;
     exports Datastructures;
+
+    opens recipeView to javafx.fxml;
+    exports recipeView;
 }
