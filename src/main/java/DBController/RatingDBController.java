@@ -1,8 +1,10 @@
 package DBController;
 
+import Datastructures.RecipeComment;
 import Datastructures.Recipe;
 import Datastructures.UserModel;
 
+import javax.xml.stream.events.Comment;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -182,6 +184,60 @@ public class RatingDBController extends DBConnectionController {
             throwables.printStackTrace();
             return null;
         }
+    }
+
+
+    //Kommentieren
+    public boolean insertComment(RecipeComment comment) throws SQLException {
+
+        String sql = "INSERT INTO users_recipes_comments (recipe_rid,username_uid,comment_text) VALUES (?,?,?)";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        pstmt.setString(1, comment.getRecipe().getId());
+        pstmt.setString(2, comment.getAuthor().getUsername());
+        pstmt.setString(3, comment.getText());
+
+        int affected = pstmt.executeUpdate();
+
+        return (affected == 1);
+    }
+
+    public boolean deleteComment(RecipeComment comment) throws SQLException {
+        //falls 3er PK AND comment_text=?
+        String sql = "DELETE FROM users_recipes_comments WHERE recipe_rid=? AND username_uid=?";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+
+        pstmt.setString(1,comment.getRecipe().getId());
+        pstmt.setString(2,comment.getAuthor().getUsername());
+        //falls 3er PK pstmt.setString(3, comment.getText());
+
+        int affected = pstmt.executeUpdate();
+
+        return (affected == 1);
+    }
+
+    public ArrayList<RecipeComment> getUsersComments(String username) {
+        ArrayList<RecipeComment> comments = new ArrayList<>();
+
+        String sql = "SELECT * FROM users_recipes_comments WHERE username_uid=?";
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(sql);
+
+
+        pstmt.setString(1, username);
+
+        ResultSet resultSet = pstmt.executeQuery();
+
+        while (resultSet.next()) {
+            RecipeComment comment= new RecipeComment(resultSet.getString("recipe_rid"), resultSet.getString("username_uid"), resultSet.getString("comment_text"), resultSet.getString("added_time"));
+            comments.add(comment);
+        }
+        return comments;
+        } catch (SQLException e) {
+        return null;
+    }
     }
 }
 

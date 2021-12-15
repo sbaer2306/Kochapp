@@ -13,7 +13,15 @@ public class UserModel {
     private ArrayList<String> likedRecipeIDs;
     private ArrayList<String> dislikedRecipeIDs;
 
+    private ArrayList<RecipeComment> recipeComments;
 
+    public ArrayList<RecipeComment> getRecipeComments() {
+        return recipeComments;
+    }
+
+    public void setRecipeComments(ArrayList<RecipeComment> recipeComments) {
+        this.recipeComments = recipeComments;
+    }
 
     //Für die Registrierung
     public UserModel(String username, String email, String pwd) {
@@ -33,6 +41,9 @@ public class UserModel {
         RatingDBController peter= new RatingDBController();
         this.likedRecipeIDs = peter.getLikedRecipeIDs(this.username);
         this.dislikedRecipeIDs = peter.getDislikedRecipeIDs(this.username);
+        //Kommentare holen (Nur zum verwalten, dh. löschen notwendige Informationen vorhanden)
+        this.recipeComments=peter.getUsersComments(this.username);
+
 
         //falls Fehler bei der Abfrage
         if(likedRecipeIDs == null) likedRecipeIDs= new ArrayList<>();
