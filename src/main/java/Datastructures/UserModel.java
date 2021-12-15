@@ -41,9 +41,9 @@ public class UserModel {
         RatingDBController peter= new RatingDBController();
         this.likedRecipeIDs = peter.getLikedRecipeIDs(this.username);
         this.dislikedRecipeIDs = peter.getDislikedRecipeIDs(this.username);
-        //Kommentare holen (Nur zum verwalten, dh. löschen notwendige Informationen vorhanden)
-        this.recipeComments=peter.getUsersComments(this.username);
 
+        //Kommentare holen
+        this.recipeComments=peter.getUsersComments(this.username);
 
         //falls Fehler bei der Abfrage
         if(likedRecipeIDs == null) likedRecipeIDs= new ArrayList<>();
@@ -52,6 +52,12 @@ public class UserModel {
 
     public UserModel() {
         //um mit Gettern und Settern zu arbeiten falls nötig
+    }
+
+    //TODO: Kommentare vor dem bearbeiten/anzeigen immer neu laden
+    public void loadComments(){
+        RatingDBController peter= new RatingDBController();
+        this.dislikedRecipeIDs = peter.getDislikedRecipeIDs(this.username);
     }
 
     public ArrayList<String> getLikedRecipeIDs() {
