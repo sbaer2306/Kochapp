@@ -110,7 +110,6 @@ public class HomepageViewController {
     }
 
     public void displayExtendedSearchResults() {
-        clearPreview();
         String buzzword = keywordField.getText();
 
         String price = priceField.getText();
@@ -147,6 +146,15 @@ public class HomepageViewController {
         }
 
         displayedRecipe = searchController.getExtendedSearchResult(buzzword, price, Integer.parseInt(duration), difficulty, categories);
+
+        switch(displayedRecipe.size()){
+            case 0: recipeCounter.setText("Es wurden keine Rezepte gefunden");
+                break;
+            case 1: recipeCounter.setText("Es wurde " + displayedRecipe.size() + " Rezept gefunden");
+                break;
+            default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
+                break;
+        }
 
         clearPreview();
         for(int i = 0; i < displayedRecipe.size(); i++) {
