@@ -221,31 +221,9 @@ public class RatingDBController extends DBConnectionController {
 
         PreparedStatement pstmt = null;
         try {
-           pstmt = connection.prepareStatement(sql);
+            pstmt = connection.prepareStatement(sql);
 
-        pstmt.setString(1, username);
-
-        ResultSet resultSet = pstmt.executeQuery();
-
-        return getCommentList(resultSet);
-
-        } catch (SQLException e) {
-        return null;
-    }
-    }
-
-    //Holt die num neusten Kommentare zu recipe aus der DB und gibt sie zurück
-    //num= 10 --> 10 neuste Kommentare
-    public ArrayList<RecipeComment> getRecipesLatestComments(Recipe recipe, int num){
-        String sql = "SELECT * FROM users_recipes_comments WHERE recipe_rid=? ORDER BY creation_time DESC LIMIT ?";
-
-        PreparedStatement pstmt = null;
-        try {
-           pstmt = connection.prepareStatement(sql);
-
-
-            pstmt.setString(1, recipe.getId());
-            pstmt.setInt(2, num);
+            pstmt.setString(1, username);
 
             ResultSet resultSet = pstmt.executeQuery();
 
@@ -254,17 +232,6 @@ public class RatingDBController extends DBConnectionController {
         } catch (SQLException e) {
             return null;
         }
-    }
-
-    //Helferfunktion
-    private ArrayList<RecipeComment> getCommentList(ResultSet resultSet) throws SQLException {
-    ArrayList<RecipeComment> comments= new ArrayList<>();
-
-        return getCommentList(resultSet);
-
-        } catch (SQLException e) {
-        return null;
-    }
     }
 
     //Holt die num neusten Kommentare zu recipe aus der DB und gibt sie zurück
