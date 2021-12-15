@@ -40,7 +40,7 @@ public class DBSearchController extends DBConnectionController{
                 }
             }
         }
-        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC";
+        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC LIMIT 5";
         System.out.println(sql);
         return this.getRecipesFromSQLStatement(sql);
     }
