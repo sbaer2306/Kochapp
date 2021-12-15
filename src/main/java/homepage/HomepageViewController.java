@@ -71,19 +71,13 @@ public class HomepageViewController {
             e.fillInStackTrace();
         }
 
-        switch(displayedRecipe.size()){
-            case 0: recipeCounter.setText("Es wurden keine Rezepte gefunden");
-                break;
-            case 1: recipeCounter.setText("Es wurde " + displayedRecipe.size() + " Rezept gefunden");
-                break;
-            default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
-                break;
-        }
         recipeCounter.getStyleClass().add("h2");
 
         PreviewViewController pvc = previewElement.getController();
         pvc.setRecipe(displayedRecipe.get(count));
         recipesContainer.getChildren().add(pvc.assemblePreview(previewElementContainer, count));
+
+
     }
 
     private void clearPreview(){
@@ -96,11 +90,20 @@ public class HomepageViewController {
     }
 
     public void displayKeywordSearchResults() {
-        clearPreview();
         String buzzword = keywordField.getText();
         displayedRecipe = searchController.getKeywordSearchResult(buzzword);
 
         clearPreview();
+
+        switch(displayedRecipe.size()){
+            case 0: recipeCounter.setText("Es wurden keine Rezepte gefunden");
+                break;
+            case 1: recipeCounter.setText("Es wurde " + displayedRecipe.size() + " Rezept gefunden");
+                break;
+            default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
+                break;
+        }
+
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
