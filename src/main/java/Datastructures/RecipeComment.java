@@ -2,10 +2,46 @@ package Datastructures;
 
 public class RecipeComment {
 
-    private UserModel author;
-    private Recipe recipe;
+    private String commentID;
+    private String author_uid;
+    private String recipe_rid;
     private String text;
-    String datetime;
+    private String datetime;
+
+    //nur zum testen da
+    @Override
+    public String toString() {
+        return "RecipeComment{" +
+                "commentID='" + commentID + '\'' +
+                ", author_uid='" + author_uid + '\'' +
+                ", recipe_rid='" + recipe_rid + '\'' +
+                ", text='" + text + '\'' +
+                ", datetime='" + datetime + '\'' +
+                '}';
+    }
+
+    public RecipeComment(){}
+
+    public RecipeComment(String author_uid, String recipe_rid, String text) {
+        this.author_uid = author_uid;
+        this.recipe_rid = recipe_rid;
+        this.text = text;
+    }
+
+    public RecipeComment(UserModel user, Recipe recipe, String text) {
+        this.author_uid = user.getUsername();
+        this.recipe_rid = recipe.getId();
+        this.text = text;
+    }
+
+
+    public String getCommentID() {
+        return commentID;
+    }
+
+    public void setCommentID(String commentID) {
+        this.commentID = commentID;
+    }
 
     public String getDatetime() {
         return datetime;
@@ -15,51 +51,20 @@ public class RecipeComment {
         this.datetime = datetime;
     }
 
-    public RecipeComment() {
+    public String getAuthor_uid() {
+        return author_uid;
     }
 
-    @Override
-    public String toString() {
-        return "RecipeComment: \n" +
-                "author: " + author.getUsername() +
-                "\n recipe: " + recipe.getTitle() +
-                "\n text=" + text + '\'' +
-                "\n "+datetime;
+    public void setAuthor_uid(String author_uid) {
+        this.author_uid = author_uid;
     }
 
-    public RecipeComment(UserModel author, Recipe recipe, String text, String datetime) {
-        this.author = author;
-        this.recipe = recipe;
-        this.text = text;
-        this.datetime= datetime;
+    public String getRecipe_rid() {
+        return recipe_rid;
     }
 
-    //für holen aus der DB (alle Relevanten Informationen um Kommentar zu löschen)
-    public RecipeComment(String username_uid, String recipe_rid, String text, String datetime) {
-        this.author= new UserModel();
-        author.setUsername(username_uid);
-
-        this.recipe= new Recipe();
-        recipe.setId(recipe_rid);
-
-        this.text= text;
-        this.datetime= datetime;
-    }
-
-    public UserModel getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(UserModel author) {
-        this.author = author;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe_rid(String recipe_rid) {
+        this.recipe_rid = recipe_rid;
     }
 
     public String getText() {

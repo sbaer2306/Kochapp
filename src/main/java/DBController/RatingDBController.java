@@ -190,11 +190,11 @@ public class RatingDBController extends DBConnectionController {
     //Kommentieren
     public boolean insertComment(RecipeComment comment) throws SQLException {
 
-        String sql = "INSERT INTO users_recipes_comments (recipe_rid,username_uid,comment_text) VALUES (?,?,?)";
+        String sql = "INSERT INTO users_recipes_comments (recipe_rid,author_uid,text) VALUES (?,?,?)";
         PreparedStatement pstmt = connection.prepareStatement(sql);
 
-        pstmt.setString(1, comment.getRecipe().getId());
-        pstmt.setString(2, comment.getAuthor().getUsername());
+        pstmt.setString(1, comment.getRecipe_rid());
+        pstmt.setString(2, comment.getAuthor_uid());
         pstmt.setString(3, comment.getText());
 
         int affected = pstmt.executeUpdate();
@@ -202,14 +202,13 @@ public class RatingDBController extends DBConnectionController {
         return (affected == 1);
     }
 
+    //Löscht den Kommentar über die ID
     public boolean deleteComment(RecipeComment comment) throws SQLException {
-        //falls 3er PK AND comment_text=?
-        String sql = "DELETE FROM users_recipes_comments WHERE recipe_rid=? AND username_uid=?";
+
+        String sql = "DELETE FROM users_recipes_comments WHERE comment_id=?";
         PreparedStatement pstmt = connection.prepareStatement(sql);
 
-        pstmt.setString(1,comment.getRecipe().getId());
-        pstmt.setString(2,comment.getAuthor().getUsername());
-        //falls 3er PK pstmt.setString(3, comment.getText());
+        pstmt.setString(1,comment.getCommentID());
 
         int affected = pstmt.executeUpdate();
 
@@ -217,27 +216,62 @@ public class RatingDBController extends DBConnectionController {
     }
 
     public ArrayList<RecipeComment> getUsersComments(String username) {
-        ArrayList<RecipeComment> comments = new ArrayList<>();
 
-        String sql = "SELECT * FROM users_recipes_comments WHERE username_uid=?";
+        String sql = "SELECT * FROM users_recipes_comments WHERE author_uid=?";
+
+        PreparedStatement pstmt = null;
+        try {
+           pstmt = connection.prepareStatement(sql);
+
+        pstmt.setString(1, username);
+
+        ResultSet resultSet = pstmt.executeQuery();
+
+        return getCommentList(resultSet);
+
+        } catch (SQLException e) {
+        return null;
+    }
+    }
+
+    //Holt die num neusten Kommentare zu recipe aus der DB und gibt sie zurück
+    //num= 10 --> 10 neuste Kommentare
+    public ArrayList<RecipeComment> getRecipesLatestComments(Recipe recipe, int num){
+        String sql = "SELECT * FROM users_recipes_comments WHERE recipe_rid=? ORDER BY creation_time DESC LIMIT ?";
 
         PreparedStatement pstmt = null;
         try {
             pstmt = connection.prepareStatement(sql);
 
 
-        pstmt.setString(1, username);
+            pstmt.setString(1, recipe.getId());
+            pstmt.setInt(2, num);
 
-        ResultSet resultSet = pstmt.executeQuery();
+            ResultSet resultSet = pstmt.executeQuery();
+
+            return getCommentList(resultSet);
+
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    //Helferfunktion
+    private ArrayList<RecipeComment> getCommentList(ResultSet resultSet) throws SQLException {
+    ArrayList<RecipeComment> comments= new ArrayList<>();
 
         while (resultSet.next()) {
-            RecipeComment comment= new RecipeComment(resultSet.getString("recipe_rid"), resultSet.getString("username_uid"), resultSet.getString("comment_text"), resultSet.getString("added_time"));
+            RecipeComment comment= new RecipeComment();
+
+            comment.setCommentID(resultSet.getString("comment_id"));
+            comment.setAuthor_uid(resultSet.getString("author_uid"));
+            comment.setRecipe_rid(resultSet.getString("recipe_rid"));
+            comment.setText(resultSet.getString("text"));
+
             comments.add(comment);
         }
-        return comments;
-        } catch (SQLException e) {
+        if(comments.size() > 0 )return comments;
         return null;
-    }
     }
 }
 
