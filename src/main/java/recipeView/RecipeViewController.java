@@ -59,10 +59,12 @@ public class RecipeViewController {
             if(userModel.getLikedRecipeIDs().contains(recipe.getId())) {
                 boolean revoked = ratingDBController.revokeLike(userModel, recipe);
                 if(revoked) {
+                    int number = Integer.parseInt(recipe.getLikes()) -1;
+                    recipe.setLikes(String.valueOf(number));
                     userModel.getLikedRecipeIDs().remove(recipe.getId());
                     thumbUpWhite.setVisible(true);
                     thumbUpBlack.setVisible(false);
-                    likesNumber.setText("" + (Integer.parseInt(recipe.getLikes()) -1));
+                    likesNumber.setText(recipe.getLikes());
                 }
             }
             else {
@@ -76,9 +78,11 @@ public class RecipeViewController {
                     boolean liked = ratingDBController.insertNewLike(userModel, recipe);
                     userModel.getLikedRecipeIDs().add(recipe.getId());
                     if(liked) {
+                        int number = Integer.parseInt(recipe.getLikes()) +1;
+                        recipe.setLikes(String.valueOf(number));
                         thumbUpWhite.setVisible(false);
                         thumbUpBlack.setVisible(true);
-                        likesNumber.setText("" + (Integer.parseInt(recipe.getLikes()) +1));
+                        likesNumber.setText(recipe.getLikes());
                     }
                 }
             }
@@ -96,9 +100,11 @@ public class RecipeViewController {
             if(userModel.getDislikedRecipeIDs().contains(recipe.getId())) {
                 boolean revoked = ratingDBController.revokeDislike(userModel, recipe);
                 if(revoked) {
+                    int number = Integer.parseInt(recipe.getDislikes()) -1;
+                    recipe.setDislikes(String.valueOf(number));
                     userModel.getDislikedRecipeIDs().remove(recipe.getId());
                     thumbDownBlack.setVisible(false);
-                    dislikesNumber.setText("" + (Integer.parseInt(recipe.getDislikes()) -1));
+                    dislikesNumber.setText(recipe.getDislikes());
                 }
             }
             else {
@@ -112,8 +118,10 @@ public class RecipeViewController {
                     boolean disliked= ratingDBController.insertNewDisLike(userModel, recipe);
                     userModel.getDislikedRecipeIDs().add(recipe.getId());
                     if(disliked) {
+                        int number = Integer.parseInt(recipe.getDislikes()) +1;
+                        recipe.setDislikes(String.valueOf(number));
                         thumbDownBlack.setVisible(true);
-                        dislikesNumber.setText("" + (Integer.parseInt(recipe.getDislikes()) +1));
+                        dislikesNumber.setText(recipe.getDislikes());
                     }
                 }
             }
