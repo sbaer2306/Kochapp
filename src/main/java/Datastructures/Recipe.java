@@ -1,5 +1,6 @@
 package Datastructures;
 
+import Clerks.ImageResizeClerk;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,8 +37,8 @@ public class Recipe {
         return ImageFile;
     }
 
-    public void setImageFile(File imageFile) {
-        ImageFile = imageFile;
+    public void setImageFile(File imageFile) throws InterruptedException {
+        /*ImageFile = imageFile;
         try {
             this.image =new Image(ImageFile.toURI().toString());
             double width=image.getWidth( );
@@ -55,17 +56,21 @@ public class Recipe {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-    }
+        }*/
+        ImageResizeClerk imageResizeClerk = new ImageResizeClerk();
+        imageResizeClerk.start();
+        this.ImageFile=imageResizeClerk.resizeImage(imageFile);
+        imageResizeClerk.join();
     }
 
-    private static BufferedImage resizeImage(BufferedImage originalImage, int type, int IMG_WIDTH, int IMG_HEIGHT) {
+    /*private static BufferedImage resizeImage(BufferedImage originalImage, int type, int IMG_WIDTH, int IMG_HEIGHT) {
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
         Graphics2D g = resizedImage.createGraphics();
         g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
         g.dispose();
 
         return resizedImage;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -121,7 +126,7 @@ public class Recipe {
     }
 
     //Für die Rezepterstellung
-    public void setImage(File file){
+    public void setImage(File file) throws InterruptedException {
         setImageFile(file); //FileChooser liefert ein File zurück
         this.image= new Image(file.toURI().toString());
     }

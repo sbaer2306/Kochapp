@@ -133,7 +133,7 @@ public class CreationController {
             }
             else recipeCancelled = true;
         }
-        catch(IOException ignored){}
+        catch(IOException | InterruptedException ignored){}
     }
 
     //Führt alle Methoden nacheinander aus, um das Rezept zu erstellen
