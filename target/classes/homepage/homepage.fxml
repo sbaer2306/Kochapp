@@ -225,7 +225,7 @@
                                                     <HBox.margin>
                                                         <Insets left="5.0" />
                                                     </HBox.margin></Button>
-                                                <Button mnemonicParsing="false" onAction="#displayExtendedSearchResults" text="Sichern">
+                                                <Button mnemonicParsing="false" onAction="#displayExtendedSearchResults" text="Suchen">
                                                     <HBox.margin>
                                                         <Insets left="60.0" />
                                                     </HBox.margin></Button>
@@ -295,7 +295,6 @@
         </BorderPane>
     </top>
     <center>
-
         <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
             <content>
                 <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">
