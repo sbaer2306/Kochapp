@@ -4,15 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipeView.RecipeViewController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipeView.RecipeViewController">
   <content>
-    <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1000.0">
+    <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1000.0">
          <children>
             <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="41.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="title" layoutX="41.0" prefHeight="70.0" prefWidth="300.0" stylesheets="@style.css" text="Titel">
@@ -75,7 +76,7 @@
             <Label layoutX="414.0" layoutY="332.0" prefHeight="18.0" prefWidth="204.0" text="Zutaten" />
             <Label layoutX="414.0" layoutY="53.0" prefHeight="18.0" prefWidth="153.0" text="Zubereitung" />
             <Label layoutX="82.0" layoutY="313.0" prefHeight="18.0" prefWidth="244.0" text="Author und Datum" />
-            <ListView layoutX="414.0" layoutY="361.0" prefHeight="219.0" prefWidth="285.0" />
+            <ListView layoutX="414.0" layoutY="361.0" prefHeight="278.0" prefWidth="306.0" />
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="228.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@fx-images/1x/outline_euro_black_24dp.png" />
@@ -95,13 +96,15 @@
             <Label layoutX="178.0" layoutY="424.0" text="Zeit" />
             <Label layoutX="266.0" layoutY="424.0" text="Preis" />
             <Label layoutX="42.0" layoutY="70.0" prefHeight="20.0" prefWidth="300.0" text="Kategorien" />
-            <Label fx:id="comments" layoutX="91.0" layoutY="484.0" prefHeight="18.0" prefWidth="99.0" text="Kommentare" onMouseClicked="#displayComments"/>
-            <Button layoutX="218.0" layoutY="477.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="Kommentar verfassen" />
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="comments" layoutX="91.0" layoutY="497.0" onMouseClicked="#displayComments" prefHeight="18.0" prefWidth="99.0" text="Kommentare" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@fx-images/1x/outline_message_black_24dp.png" />
                 </image>
             </ImageView>
+            <TextArea fx:id="commentField" wrapText="true" layoutX="50.0" layoutY="536.0" prefHeight="103.0" prefWidth="331.0" promptText="Kommentar veröffentlichen.." />
+            <Button fx:id="saveComment" layoutX="270.0" layoutY="651.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" text="Kommentieren" onAction="#createRecipeComment"/>
+            <Button layoutX="176.0" layoutY="651.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Abbrechen" />
          </children></AnchorPane>
   </content>
 </ScrollPane>
