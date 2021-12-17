@@ -16,7 +16,14 @@
 }
 
 .btn_banner:hover{
-    -fx-background-color: whitesmoke;
+    -fx-background-color: #F5FFFA;
+}
+
+.btn_favorit{
+    -fx-font-size: 13;
+    -fx-font-weight: 700;
+    -fx-background-color: #c8ff96;
+    -fx-border-color: black;
 }
 
 .changeCursor{

@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
+<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
     <top>
         <BorderPane prefHeight="100.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <center>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" styleClass="backgroundColor" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="keywordSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#displayKeywordSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner">
+                        <Button fx:id="keywordSearch" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#displayKeywordSearchResults" prefHeight="40.0" prefWidth="40.0" styleClass="no_focusedHover, btn_banner, changeCursor">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -21,7 +36,7 @@
                             </graphic>
                         </Button>
                         <TextField fx:id="keywordField" alignment="CENTER" minWidth="400.0" onAction="#displayKeywordSearchResults" prefHeight="40.0" promptText="Worauf hast du Lust?" styleClass="no_focusedHover" />
-                        <MenuButton fx:id="extendedSearch" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner">
+                        <MenuButton fx:id="extendedSearch" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner, changeCursor">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -256,7 +271,7 @@
             <right>
                 <StackPane>
                     <children>
-                        <MenuButton fx:id="loginButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner" StackPane.alignment="CENTER">
+                        <MenuButton fx:id="loginButton" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" styleClass="no_focusedHover, btn_banner, changeCursor" StackPane.alignment="CENTER">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -281,9 +296,9 @@
                                 </ImageView>
                             </graphic>
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Rezept erstellen" onAction="#createRecipe"/>
+                                <MenuItem mnemonicParsing="false" onAction="#createRecipe" text="Rezept erstellen" />
                                 <MenuItem mnemonicParsing="false" text="Account verwalten" />
-                                <MenuItem mnemonicParsing="false"  text="Logout" onAction="#logoutButtonPress"/>
+                                <MenuItem mnemonicParsing="false" onAction="#logoutButtonPress" text="Logout" />
                             </items>
                      <StackPane.margin>
                         <Insets right="50.0" />
@@ -295,19 +310,32 @@
         </BorderPane>
     </top>
     <center>
-        <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+        <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <content>
                 <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">
-                    <Label fx:id="recipeCounter" text="Unser Top 5 Rezepte" prefWidth="733.0" />
+                    <Label fx:id="recipeCounter" prefWidth="733.0" text="Unser Top 5 Rezepte" />
                 </VBox>
             </content>
         </ScrollPane>
     </center>
     <right>
-        <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label layoutX="75.0" layoutY="148.0" text="Bitte hier einloggen:" />
-            </children>
-        </AnchorPane>
+        <StackPane prefHeight="500.0" prefWidth="250.0">
+            <AnchorPane fx:id="favoritViewWithoutLogin" BorderPane.alignment="CENTER">
+                <children>
+                    <Label alignment="TOP_LEFT" layoutX="25.0" layoutY="14.0" prefHeight="69.0" prefWidth="189.0" styleClass="h2" text="Willst du da deine Favoriten sehen?" wrapText="true" />
+                    <Label layoutX="25.0" layoutY="142.0" styleClass="h3" text="Bitte hier einloggen:" />
+                    <Button layoutX="75.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="50.0" prefWidth="100.0" styleClass="changeCursor, no_focuesdHover, btn_favorit" text="Login" />
+                    <Label layoutX="25.0" layoutY="310.0" prefHeight="45.0" prefWidth="204.0" styleClass="h3" text="Du bist noch nicht registriert?" />
+                    <Button layoutX="75.0" layoutY="370.0" mnemonicParsing="false" onAction="#registrationButtonPress" prefHeight="50.0" prefWidth="100.0" styleClass="changeCursor, no_focuesdHover, btn_favorit" text="Registrieren" />
+                </children>
+            </AnchorPane>
+            <ScrollPane fx:id="favoritViewLogin" visible="false" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover">
+                <content>
+                    <VBox >
+                        <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="216.0" styleClass="h2" text="Deine Lieblingsrezepte" />
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </StackPane>
     </right>
 </BorderPane>
