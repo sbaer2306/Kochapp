@@ -34,4 +34,7 @@ module main {
 
     opens recipeView to javafx.fxml;
     exports recipeView;
+
+    opens CommentSection to javafx.fxml;
+    exports CommentSection;
 }

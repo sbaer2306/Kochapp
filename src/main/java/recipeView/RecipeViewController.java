@@ -1,5 +1,7 @@
 package recipeView;
 
+import CommentSection.CommentController;
+import CommentSection.CommentViewController;
 import DBController.RatingDBController;
 import Datastructures.Recipe;
 import Datastructures.UserModel;
@@ -8,15 +10,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tooltip;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Arrays;
@@ -28,6 +31,9 @@ public class RecipeViewController {
     // private UserSession userSession;
     private UserModel userModel;
     private RatingDBController ratingDBController;
+
+    private CommentController commentController;
+    private CommentViewController commentViewController;
     
     @FXML
     private AnchorPane container;
@@ -46,12 +52,33 @@ public class RecipeViewController {
     private Label likesNumber;
     @FXML
     private Label dislikesNumber;
+    @FXML
+    private Label comments;
 
     public RecipeViewController() {
         // this.ratingController = new RatingController(userModel);
         // this.userSession = new UserSession();
         this.userModel = new UserSession().getUserSession();
         this.ratingDBController = new RatingDBController();
+    }
+
+    public void displayComments() throws IOException {
+        // commentController = new CommentController(recipe);
+
+        FXMLLoader commentSection = new FXMLLoader(getClass().getResource("/CommentSection/commentSection.fxml"));
+        ScrollPane root = commentSection.load();
+
+        CommentViewController con  = commentSection.getController();
+        con.setRecipe(recipe);
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root, 600, 600);
+        stage.setTitle("Kommentar Sektion");
+        stage.setScene(scene);
+
+        con.showComments();
+
+        stage.show();
     }
 
     public void like() throws SQLException {

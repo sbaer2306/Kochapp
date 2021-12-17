@@ -1,0 +1,29 @@
+#section {
+    -fx-background-color: White;
+}
+
+.headline {
+    -fx-font-size: 18;
+    -fx-text-fill: #FF6347;
+    -fx-padding: 0 5 0 5;
+}
+
+.commentContainer {
+    -fx-background-color: #DCDCDC;
+}
+
+.author {
+    -fx-font-size: 18;
+    -fx-text-fill: #FFA500;
+    -fx-padding: 5, 10, 5, 10;
+}
+
+.date {
+    -fx-font-size: 12;
+    -fx-text-fill: #F5F5F5;
+}
+
+.content {
+    -fx-font-size: 14;
+    -fx-padding: 5, 10, 5, 10;
+}

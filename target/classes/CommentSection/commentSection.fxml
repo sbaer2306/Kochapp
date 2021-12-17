@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CommentSection.CommentViewController">
+   <content>
+      <VBox fx:id="section" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <HBox>
+               <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="42.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@fx-images/1x/outline_message_black_24dp.png" />
+                  </image>
+               </ImageView>
+               <Label fx:id="commentLabel" layoutX="143.0" layoutY="32.0" prefHeight="30.0" prefWidth="196.0" styleClass="headline" text="Kommentare" />
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children></VBox>
+   </content>
+</ScrollPane>
