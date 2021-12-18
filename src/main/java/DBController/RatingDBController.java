@@ -6,6 +6,7 @@ import Datastructures.Recipe;
 import Datastructures.UserModel;
 
 import javax.xml.stream.events.Comment;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -340,6 +341,36 @@ public class RatingDBController extends DBConnectionController {
         return favs;
     }
 
+    //Um ein Rezept nur über die ID zu laden (da FavoriteInformation und RecipeComment nur die ID speichern -->
+    // nützlich für die Accountverwaltung, bzw die Verwaltung der Kommentare und Favoriten)
+    public Recipe getRecipeByID(String recipeId) throws SQLException, IOException {
+        Recipe recipe= new Recipe();
+
+        String sql = "SELECT * FROM recipes WHERE recipe_rid=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, recipeId);
+
+        ResultSet resultSet= pstmt.executeQuery();
+
+        while (resultSet.next()){
+            recipe.setId(recipeId);
+            recipe.setTitle(resultSet.getString("title"));
+            recipe.setImage(resultSet.getBlob("image"));
+            recipe.setTitle(resultSet.getString("portions"));
+            recipe.setIngredients(resultSet.getString("ingredients"));
+            recipe.setDescription(resultSet.getString("description"));
+            recipe.setDuration(resultSet.getString("duration"));
+            recipe.setIngredientsCost(resultSet.getString("ingredients_cost"));
+            recipe.setLikes(resultSet.getString("likes"));
+            recipe.setDislikes(resultSet.getString("dislikes"));
+            recipe.setCreationTime(resultSet.getString("creation_time"));
+            recipe.setDifficulty(resultSet.getString("difficulty_did"));
+            recipe.setAuthor(resultSet.getString("author_uid"));
+        }
+
+        return recipe;
+    }
 
 }
 
