@@ -51,7 +51,7 @@ public class ErrorClerk {
         return errorClerk;
     }
     public void closeTempStage(){
-        if (tempHiddenStage==null){
+        if (tempHiddenStage!=null){
             System.out.println(tempHiddenStage);
             tempHiddenStage.close();
         }
