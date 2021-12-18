@@ -19,9 +19,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
+<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController" onMouseEntered="#checkFavLength">
     <top>
         <BorderPane prefHeight="100.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <center>
@@ -323,19 +322,16 @@
         <StackPane prefHeight="500.0" prefWidth="250.0">
             <AnchorPane fx:id="favoritViewWithoutLogin" BorderPane.alignment="CENTER">
                 <children>
-                    <Label alignment="TOP_LEFT" layoutX="25.0" layoutY="14.0" prefHeight="90.0" prefWidth="189.0" styleClass="h2" text="Logge dich ein um alle  Funktionen zu nutzen" wrapText="true">
-                  <font>
-                     <Font size="10.0" />
-                  </font></Label>
+                    <Label alignment="TOP_LEFT" layoutX="25.0" layoutY="14.0" prefHeight="69.0" prefWidth="189.0" styleClass="h2" text="Willst du deine Favoriten sehen?" wrapText="true" />
                     <Label layoutX="25.0" layoutY="142.0" styleClass="h3" text="Bitte hier einloggen:" />
                     <Button layoutX="75.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="50.0" prefWidth="100.0" styleClass="changeCursor, no_focuesdHover, btn_favorit" text="Login" />
                     <Label layoutX="25.0" layoutY="310.0" prefHeight="45.0" prefWidth="204.0" styleClass="h3" text="Du bist noch nicht registriert?" />
                     <Button layoutX="75.0" layoutY="370.0" mnemonicParsing="false" onAction="#registrationButtonPress" prefHeight="50.0" prefWidth="100.0" styleClass="changeCursor, no_focuesdHover, btn_favorit" text="Registrieren" />
                 </children>
             </AnchorPane>
-            <ScrollPane fx:id="favoritViewLogin" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" visible="false">
+            <ScrollPane fx:id="favoritViewLogin" visible="false" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover">
                 <content>
-                    <VBox>
+                    <VBox fx:id="favoriteContainer">
                         <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="216.0" styleClass="h2" text="Deine Lieblingsrezepte" />
                     </VBox>
                 </content>

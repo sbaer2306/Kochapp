@@ -25,7 +25,7 @@
                   <Font size="14.0" />
                </font></Label>
              <StackPane layoutX="42.0" layoutY="361.0">
-                 <Button fx:id="thumbUpWhite" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
+                 <Button fx:id="thumbUpWhite" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor">
                      <graphic>
                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                              <image>
@@ -33,7 +33,7 @@
                              </image>
                          </ImageView>
                      </graphic></Button>
-                 <Button fx:id="thumbUpBlack" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="30.0" styleClass="btn" visible="false">
+                 <Button fx:id="thumbUpBlack" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor" visible="false">
                      <graphic>
                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                              <image>
@@ -43,7 +43,7 @@
                      </graphic></Button>
              </StackPane>
              <StackPane layoutX="133.0" layoutY="361.0">
-                 <Button fx:id="thumbDownWhite" mnemonicParsing="false" onAction="#dislike" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
+                 <Button fx:id="thumbDownWhite" mnemonicParsing="false" onAction="#dislike" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor">
                      <graphic>
                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                              <image>
@@ -52,7 +52,7 @@
                          </ImageView>
                      </graphic>
                  </Button>
-                 <Button fx:id="thumbDownBlack" mnemonicParsing="false" onAction="#dislike" prefHeight="30.0" prefWidth="30.0" styleClass="btn" visible="false">
+                 <Button fx:id="thumbDownBlack" mnemonicParsing="false" onAction="#dislike" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor" visible="false">
                      <graphic>
                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                              <image>
@@ -62,17 +62,30 @@
                      </graphic>
                  </Button>
              </StackPane>
-            <Button fx:id="favorite" layoutX="220.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@fx-images/1x/outline_favorite_border_black_24dp.png" />
-                      </image>
-                  </ImageView>
-               </graphic></Button>
+             <StackPane layoutX="220.0" layoutY="361.0">
+                 <Button fx:id="favoriteWhite" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor" onAction="#favorite">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/outline_favorite_border_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic>
+                 </Button>
+                 <Button fx:id="favoriteBlack" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn, changeCursor" visible="false" onAction="#favorite">
+                     <graphic>
+                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <image>
+                                 <Image url="@fx-images/1x/outline_favorite_black_24dp.png" />
+                             </image>
+                         </ImageView>
+                     </graphic>
+                 </Button>
+             </StackPane>
+
             <Label fx:id="likesNumber" layoutX="88.0" layoutY="371.0" text="Likes" />
-            <Label fx:id="dislikesNumber" layoutX="179.0" layoutY="371.0" text="Dislikes" />
-            <Label layoutX="266.0" layoutY="371.0" text="Rezept favorisieren" />
+             <Label fx:id="dislikesNumber" layoutX="179.0" layoutY="371.0" text="Dislikes" />
+            <Label fx:id="favoriteLabel" layoutX="266.0" layoutY="371.0"/>
             <Label layoutX="414.0" layoutY="332.0" prefHeight="18.0" prefWidth="204.0" text="Zutaten" />
             <Label layoutX="414.0" layoutY="53.0" prefHeight="18.0" prefWidth="153.0" text="Zubereitung" />
             <Label layoutX="82.0" layoutY="313.0" prefHeight="18.0" prefWidth="244.0" text="Author und Datum" />
@@ -96,7 +109,7 @@
             <Label layoutX="178.0" layoutY="424.0" text="Zeit" />
             <Label layoutX="266.0" layoutY="424.0" text="Preis" />
             <Label layoutX="42.0" layoutY="70.0" prefHeight="20.0" prefWidth="300.0" text="Kategorien" />
-            <Label fx:id="comments" layoutX="91.0" layoutY="497.0" onMouseClicked="#displayComments" prefHeight="18.0" prefWidth="99.0" text="Kommentare" />
+            <Label fx:id="comments" layoutX="91.0" layoutY="497.0" onMouseClicked="#displayComments" prefHeight="18.0" prefWidth="99.0" text="Kommentare" styleClass="changeCursor" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse"/>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@fx-images/1x/outline_message_black_24dp.png" />

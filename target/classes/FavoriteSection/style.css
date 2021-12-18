@@ -1,0 +1,12 @@
+.changeCursor{
+    -fx-cursor: hand;
+}
+
+.btn{
+    -fx-border-color: black;
+    -fx-background-color: #c8ff96;
+}
+
+.btn:hover{
+    -fx-background-color: #F5FFFA;
+}

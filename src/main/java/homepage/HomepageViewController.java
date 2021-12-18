@@ -1,16 +1,20 @@
 package homepage;
 
+import DBController.RatingDBController;
+import Datastructures.FavoriteInformation;
 import Datastructures.Recipe;
 import RecipeCreation.CreationController;
 import Session.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import login.Login;
 import registration.Registration;
+import FavoriteSection.FavoriteViewController;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,8 +23,10 @@ import java.util.ArrayList;
 public class HomepageViewController {
 
     private SearchController searchController;
+    private RatingDBController ratingDBController;
     private ArrayList<Recipe> displayedRecipe;
     private UserSession user;
+    private ArrayList<FavoriteInformation> favorites;
 
     @FXML
     private TextField keywordField;
@@ -44,9 +50,13 @@ public class HomepageViewController {
     private AnchorPane favoritViewWithoutLogin;
     @FXML
     private ScrollPane favoritViewLogin;
+    @FXML
+    private VBox favoriteContainer;
 
     public HomepageViewController() {
         this.searchController = new SearchController();
+        this.user = new UserSession();
+        this.ratingDBController = new RatingDBController();
     }
 
     public void initialize() {
@@ -87,11 +97,18 @@ public class HomepageViewController {
     //Die Previewelemente in der Ansicht werden gelöscht
     private void clearPreview(){
         recipesContainer.getChildren().remove(1, recipesContainer.getChildren().size());
+
+    }
+
+    private void clearFavorite(){
+        favoriteContainer.getChildren().remove(1, favoriteContainer.getChildren().size());
     }
 
     public void loadHomePage(){
         clearPreview();
+        clearFavorite();
         displayMostLikedRecipes();
+        favoriteView();
     }
 
     //Es wird nach den Rezepten gesucht, welche in der Suchleiste eingegeben wurden
@@ -171,7 +188,6 @@ public class HomepageViewController {
 
     //Verbindet einen User
     public void loginButtonPress() throws SQLException, IOException{
-        user = new UserSession();
         new Login();
 
         if(user.sessionExists()) {
@@ -196,46 +212,65 @@ public class HomepageViewController {
         user.logoutSession();
         loginButton.setVisible(true);
         logoutButton.setVisible(false);
-        clearFavoriteView();
+        changeFavoriteView();
     }
 
     //Wenn ein User eingeloggt ist, wird die Favoritenliste angezeigt
     public void favoriteView(){
-        favoritViewWithoutLogin.setVisible(false);
-        favoritViewLogin.setVisible(true);
-        VBox container = (VBox) favoritViewLogin.getContent();
 
-        //TODO Favorisierte Rezepte vom User nehmen!
-        int j = 0;
+        if(user.sessionExists()){
+            clearFavorite();
 
-        for(int i = 0; i < displayedRecipe.size(); i++){
+            favoritViewWithoutLogin.setVisible(false);
+            favoritViewLogin.setVisible(true);
 
-            FXMLLoader fxmlElement = new FXMLLoader(getClass().getResource("/homepage/favoriteElement.fxml"));
-            HBox  favoriteElement = new HBox();
+            favorites = ratingDBController.getUsersFavorites(user.getUserSession().getUsername());
 
-            try{
-                favoriteElement = (HBox) fxmlElement.load();
-            }catch(IOException e){
-                e.fillInStackTrace();
+            if(favorites.size() == 0){
+                Label lbl = new Label("Sie haben noch keine Liebilingsrezepte...");
+                lbl.setPadding(new Insets(100,0,0,0));
+                favoriteContainer.getChildren().add(lbl);
             }
 
-            if(i > 6){
-                container.setMaxWidth(230);
-            }
+            for(int i = 0; i < favorites.size(); i++){
 
-            FavoriteViewController con = fxmlElement.getController();
-            con.setRecipe(displayedRecipe.get(i));
-            con.assembleFavorite(favoriteElement);
-            container.getChildren().add(favoriteElement);
+                FXMLLoader fxmlElement = new FXMLLoader(getClass().getResource("/FavoriteSection/favoriteElement.fxml"));
+                HBox  favoriteElement = new HBox();
+
+                try{
+                    favoriteElement = (HBox) fxmlElement.load();
+                }catch(IOException e){
+                    e.fillInStackTrace();
+                }
+
+                if(i > 6){
+                    favoriteContainer.setMaxWidth(230);
+                }
+
+                FavoriteViewController con = fxmlElement.getController();
+                con.setFavoriteInformation(favorites.get(i));
+                con.assembleFavorite(favoriteElement);
+                favoriteContainer.getChildren().add(favoriteElement);
+        }
+
         }
     }
 
+    //Überprüft die Anzahl der favoristen Rezepte, wenn ein User angemeldet ist. Falls diese nicht übereinstimmt wird die Favoriten-Liste neu bestimmt
+    public void checkFavLength(){
+        if(user.sessionExists()){
+            if(favorites.size() != ratingDBController.getUsersFavorites(user.getUserSession().getUsername()).size()){
+                favoriteView();
+            }
+        }
+
+    }
+
     //Beim Logout eines Users, wird die Favoritenliste nicht mehr angezeigt.
-    public void clearFavoriteView(){
+    public void changeFavoriteView(){
         favoritViewWithoutLogin.setVisible(true);
         favoritViewLogin.setVisible(false);
-        VBox container = (VBox) favoritViewLogin.getContent();
-        container.getChildren().remove(1, container.getChildren().size());
+        clearFavorite();
     }
 
 

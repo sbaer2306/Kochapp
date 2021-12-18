@@ -3,13 +3,16 @@ package recipeView;
 import CommentSection.CommentController;
 import CommentSection.CommentViewController;
 import DBController.RatingDBController;
+import Datastructures.FavoriteInformation;
 import Datastructures.Recipe;
 import Datastructures.RecipeComment;
 import Datastructures.UserModel;
+import FavoriteSection.FavoriteController;
 import Session.UserSession;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,10 +37,11 @@ public class RecipeViewController {
     // private UserSession userSession;
     private UserModel userModel;
     private RatingDBController ratingDBController;
-
     private CommentController commentController;
     private CommentViewController commentViewController;
-    
+    private FavoriteController favoriteController;
+    private boolean isFavorite;
+
     @FXML
     private AnchorPane container;
 
@@ -56,12 +60,13 @@ public class RecipeViewController {
     @FXML
     private Label dislikesNumber;
     @FXML
-    private Label comments;
-
-    @FXML
     private TextArea commentField;
     @FXML
-    private Button saveComment;
+    private Button favoriteWhite;
+    @FXML
+    private Button favoriteBlack;
+    @FXML
+    private Label favoriteLabel;
 
     public RecipeViewController() {
         // this.ratingController = new RatingController(userModel);
@@ -102,6 +107,24 @@ public class RecipeViewController {
         con.showComments();
 
         stage.show();
+    }
+
+    public void favorite() throws SQLException {
+        if(userModel != null){
+
+            if(!isFavorite){
+                favoriteController.insertFavoriteRecipe();
+            }else{
+                favoriteController.deleteFavoriteRecipe();
+            }
+            displayFavorite();
+
+        }else{
+            Notifications notification = Notifications.create();
+            notification.title("Oops, das ging wohl schief :(");
+            notification.text("Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
+            notification.show();
+        }
     }
 
     public void like() throws SQLException {
@@ -205,6 +228,23 @@ public class RecipeViewController {
         }
     }
 
+    private void displayFavorite(){
+        if(userModel != null){
+            favoriteController = new FavoriteController(userModel, recipe);
+            isFavorite = favoriteController.getFavorite() != null;
+
+            if(!isFavorite){
+                favoriteWhite.setVisible(true);
+                favoriteBlack.setVisible(false);
+                favoriteLabel.setText("Rezept favorisieren");
+            }else{
+                favoriteWhite.setVisible(false);
+                favoriteBlack.setVisible(true);
+                favoriteLabel.setText("Rezept favorisiert");
+            }
+        }
+    }
+
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
@@ -250,7 +290,17 @@ public class RecipeViewController {
         ingredients.getItems().add(recipe.getIngredients());
 
         displayRating();
-
-
+        displayFavorite();
     }
+
+    public void underlineTrue(Event event){
+        Label lbl = (Label) event.getTarget();
+        lbl.setUnderline(true);
+    }
+
+    public void underlineFalse(Event event){
+        Label lbl = (Label) event.getTarget();
+        lbl.setUnderline(false);
+    }
+
 }

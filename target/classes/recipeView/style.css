@@ -17,3 +17,7 @@
 #main {
     -fx-background-color: White;
 }
+
+.changeCursor{
+    -fx-cursor: hand;
+}
