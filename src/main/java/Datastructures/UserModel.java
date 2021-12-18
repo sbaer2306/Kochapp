@@ -12,15 +12,11 @@ public class UserModel {
 
     private ArrayList<String> likedRecipeIDs;
     private ArrayList<String> dislikedRecipeIDs;
-
     private ArrayList<RecipeComment> recipeComments;
+    ArrayList<FavoriteInformation> favorites;
 
-    public ArrayList<RecipeComment> getRecipeComments() {
-        return recipeComments;
-    }
-
-    public void setRecipeComments(ArrayList<RecipeComment> recipeComments) {
-        this.recipeComments = recipeComments;
+    public UserModel() {
+        //um mit Gettern und Settern zu arbeiten falls nötig
     }
 
     //Für die Registrierung
@@ -44,22 +40,29 @@ public class UserModel {
 
         //Kommentare holen
         this.recipeComments=peter.getUsersComments(this.username);
+        //Favoriten holen
+        this.favorites= peter.getUsersFavorites(this.username);
 
         //falls Fehler bei der Abfrage
         if(likedRecipeIDs == null) likedRecipeIDs= new ArrayList<>();
         if(dislikedRecipeIDs == null) dislikedRecipeIDs= new ArrayList<>();
     }
 
-    public UserModel() {
-        //um mit Gettern und Settern zu arbeiten falls nötig
-    }
+
+
 
     //TODO: Kommentare vor dem bearbeiten/anzeigen immer neu laden
-    public void loadComments(){
+    public void reloadComments(){
         RatingDBController peter= new RatingDBController();
         this.dislikedRecipeIDs = peter.getDislikedRecipeIDs(this.username);
     }
 
+    public void reloadFavorites(){
+        RatingDBController peter= new RatingDBController();
+        this.favorites = peter.getUsersFavorites(this.username);
+    }
+
+    //Getter und Setter
     public ArrayList<String> getLikedRecipeIDs() {
         return likedRecipeIDs;
     }
@@ -74,6 +77,14 @@ public class UserModel {
 
     public void setDislikedRecipeIDs(ArrayList<String> dislikedRecipeIDs) {
         this.dislikedRecipeIDs = dislikedRecipeIDs;
+    }
+
+    public ArrayList<RecipeComment> getRecipeComments() {
+        return recipeComments;
+    }
+
+    public void setRecipeComments(ArrayList<RecipeComment> recipeComments) {
+        this.recipeComments = recipeComments;
     }
 
     @Override

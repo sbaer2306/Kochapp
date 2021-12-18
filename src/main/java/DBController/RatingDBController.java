@@ -1,5 +1,6 @@
 package DBController;
 
+import Datastructures.FavoriteInformation;
 import Datastructures.RecipeComment;
 import Datastructures.Recipe;
 import Datastructures.UserModel;
@@ -256,7 +257,7 @@ public class RatingDBController extends DBConnectionController {
         }
     }
 
-    //Helferfunktion
+    //Helferfunktion für Kommentarerstellung
     private ArrayList<RecipeComment> getCommentList(ResultSet resultSet) throws SQLException {
     ArrayList<RecipeComment> comments= new ArrayList<>();
 
@@ -267,11 +268,78 @@ public class RatingDBController extends DBConnectionController {
             comment.setAuthor_uid(resultSet.getString("author_uid"));
             comment.setRecipe_rid(resultSet.getString("recipe_rid"));
             comment.setText(resultSet.getString("text"));
+            comment.setDatetime(resultSet.getString("creation_time"));
 
             comments.add(comment);
         }
         if(comments.size() > 0 )return comments;
         return null;
     }
+
+    //Favorisieren
+    public boolean insertFavorite(FavoriteInformation fav) throws SQLException {
+
+        String sql= "INSERT INTO users_recipes_favorites (recipe_rid, username_uid) VALUES (?,?)";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, fav.getRecipeId());
+        pstmt.setString(2, fav.getOwnerId());
+
+        int affected= pstmt.executeUpdate();
+
+        return (affected==1);
+    }
+
+    public boolean deleteFavorite(FavoriteInformation fav) throws SQLException {
+
+        String sql= "DELETE FROM users_recipes_favorites WHERE recipe_rid=? AND username_uid=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, fav.getRecipeId());
+        pstmt.setString(2, fav.getOwnerId());
+
+        int affected= pstmt.executeUpdate();
+
+        return (affected==1);
+    }
+
+    public ArrayList<FavoriteInformation> getUsersFavorites(String username) {
+
+        String sql = "SELECT users_recipes_favorites.username_uid, users_recipes_favorites.recipe_rid, users_recipes_favorites.added_time, recipes.title " +
+                "FROM users_recipes_favorites "+
+                "INNER JOIN recipes ON users_recipes_favorites.recipe_rid=recipes.recipe_rid WHERE username_uid=?;";
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(sql);
+
+            pstmt.setString(1, username);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            return getFavoriteList(resultSet);
+
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    private ArrayList<FavoriteInformation> getFavoriteList(ResultSet resultSet) throws SQLException {
+        ArrayList<FavoriteInformation> favs = new ArrayList<>();
+
+        while (resultSet.next()){
+            FavoriteInformation fav = new FavoriteInformation();
+            fav.setOwnerId(resultSet.getString("username_uid"));
+            fav.setRecipeId(resultSet.getString("recipe_rid"));
+            fav.setRecipeTitle(resultSet.getString("title"));
+            fav.setAddedDatetime(resultSet.getString("added_time"));
+
+            favs.add(fav);
+        }
+
+        return favs;
+    }
+
+
 }
 
