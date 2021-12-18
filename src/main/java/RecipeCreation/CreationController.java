@@ -64,6 +64,6 @@ public class CreationController {
 
                 recipeSet=true;
             }
-        } catch (IOException ignored) {}
+        } catch (IOException | InterruptedException ignored) {}
     }
 }
