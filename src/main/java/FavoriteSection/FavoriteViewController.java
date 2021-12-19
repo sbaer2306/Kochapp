@@ -50,6 +50,7 @@ public class FavoriteViewController {
         RecipeViewController con  = fxmlRecipeView.getController();
         con.setRecipe(recipe);
 
+
         Stage stage = new Stage();
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle(recipe.getTitle());

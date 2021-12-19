@@ -92,7 +92,7 @@ public class PreviewViewController {
 
         RecipeViewController con  = fxmlRecipeView.getController();
         con.setRecipe(recipe);
-
+        System.out.println(recipe.getTitle());
         Stage stage = new Stage();
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle(recipe.getTitle());

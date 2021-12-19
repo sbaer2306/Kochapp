@@ -11,17 +11,17 @@
 <?import javafx.scene.image.Image?>
 <HBox stylesheets="@style.css" styleClass="hbox" alignment="CENTER_LEFT" maxHeight="50.0" maxWidth="245.0" prefHeight="35.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FavoriteSection.FavoriteViewController">
    <children>
-      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="140.0" text="Test" wrapText="true" styleClass="changeCursor, lbl" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse">
+      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="135.0" text="Test" wrapText="true" styleClass="changeCursor, lbl" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="70.0" text="2020-01-01 22:22:22" wrapText="true" styleClass="lbl">
+      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="80.0" text="2020-01-01 22:22:22" wrapText="true" styleClass="lbl">
          <font>
             <Font size="11.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="changeCursor, btn" onAction="#removeElement">
+      <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="30.0" styleClass="changeCursor, btn" onAction="#removeElement">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>

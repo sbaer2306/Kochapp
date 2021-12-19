@@ -47,9 +47,9 @@ public class HomepageViewController {
     @FXML
     private Label recipeCounter;
     @FXML
-    private AnchorPane favoritViewWithoutLogin;
+    private AnchorPane favoriteViewWithoutLogin;
     @FXML
-    private ScrollPane favoritViewLogin;
+    private ScrollPane favoriteViewLogin;
     @FXML
     private VBox favoriteContainer;
     @FXML
@@ -78,7 +78,7 @@ public class HomepageViewController {
         recipeCounter.getStyleClass().add("h1");
     }
 
-    //Erstellt eine Ansicht mit den Top 5 Rezepten in der Startseite
+    //Erstellt ein Preview Element in der Ansicht
     private void displayPreview(int count){
         FXMLLoader previewElement = new FXMLLoader(getClass().getResource("/homepage/previewElement.fxml"));
         HBox  previewElementContainer = new HBox();
@@ -223,11 +223,10 @@ public class HomepageViewController {
         if(user.sessionExists()){
             clearFavorite();
 
-            favoritViewWithoutLogin.setVisible(false);
-            favoritViewLogin.setVisible(true);
+            favoriteViewWithoutLogin.setVisible(false);
+            favoriteViewLogin.setVisible(true);
 
             favorites = ratingDBController.getUsersFavorites(user.getUserSession().getUsername());
-
             if(favorites.size() == 0){
                 Label lbl = new Label("Sie haben noch keine Liebilingsrezepte...");
                 lbl.setPadding(new Insets(100,0,0,0));
@@ -274,8 +273,8 @@ public class HomepageViewController {
 
     //Beim Logout eines Users, wird die Favoritenliste nicht mehr angezeigt.
     public void changeFavoriteView(){
-        favoritViewWithoutLogin.setVisible(true);
-        favoritViewLogin.setVisible(false);
+        favoriteViewWithoutLogin.setVisible(true);
+        favoriteViewLogin.setVisible(false);
         clearFavorite();
     }
 

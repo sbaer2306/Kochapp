@@ -358,7 +358,7 @@ public class RatingDBController extends DBConnectionController {
             recipe.setId(recipeId);
             recipe.setTitle(resultSet.getString("title"));
             recipe.setImage(resultSet.getBlob("image"));
-            recipe.setTitle(resultSet.getString("portions"));
+            recipe.setPortions(resultSet.getString("portions"));
             recipe.setIngredients(resultSet.getString("ingredients"));
             recipe.setDescription(resultSet.getString("description"));
             recipe.setDuration(resultSet.getString("duration"));
