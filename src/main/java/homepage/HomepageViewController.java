@@ -52,6 +52,8 @@ public class HomepageViewController {
     private ScrollPane favoritViewLogin;
     @FXML
     private VBox favoriteContainer;
+    @FXML
+    private Label titleFavorite;
 
     public HomepageViewController() {
         this.searchController = new SearchController();
@@ -243,8 +245,12 @@ public class HomepageViewController {
                     e.fillInStackTrace();
                 }
 
-                if(i > 6){
+                if(i > 9){
                     favoriteContainer.setMaxWidth(230);
+                    titleFavorite.setPadding(new Insets(0, 55,0,0));
+                }else{
+                    favoriteContainer.setMaxWidth(245);
+                    titleFavorite.setPadding(new Insets(0, 70,0,0));
                 }
 
                 FavoriteViewController con = fxmlElement.getController();

@@ -339,10 +339,7 @@
                         </Label>
                         <HBox alignment="BOTTOM_LEFT" prefWidth="245.0">
                             <children>
-                                <Label text="Titel" style="-fx-font-weight:700">
-                                    <HBox.margin>
-                                        <Insets right="70" />
-                                    </HBox.margin>
+                                <Label fx:id="titleFavorite" text="Titel" style="-fx-font-weight:700">
                                 </Label>
                                 <Label text="hinzugefügt am.." style="-fx-font-weight:700">
                                     <HBox.margin>
