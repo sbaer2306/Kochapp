@@ -7,20 +7,28 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.VBox?>
-<HBox style="-fx-border-color: #808080;" stylesheets="@style.css" alignment="CENTER_LEFT" maxHeight="50.0" maxWidth="245.0" prefHeight="50.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FavoriteSection.FavoriteViewController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox stylesheets="@style.css" styleClass="hbox" alignment="CENTER_LEFT" maxHeight="50.0" maxWidth="245.0" prefHeight="35.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FavoriteSection.FavoriteViewController">
    <children>
-      <Label alignment="TOP_LEFT" maxWidth="177.0" prefHeight="20.0" prefWidth="177.0" text="Test" wrapText="true" styleClass="changeCursor, underline" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse">
+      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="140.0" text="Test" wrapText="true" styleClass="changeCursor, lbl" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse">
          <font>
             <Font size="13.0" />
          </font>
-         <HBox.margin>
-            <Insets left="5.0" top="5.0" />
-         </HBox.margin>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Entfernen" styleClass="changeCursor, btn" onAction="#removeElement">
-         <HBox.margin>
-            <Insets left="5.0" right="10.0" />
-         </HBox.margin>
+      <Label alignment="CENTER_LEFT" maxWidth="210.0" prefHeight="35.0" prefWidth="70.0" text="2020-01-01 22:22:22" wrapText="true" styleClass="lbl">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="changeCursor, btn" onAction="#removeElement">
+         <graphic>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@fx-images/outline_clear_black_24dp.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 

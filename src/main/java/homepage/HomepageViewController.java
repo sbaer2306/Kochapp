@@ -101,7 +101,7 @@ public class HomepageViewController {
     }
 
     private void clearFavorite(){
-        favoriteContainer.getChildren().remove(1, favoriteContainer.getChildren().size());
+        favoriteContainer.getChildren().remove(2, favoriteContainer.getChildren().size());
     }
 
     public void loadHomePage(){

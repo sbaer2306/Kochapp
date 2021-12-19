@@ -36,6 +36,8 @@ public class FavoriteViewController {
     public void assembleFavorite(HBox element){
         Label title = (Label) element.getChildren().get(0);
         title.setText(favorite.getRecipeTitle());
+        Label date = (Label) element.getChildren().get(1);
+        date.setText(favorite.getAddedDatetime());
     }
 
     //Wenn man auf ein favorisiertes Rezept dessen Namen klickt, öffnet sich das dazugehörige Rezept

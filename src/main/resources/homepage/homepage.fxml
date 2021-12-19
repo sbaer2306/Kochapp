@@ -332,7 +332,26 @@
             <ScrollPane fx:id="favoritViewLogin" visible="false" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover">
                 <content>
                     <VBox fx:id="favoriteContainer">
-                        <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="216.0" styleClass="h2" text="Deine Lieblingsrezepte" />
+                        <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="216.0" styleClass="h2" text="Deine Lieblingsrezepte">
+                            <VBox.margin>
+                                <Insets bottom="30" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox alignment="BOTTOM_LEFT" prefWidth="245.0">
+                            <children>
+                                <Label text="Titel" style="-fx-font-weight:700">
+                                    <HBox.margin>
+                                        <Insets right="70" />
+                                    </HBox.margin>
+                                </Label>
+                                <Label text="hinzugefügt am.." style="-fx-font-weight:700">
+                                    <HBox.margin>
+                                        <Insets right="8" />
+                                    </HBox.margin>
+                                </Label>
+                                <Label text="löschen" style="-fx-font-weight:700"/>
+                            </children>
+                        </HBox>
                     </VBox>
                 </content>
             </ScrollPane>
