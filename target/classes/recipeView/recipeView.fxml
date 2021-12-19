@@ -104,7 +104,7 @@
             </ImageView>
             <TextArea fx:id="commentField" wrapText="true" layoutX="50.0" layoutY="536.0" prefHeight="103.0" prefWidth="331.0" promptText="Kommentar veröffentlichen.." />
             <Button fx:id="saveComment" layoutX="270.0" layoutY="651.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="111.0" text="Kommentieren" onAction="#createRecipeComment"/>
-            <Button layoutX="176.0" layoutY="651.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Abbrechen" />
+            <Button layoutX="176.0" layoutY="651.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Abbrechen" onAction="#cancelCommenting"/>
          </children></AnchorPane>
   </content>
 </ScrollPane>

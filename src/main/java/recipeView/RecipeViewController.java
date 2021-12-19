@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -70,12 +71,18 @@ public class RecipeViewController {
         this.ratingDBController = new RatingDBController();
     }
 
-    public void createRecipeComment() throws SQLException {
+    public void createRecipeComment() throws SQLException, IOException {
         RecipeComment recipeComment;
         if(userModel != null) {
             recipeComment = new RecipeComment(userModel, recipe, commentField.getText());
             ratingDBController.insertComment(recipeComment);
-            System.out.println("Recipe Comment has been inserted..");
+
+            Notifications notification = Notifications.create();
+            notification.title("Der Kommentar wurde erfolgreich hinzugefügt.");
+            notification.text("Danke für deinen Kommentar :)");
+            notification.show();
+
+            displayComments();
         }
         else {
             Notifications notification = Notifications.create();
@@ -83,6 +90,11 @@ public class RecipeViewController {
             notification.text("Bitte melde dich an, um einen Kommentar zu veröffentlichen.. :)");
             notification.show();
         }
+        commentField.clear();
+    }
+
+    public void cancelCommenting() {
+        commentField.clear();
     }
 
     public void displayComments() throws IOException {

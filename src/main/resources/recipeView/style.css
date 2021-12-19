@@ -12,8 +12,35 @@
     -fx-background-color: White;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
+    -fx-cursor: hand;
 }
+
+#thumbUpWhite:hover {
+
+}
+
+#thumbDownWhite:hover {
+
+}
+
+#favorite:hover {
+
+}
+
+
+#comments {
+    -fx-cursor: hand;
+    -fx-font-size: 14;
+}
+
+#comments:hover {
+    -fx-text-fill: #006400;
+    -fx-underline: true;
+}
+
+
 
 #main {
     -fx-background-color: White;
 }
+

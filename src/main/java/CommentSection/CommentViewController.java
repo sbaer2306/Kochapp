@@ -2,6 +2,8 @@ package CommentSection;
 
 import Datastructures.Recipe;
 import Datastructures.RecipeComment;
+import Datastructures.UserModel;
+import Session.UserSession;
 import javafx.application.Preloader;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -12,7 +14,9 @@ import org.controlsfx.control.Notifications;
 import recipeView.RecipeViewController;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CommentViewController {
 
@@ -22,11 +26,15 @@ public class CommentViewController {
     @FXML
     private Label commentLabel;
 
+    private Label deleteLabel;
+
     private Recipe recipe;
     private CommentController commentController;
+    private UserModel userModel;
 
     public CommentViewController() {
         this.commentController = new CommentController();
+        this.userModel = new UserSession().getUserSession();
     }
 
     public Recipe getRecipe() {
@@ -64,6 +72,24 @@ public class CommentViewController {
 
             section.getChildren().addAll(containers);
 
+            ArrayList<Label> deleteLabels = new ArrayList<Label>();
+            if(userModel != null) {
+                ArrayList<RecipeComment> userComments = userModel.getRecipeComments();
+                for(VBox container : containers) {
+                    Label author = (Label) container.getChildren().get(0);
+                    Label text = (Label) container.getChildren().get(2);
+                    if(author.getText().equals(userModel.getUsername())) {
+                        deleteLabel = new Label("Kommentar löschen");
+                        deleteLabel.setId("deleteLabel");
+                        deleteLabel.getStyleClass().add("deleteLabel");
+                        container.getChildren().add(deleteLabel);
+                        deleteLabels.add(deleteLabel);
+                    }
+                    for(Label deleteLabel : deleteLabels) {
+                        commentController.deleteComment(deleteLabel, comments);
+                    }
+                }
+            }
         }
         else{
             Notifications note = Notifications.create();

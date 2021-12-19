@@ -20,10 +20,22 @@
 
 .date {
     -fx-font-size: 12;
-    -fx-text-fill: #F5F5F5;
+    -fx-text-fill: #C71585;
+    -fx-padding: 5, 5, 5, 5;
 }
 
 .content {
     -fx-font-size: 14;
     -fx-padding: 5, 10, 5, 10;
+}
+
+.deleteLabel {
+    -fx-font-size: 12;
+    -fx-text-fill: #FF6347;
+    -fx-padding: 5, 7.5, 2.5, 5;
+    -fx-font-weight: bold;
+}
+
+.deleteLabel:hover {
+    -fx-cursor: hand;
 }
