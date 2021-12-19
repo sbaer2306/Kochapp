@@ -79,15 +79,23 @@ public class RecipeViewController {
     public void createRecipeComment() throws SQLException, IOException {
         RecipeComment recipeComment;
         if(userModel != null) {
-            recipeComment = new RecipeComment(userModel, recipe, commentField.getText());
-            ratingDBController.insertComment(recipeComment);
+            if(!commentField.getText().isEmpty()) {
+                recipeComment = new RecipeComment(userModel, recipe, commentField.getText());
+                ratingDBController.insertComment(recipeComment);
 
-            Notifications notification = Notifications.create();
-            notification.title("Der Kommentar wurde erfolgreich hinzugefügt.");
-            notification.text("Danke für deinen Kommentar :)");
-            notification.show();
+                Notifications notification = Notifications.create();
+                notification.title("Der Kommentar wurde erfolgreich hinzugefügt.");
+                notification.text("Danke für deinen Kommentar :)");
+                notification.show();
 
-            displayComments();
+                displayComments();
+            }
+            else {
+                Notifications notification = Notifications.create();
+                notification.title("Ouch, das ging ziemlich in die Hose!");
+                notification.text("Du hast vergessen einen Text zu verfassen ;)");
+                notification.show();
+            }
         }
         else {
             Notifications notification = Notifications.create();
