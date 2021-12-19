@@ -37,4 +37,7 @@ module main {
 
     opens CommentSection to javafx.fxml;
     exports CommentSection;
+
+    exports FavoriteSection;
+    opens FavoriteSection to javafx.fxml;
 }

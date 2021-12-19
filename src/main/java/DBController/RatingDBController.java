@@ -5,7 +5,6 @@ import Datastructures.RecipeComment;
 import Datastructures.Recipe;
 import Datastructures.UserModel;
 
-import javax.xml.stream.events.Comment;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -341,6 +340,8 @@ public class RatingDBController extends DBConnectionController {
         return favs;
     }
 
+
+    //TODO: evtl in den Search Controller DB verschieben?
     //Um ein Rezept nur über die ID zu laden (da FavoriteInformation und RecipeComment nur die ID speichern -->
     // nützlich für die Accountverwaltung, bzw die Verwaltung der Kommentare und Favoriten)
     public Recipe getRecipeByID(String recipeId) throws SQLException, IOException {
@@ -357,7 +358,7 @@ public class RatingDBController extends DBConnectionController {
             recipe.setId(recipeId);
             recipe.setTitle(resultSet.getString("title"));
             recipe.setImage(resultSet.getBlob("image"));
-            recipe.setTitle(resultSet.getString("portions"));
+            recipe.setPortions(resultSet.getString("portions"));
             recipe.setIngredients(resultSet.getString("ingredients"));
             recipe.setDescription(resultSet.getString("description"));
             recipe.setDuration(resultSet.getString("duration"));
@@ -369,7 +370,29 @@ public class RatingDBController extends DBConnectionController {
             recipe.setAuthor(resultSet.getString("author_uid"));
         }
 
+        recipe.setCategories(getRecipesCategories(recipeId));
+
         return recipe;
+    }
+
+    private ArrayList<String> getRecipesCategories(String recipeId) throws SQLException {
+
+        String sql = "SELECT * FROM recipe_categories WHERE recipe_rid=?";
+
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+
+        preparedStatement.setString(1,recipeId);
+
+        ResultSet res = preparedStatement.executeQuery();
+
+        ArrayList<String> categories = new ArrayList<>();
+
+        while(res.next()){
+            categories.add(res.getString("category_name_cid"));
+        }
+
+        return categories;
+
     }
 
 }

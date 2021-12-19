@@ -81,6 +81,29 @@ public class RegistrationController {
         }
     }
 
+    private boolean checkForInvalidCharacters(){
+        String username = usernameField.getText();
+        for (int i = 0; i < username.length(); i++){
+            Character c = username.charAt(i);
+            if(Character.isDigit(c));
+            else if(Character.isAlphabetic(c));
+            else if(c == '-' || c == '_');
+            else {
+                notificationLabel.setText("Keine Leer- oder Sonderzeichen im Nutzernamen verwenden!");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkUsernameLength(){
+        if (usernameField.getText().length() > 30){
+            notificationLabel.setText("Nutzername ist zu lang! (max 30 Zeichen)");
+            return false;
+        }
+        return true;
+    }
+
     private UserModel createUser(){ //erstellt einen Nutzer, um ihn später mit der DB zu vergleichen und dann dort einzufügen
         return new UserModel(usernameField.getText(), emailField.getText(), passwordField.getText());
     }
@@ -94,7 +117,8 @@ public class RegistrationController {
 
     @FXML
     public void confirmButtonPressed(ActionEvent actionEvent) {
-        if(checkForEmptyTextFields() && checkEmailInput(emailField.getText()) && checkMatchingPasswords()){
+        if(checkForEmptyTextFields() && checkForInvalidCharacters() && checkUsernameLength()
+                && checkEmailInput(emailField.getText()) && checkMatchingPasswords()){
             UserModel user = createUser();
 
             if(checkUserExists(user)){

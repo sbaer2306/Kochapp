@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RecipeCreation.ViewController">
+   <top>
+      <Label text="Erstelle dein eigenes Rezept!" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <GridPane style="-fx-background-color: #F5FFFA;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="187.1999938964844" minHeight="10.0" prefHeight="172.00000610351563" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="215.60001220703126" minHeight="10.0" prefHeight="193.40000000000003" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="155.2000244140625" minHeight="3.8000244140624773" prefHeight="9.399999999999977" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="155.2000244140625" minHeight="10.0" prefHeight="103.00002441406252" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="155.2000244140625" minHeight="10.0" prefHeight="58.99997558593748" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8ff96;">
+               <top>
+                  <Label text="Gib einen Titel ein" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <center>
+                  <TextField fx:id="titleField" alignment="CENTER" promptText="Titel hier eingeben" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </center>
+               <bottom>
+                  <Label fx:id="titleNotificationLabel" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5FFFA;" BorderPane.alignment="CENTER">
+                     <top>
+                        <Label text="Gib die Zutaten für das Rezept an" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets top="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                     <center>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <content>
+                              <VBox fx:id="ingredientsVBox" prefWidth="363.0" />
+                           </content>
+                           <BorderPane.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </BorderPane.margin>
+                        </ScrollPane>
+                     </center>
+                     <bottom>
+                        <ButtonBar prefHeight="27.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                          <buttons>
+                            <Button fx:id="removeIngredientButton" mnemonicParsing="false" onAction="#removeIngredientButtonPressed" text="Zutat entfernen" />
+                              <Button fx:id="addIngredientButton" mnemonicParsing="false" onAction="#addIngredientButtonPressed" text="Zutat hinzufügen" />
+                          </buttons>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </ButtonBar>
+                     </bottom>
+                  </BorderPane>
+               </center>
+               <bottom>
+                  <Label fx:id="ingredientsNotificationLabel" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5FFFA;" GridPane.columnIndex="1">
+               <top>
+                  <Label text="Füge eine Beschreibung hinzu" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <bottom>
+                  <Label fx:id="descriptionNotificationLabel" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+               <center>
+                  <TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" promptText="Beschreibung des Ablaufs hier eingeben" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </BorderPane.margin>
+                  </TextArea>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8ff96;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <top>
+                  <Label text="Gib weitere Informationen an" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <bottom>
+                  <Label fx:id="remaindersNotificationLabel" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.8000244140625" minWidth="10.0" prefWidth="287.8000244140625" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.80009765625" minWidth="10.0" prefWidth="64.5999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.199951171875" minWidth="10.0" prefWidth="47.20002441406251" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Gib die Anzahl der Portionen an" GridPane.halignment="RIGHT">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Gib eine ungefähre Dauer für die Zubereitung an" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Gib einen ungefähren Preis für die Zutaten an" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Wähle einen Schwierigkeitsgrad" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="min" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="€" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="portionsField" alignment="CENTER_RIGHT" promptText="z.B. 4" GridPane.columnIndex="1" />
+                        <TextField fx:id="durationField" alignment="CENTER_RIGHT" promptText="z.B. 60" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="priceField" alignment="CENTER_RIGHT" promptText="z.B. 15.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="difficultyChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5FFFA;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <top>
+                  <Label text="Füge ein Bild hinzu" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <bottom>
+                  <Label fx:id="imageNotificationLabel" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.5999755859375" minWidth="10.0" prefWidth="259.2000732421875" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.39996337890625" minWidth="10.0" prefWidth="141.5999267578125" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#addImageButtonPressed" text="Bild hinzufügen" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Label text="Füge ein Bild hinzu (.jpg/.png, max 1,5MB)" GridPane.halignment="RIGHT">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #F5FFFA;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+              <buttons>
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonPressed" text="Abbrechen" />
+                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmButtonPressed" text="Bestätigen" />
+              </buttons>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </padding>
+            </ButtonBar>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8ff96;" GridPane.rowIndex="2" GridPane.rowSpan="3">
+               <top>
+                  <Label text="Wähle passende Kategorien aus" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <center>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <GridPane fx:id="categoriesGridPane" prefHeight="250.0" prefWidth="362.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <CheckBox mnemonicParsing="false" text="Beilage">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Vorspeise" GridPane.columnIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Hauptspeise" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Nachspeise" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Backen" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Braten" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Grillen" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Kochen" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Frühling" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Sommer" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Herbst" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Winter" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Fleisch" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Fisch" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Vegetarisch" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Vegan" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="Frühstück" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </CheckBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

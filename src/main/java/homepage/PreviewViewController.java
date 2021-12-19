@@ -1,6 +1,7 @@
 package homepage;
 
 import Datastructures.Recipe;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -91,7 +92,7 @@ public class PreviewViewController {
 
         RecipeViewController con  = fxmlRecipeView.getController();
         con.setRecipe(recipe);
-
+        System.out.println(recipe.getTitle());
         Stage stage = new Stage();
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle(recipe.getTitle());
@@ -99,5 +100,15 @@ public class PreviewViewController {
 
         con.showRecipe();
         stage.show();
+    }
+
+    public void underlineTrue(Event event){
+        Label lbl = (Label) event.getTarget();
+        lbl.setUnderline(true);
+    }
+
+    public void underlineFalse(Event event){
+        Label lbl = (Label) event.getTarget();
+        lbl.setUnderline(false);
     }
 }

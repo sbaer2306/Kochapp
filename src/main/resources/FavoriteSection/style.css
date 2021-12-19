@@ -1,0 +1,19 @@
+.changeCursor{
+    -fx-cursor: hand;
+}
+
+.btn{
+    -fx-border-color: transparent transparent transparent black;
+    -fx-background-color: #c8ff96;
+    -fx-border-color: black;
+}
+
+.btn:hover{
+    -fx-background-color: #F5FFFA;
+}
+
+.lbl{
+    -fx-border-color: black transparent black black;
+    -fx-padding: 0 0 0 5;
+    -fx-background-color: #F5FFFA;
+}

@@ -78,3 +78,19 @@
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
 }
+
+.scroll-bar:vertical .thumb{
+    -fx-background-color: #c8ff96;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .decrement-arrow{
+    -fx-background-color: black;
+}
+
+.scroll-bar:vertical .increment-arrow{
+    -fx-background-color: black;
+}

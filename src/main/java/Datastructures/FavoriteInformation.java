@@ -26,7 +26,6 @@ public class FavoriteInformation {
         this.ownerId = owner.getUsername();
         this.recipeId = recipe.getId();
         this.recipeTitle = recipe.getTitle();
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 

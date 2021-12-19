@@ -1,5 +1,7 @@
 package DBController;
 
+import Clerks.ErrorClerk;
+
 import java.sql.*;
 
 public abstract class DBConnectionController {
@@ -15,7 +17,7 @@ public abstract class DBConnectionController {
             this.connection = DriverManager.getConnection(url,user,pwd);
             this.statement =connection.createStatement();
         } catch (SQLException e) {
-            System.out.println(e);
+            ErrorClerk.getInstance().showErrorMessage(e.toString());
         }
     }
 
