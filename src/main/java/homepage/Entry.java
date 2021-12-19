@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
-public class Main extends Application {
+public class Entry extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -22,7 +22,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(1016);
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void launchApplication(String[] args) {
         launch(args);
 
     }
