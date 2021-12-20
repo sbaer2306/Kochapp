@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ImageResizeClerk extends Thread{
 
@@ -22,11 +24,10 @@ public class ImageResizeClerk extends Thread{
                 int newheight=(int)(faktor*height);
                 BufferedImage originalImage = ImageIO.read(Imagefile);//change path to where file is located
                 int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-                /*BufferedImage resizeImageJpg = resizeImage(originalImage, type,300, newheight);*/
                 BufferedImage resizeImageJpg = resizeImage(originalImage,type,300,newheight);
-                File tmpFile = new File("temp.jpg");
-                ImageIO.write(resizeImageJpg, "jpg", tmpFile);
-                Imagefile=tmpFile;
+                Path tempFile = Files.createTempFile("temp",".jpg");
+                Imagefile =  new File(String.valueOf(tempFile));
+                ImageIO.write(resizeImageJpg, "jpg", Imagefile);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
