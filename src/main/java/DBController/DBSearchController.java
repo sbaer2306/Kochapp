@@ -49,60 +49,22 @@ public class DBSearchController extends DBConnectionController{
     private ArrayList<Recipe> getRecipesFromSQLStatement(String sql){
         try {
             ResultSet resultSet = statement.executeQuery(sql);
-            //get Columncount to loop through
-            ResultSetMetaData metadata = resultSet.getMetaData();
-            int columnCount = metadata.getColumnCount();
             ArrayList<Recipe> recipeArrayList = new ArrayList<Recipe>();
             while (resultSet.next()) {
                 Recipe recipe = new Recipe();
-                for (int i = 1; i <= columnCount; i++) {
-                    //Create Recipe objekt by looping through the resultset and using the setter methods
-                    switch (i) {
-                        case 1:
-                            recipe.setId(resultSet.getString(i));
-                            break;
-                        case 2:
-                            recipe.setTitle(resultSet.getString(i));
-                            break;
-                        case 3:
-                            recipe.setImage(resultSet.getBlob(i));
-                            break;
-                        case 4:
-                            recipe.setPortions(resultSet.getString(i));
-                            break;
-                        case 5:
-                            recipe.setIngredients(resultSet.getString(i));
-                            break;
-                        case 6:
-                            recipe.setDescription(resultSet.getString(i));
-                            break;
-                        case 7:
-                            recipe.setDuration(resultSet.getString(i));
-                            break;
-                        case 8:
-                            recipe.setIngredientsCost(resultSet.getString(i));
-                            break;
-                        case 9:
-                            recipe.setLikes(resultSet.getString(i));
-                            break;
-                        case 10:
-                            recipe.setDislikes(resultSet.getString(i));
-                            break;
-                        case 11:
-                            recipe.setCreationTime(resultSet.getString(i));
-                            break;
-                        case 12:
-                            recipe.setDifficulty(resultSet.getString(i));
-                            break;
-                        case 13:
-                            recipe.setAuthor(resultSet.getString(i));
-                            break;
-                        default:
-                            break;
-                    }
-
-                }
-                //get categories specified by the id from the resultset before
+                recipe.setId(resultSet.getString("recipe_rid"));
+                recipe.setTitle(resultSet.getString("title"));
+                recipe.setImage(resultSet.getBlob("image"));
+                recipe.setPortions(resultSet.getString("portions"));
+                recipe.setIngredients(resultSet.getString("ingredients"));
+                recipe.setDescription(resultSet.getString("description"));
+                recipe.setDuration(resultSet.getString("duration"));
+                recipe.setIngredientsCost(resultSet.getString("ingredients_cost"));
+                recipe.setLikes(resultSet.getString("likes"));
+                recipe.setDislikes(resultSet.getString("dislikes"));
+                recipe.setCreationTime(resultSet.getString("creation_time"));
+                recipe.setDifficulty(resultSet.getString("difficulty_did"));
+                recipe.setAuthor(resultSet.getString("author_uid"));
                 String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=" +"\""+recipe.getId()+"\"";
                 Statement statement1 = connection.createStatement();
                 ResultSet resultSetCategories = statement1.executeQuery(sqlCategories);
