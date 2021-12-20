@@ -98,4 +98,13 @@ public class UserDBController extends DBConnectionController{
         }
     }
 
+    public void deleteUser(String username) throws SQLException {
+        String sql= "delete from users WHERE username_uid=?";
+
+        PreparedStatement pstmt= connection.prepareStatement(sql);
+        pstmt.setString(1, username);
+
+        pstmt.executeQuery();
+    }
+
 }
