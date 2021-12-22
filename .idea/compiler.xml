@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="KochApp" target="16" />
+      <module name="KochApp" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

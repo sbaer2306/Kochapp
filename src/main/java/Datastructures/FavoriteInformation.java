@@ -10,38 +10,20 @@ public class FavoriteInformation {
     private String recipeTitle;
     private String addedDatetime;
 
-    @Override
-    public String toString() {
-        return "FavoriteInformation{" +
-                "ownerId='" + ownerId + '\'' +
-                ", recipeId='" + recipeId + '\'' +
-                ", recipeTitle='" + recipeTitle + '\'' +
-                ", addedDatetime='" + addedDatetime + '\'' +
-                '}';
-    }
-
     public FavoriteInformation(){}
 
     public FavoriteInformation(UserModel owner, Recipe recipe) {
         this.ownerId = owner.getUsername();
         this.recipeId = recipe.getId();
         this.recipeTitle = recipe.getTitle();
+
+        //TODO
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
         this.addedDatetime= formatter.format(date);
     }
 
-    public FavoriteInformation(String ownerId, String recipeId, String recipeTitle) {
-        this.ownerId = ownerId;
-        this.recipeId = recipeId;
-        this.recipeTitle = recipeTitle;
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-
-        this.addedDatetime= formatter.format(date);
-    }
 
     public String getOwnerId() {
         return ownerId;

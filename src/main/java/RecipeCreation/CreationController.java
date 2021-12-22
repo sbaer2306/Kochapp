@@ -1,6 +1,6 @@
 package RecipeCreation;
 
-import DBController.DBInsertController;
+import DBController.RecipeDBController;
 import Datastructures.Recipe;
 import Session.UserSession;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class CreationController {
         Notifications note = Notifications.create();
         if(recipeSet) {
             try {
-                new DBInsertController().InsertRecipe(recipe);
+                new RecipeDBController().InsertRecipe(recipe);
                 note.title("Rezepterstellung abgeschlossen");
                 note.text("Dein Rezept wird verarbeitet und gespeichert!");
             } catch (SQLException | FileNotFoundException throwables) {

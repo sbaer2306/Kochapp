@@ -2,7 +2,9 @@ package Datastructures;
 
 import Clerks.HashingClerk;
 import DBController.RatingDBController;
+import DBController.RecipeDBController;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserModel {
@@ -14,6 +16,8 @@ public class UserModel {
     private ArrayList<String> dislikedRecipeIDs;
     private ArrayList<RecipeComment> recipeComments;
     ArrayList<FavoriteInformation> favorites;
+
+    ArrayList<UsersRecipeInformation> usersRecipes;
 
     public UserModel() {
         //um mit Gettern und Settern zu arbeiten falls nötig
@@ -43,12 +47,13 @@ public class UserModel {
         //Favoriten holen
         this.favorites= peter.getUsersFavorites(this.username);
 
+        //Informationen zu den vom User hochgeladenen Rezepten holen
+        loadAndSetUsersRecipesInformation();
+
         //falls Fehler bei der Abfrage
         if(likedRecipeIDs == null) likedRecipeIDs= new ArrayList<>();
         if(dislikedRecipeIDs == null) dislikedRecipeIDs= new ArrayList<>();
     }
-
-
 
 
     //TODO: Kommentare vor dem bearbeiten/anzeigen immer neu laden
@@ -60,6 +65,16 @@ public class UserModel {
     public void reloadFavorites(){
         RatingDBController peter= new RatingDBController();
         this.favorites = peter.getUsersFavorites(this.username);
+    }
+
+    public void loadAndSetUsersRecipesInformation()  {
+        RecipeDBController peter= new RecipeDBController();
+        try {
+            this.usersRecipes = peter.getUsersRecipeInformation(this.username);
+        } catch (SQLException e) {
+            usersRecipes= null;
+            System.out.println("User hat keine Rezepte hochgeladen: "+e);
+        }
     }
 
     //Getter und Setter

@@ -1,6 +1,7 @@
 package FavoriteSection;
 
 import DBController.RatingDBController;
+import DBController.RecipeDBController;
 import Datastructures.FavoriteInformation;
 import Datastructures.Recipe;
 import javafx.event.Event;
@@ -24,8 +25,11 @@ public class FavoriteViewController {
     private FavoriteInformation favorite;
     private RatingDBController ratingDBController;
 
+    private RecipeDBController recipeDBController;
+
     public FavoriteViewController(){
         this.ratingDBController = new RatingDBController();
+        this.recipeDBController = new RecipeDBController();
     }
 
     public void setFavoriteInformation(FavoriteInformation fav) {
@@ -42,7 +46,7 @@ public class FavoriteViewController {
 
     //Wenn man auf ein favorisiertes Rezept dessen Namen klickt, öffnet sich das dazugehörige Rezept
     public void createRecipeViewStage() throws IOException, SQLException {
-        Recipe recipe = ratingDBController.getRecipeByID(favorite.getRecipeId());
+        Recipe recipe = recipeDBController.getRecipeByID(favorite.getRecipeId());
 
         FXMLLoader fxmlRecipeView = new FXMLLoader(getClass().getResource("/recipeView/recipeView.fxml"));
         ScrollPane root = fxmlRecipeView.load();
