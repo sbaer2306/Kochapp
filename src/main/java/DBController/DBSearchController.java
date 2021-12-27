@@ -22,6 +22,12 @@ public class DBSearchController extends DBConnectionController{
         String sql ="SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ORDER BY difference DESC LIMIT 5";
         return this.getRecipesFromSQLStatement(sql);
     }
+
+    public Recipe getRecipeOfTheWeek() throws SQLException, IOException{
+        String sql ="SELECT recipe_rid FROM user_recipes_ratings WHERE timestamp between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1 ";
+        return this.getRecipesFromSQLStatement(sql).get(0);
+    }
+
     public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMax, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
         StringBuilder SBsql = new StringBuilder();
         SBsql.append("SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ");
