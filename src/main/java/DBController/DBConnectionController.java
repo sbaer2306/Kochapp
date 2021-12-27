@@ -5,7 +5,7 @@ import Clerks.ErrorClerk;
 import java.sql.*;
 
 public abstract class DBConnectionController {
-    private String url = "jdbc:mysql://phpmyadmin.kartoffelkoepfe.de:2225/Kochapp";
+    private String url = "jdbc:mysql://database.kartoffelkoepfe.de:2226/Kochapp";
     private String user="dummy";
     private String pwd="Prais3TheH0rscht";
 
