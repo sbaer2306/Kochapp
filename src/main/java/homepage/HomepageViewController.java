@@ -58,12 +58,16 @@ public class HomepageViewController {
         this.searchController = new SearchController();
         this.user = new UserSession();
         this.ratingDBController = new RatingDBController();
+        this.recipeCounter = new Label();
+        recipeCounter.setPrefWidth(733);
     }
 
     public void initialize() {
         displayRecipeOfWeek();
         displayMostLikedRecipes();
     }
+
+    //Zeigt das Rezept der Woche an
     public void displayRecipeOfWeek(){
         FXMLLoader recipeOfWeekFXML = new FXMLLoader(getClass().getResource("/homepage/recipeOfWeek.fxml"));
         AnchorPane  recipeOfWeek = new AnchorPane();
@@ -83,8 +87,6 @@ public class HomepageViewController {
         TopFiveController topFiveController = new TopFiveController();
         displayedRecipe = topFiveController.getMostLikedRecipes();
 
-        recipeCounter = new Label();
-        recipeCounter.setPrefWidth(733);
         recipeCounter.setText("Unsere Top 5 Rezepte");
         recipeCounter.getStyleClass().add("h1");
         recipesContainer.getChildren().add(recipeCounter);
@@ -114,7 +116,7 @@ public class HomepageViewController {
 
     //Die Previewelemente in der Ansicht werden gelöscht
     private void clearPreview(){
-        recipesContainer.getChildren().removeAll();
+        recipesContainer.getChildren().clear();
     }
 
     private void clearFavorite(){
@@ -124,6 +126,7 @@ public class HomepageViewController {
     public void loadHomePage(){
         clearPreview();
         clearFavorite();
+        displayRecipeOfWeek();
         displayMostLikedRecipes();
         favoriteView();
     }
@@ -143,6 +146,7 @@ public class HomepageViewController {
             default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
                 break;
         }
+        recipesContainer.getChildren().add(recipeCounter);
 
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
@@ -196,8 +200,8 @@ public class HomepageViewController {
             default: recipeCounter.setText("Es wurden " + displayedRecipe.size() + " Rezepte gefunden");
                 break;
         }
-
         clearPreview();
+        recipesContainer.getChildren().add(recipeCounter);
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }

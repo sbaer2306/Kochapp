@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="733.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.RecipeOfWeekViewController">
+<AnchorPane prefHeight="450.0" prefWidth="733.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.RecipeOfWeekViewController">
    <children>
       <Label layoutX="28.0" layoutY="20.0" prefHeight="36.0" prefWidth="132.0" styleClass="h3" text="Rezept der Woche:" />
       <!--Titel-->
