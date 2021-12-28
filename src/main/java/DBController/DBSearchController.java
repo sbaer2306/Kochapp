@@ -24,7 +24,16 @@ public class DBSearchController extends DBConnectionController{
     }
     public Recipe getRecipeOfTheWeek() throws SQLException, IOException{
         String sql ="SELECT * FROM recipes WHERE recipe_rid=(SELECT recipe_rid FROM user_recipes_ratings WHERE liked_time between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1) ";
-        return this.getRecipesFromSQLStatement(sql).get(0);
+        Recipe recipe = new Recipe();
+        ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(sql);
+        if(recipes.isEmpty()) {
+            sql="SELECT * FROM recipes LIMIT 1";
+            recipe=this.getRecipesFromSQLStatement(sql).get(0);
+        }
+        else {
+            recipe=recipes.get(0);
+        }
+        return recipe;
     }
 
     public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMax, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
