@@ -313,7 +313,6 @@
         <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <content>
                 <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">
-                    <Label fx:id="recipeCounter" prefWidth="733.0" text="Unser Top 5 Rezepte" />
                 </VBox>
             </content>
         </ScrollPane>

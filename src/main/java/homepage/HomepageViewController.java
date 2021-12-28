@@ -27,6 +27,7 @@ public class HomepageViewController {
     private ArrayList<Recipe> displayedRecipe;
     private UserSession user;
     private ArrayList<FavoriteInformation> favorites;
+    private Label recipeCounter;
 
     @FXML
     private TextField keywordField;
@@ -45,8 +46,6 @@ public class HomepageViewController {
     @FXML
     private MenuButton logoutButton;
     @FXML
-    private Label recipeCounter;
-    @FXML
     private AnchorPane favoriteViewWithoutLogin;
     @FXML
     private ScrollPane favoriteViewLogin;
@@ -62,7 +61,21 @@ public class HomepageViewController {
     }
 
     public void initialize() {
+        displayRecipeOfWeek();
         displayMostLikedRecipes();
+    }
+    public void displayRecipeOfWeek(){
+        FXMLLoader recipeOfWeekFXML = new FXMLLoader(getClass().getResource("/homepage/recipeOfWeek.fxml"));
+        AnchorPane  recipeOfWeek = new AnchorPane();
+
+        try{
+            recipeOfWeek = (AnchorPane) recipeOfWeekFXML.load();
+        }catch(IOException e){
+            e.fillInStackTrace();
+        }
+
+        RecipeOfWeekViewController rowCon = recipeOfWeekFXML.getController();
+        recipesContainer.getChildren().add(rowCon.assembleRecipe(recipeOfWeek));
     }
 
     //Lädt die 5 Meistbewertesten Rezepte aus der Datenbank
@@ -70,12 +83,15 @@ public class HomepageViewController {
         TopFiveController topFiveController = new TopFiveController();
         displayedRecipe = topFiveController.getMostLikedRecipes();
 
+        recipeCounter = new Label();
+        recipeCounter.setPrefWidth(733);
+        recipeCounter.setText("Unsere Top 5 Rezepte");
+        recipeCounter.getStyleClass().add("h1");
+        recipesContainer.getChildren().add(recipeCounter);
+
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
-
-        recipeCounter.setText("Unsere Top 5 Rezepte");
-        recipeCounter.getStyleClass().add("h1");
     }
 
     //Erstellt ein Preview Element in der Ansicht
@@ -98,8 +114,7 @@ public class HomepageViewController {
 
     //Die Previewelemente in der Ansicht werden gelöscht
     private void clearPreview(){
-        recipesContainer.getChildren().remove(1, recipesContainer.getChildren().size());
-
+        recipesContainer.getChildren().removeAll();
     }
 
     private void clearFavorite(){
