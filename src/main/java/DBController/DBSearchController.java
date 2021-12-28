@@ -22,9 +22,8 @@ public class DBSearchController extends DBConnectionController{
         String sql ="SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ORDER BY difference DESC LIMIT 5";
         return this.getRecipesFromSQLStatement(sql);
     }
-
     public Recipe getRecipeOfTheWeek() throws SQLException, IOException{
-        String sql ="SELECT recipe_rid FROM user_recipes_ratings WHERE timestamp between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1 ";
+        String sql ="SELECT * FROM recipes WHERE recipe_rid=(SELECT recipe_rid FROM user_recipes_ratings WHERE liked_time between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1) ";
         return this.getRecipesFromSQLStatement(sql).get(0);
     }
 
