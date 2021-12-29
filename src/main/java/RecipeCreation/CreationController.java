@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;

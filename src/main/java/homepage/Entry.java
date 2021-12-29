@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 public class Entry extends Application {
 
     @Override

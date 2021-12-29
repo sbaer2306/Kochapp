@@ -34,8 +34,6 @@ import java.util.Date;
 public class RecipeViewController {
 
     private Recipe recipe;
-    // private RatingController ratingController;
-    // private UserSession userSession;
     private UserModel userModel;
     private RatingDBController ratingDBController;
     private CommentController commentController;
