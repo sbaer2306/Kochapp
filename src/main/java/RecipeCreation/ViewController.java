@@ -142,10 +142,10 @@ public class ViewController {
                 ingredientsNotificationLabel.setText("Bitte alle Felder ausfüllen");
                 return false;
             }
-            if(!checkForDigit(amount)){
-                ingredientsNotificationLabel.setText("Nur Zahlen in der Mengenangabe erlaubt");
-                return false;
-            }
+//            if(!checkForDigit(amount)){
+//                ingredientsNotificationLabel.setText("Nur Zahlen in der Mengenangabe erlaubt");
+//                return false;
+//            }
             ingredientBuilder.append(amount);
             ingredientBuilder.append(unit);
             ingredientBuilder.append(name);
