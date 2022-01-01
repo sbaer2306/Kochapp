@@ -40,4 +40,7 @@ module main {
 
     exports FavoriteSection;
     opens FavoriteSection to javafx.fxml;
+
+    exports UserRecipeView;
+    opens UserRecipeView to javafx.fxml;
 }

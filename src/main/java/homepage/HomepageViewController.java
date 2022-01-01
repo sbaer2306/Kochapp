@@ -5,6 +5,8 @@ import Datastructures.FavoriteInformation;
 import Datastructures.Recipe;
 import RecipeCreation.CreationController;
 import Session.UserSession;
+import UserRecipeView.UserRecipeListController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -297,5 +299,8 @@ public class HomepageViewController {
         clearFavorite();
     }
 
-
+    //Zeigt die eigenen Rezepte des eingeloggten Nutzers an
+    public void showUserRecipes(ActionEvent actionEvent) {
+        new UserRecipeListController();
+    }
 }

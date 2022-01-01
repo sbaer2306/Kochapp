@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController" onMouseEntered="#checkFavLength">
+<BorderPane fx:id="root" onMouseEntered="#checkFavLength" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="homepage.HomepageViewController">
     <top>
         <BorderPane prefHeight="100.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <center>
@@ -297,6 +297,7 @@
                             </graphic>
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#createRecipe" text="Rezept erstellen" />
+                        <MenuItem mnemonicParsing="false" onAction="#showUserRecipes" text="Eigene Rezepte" />
                                 <MenuItem mnemonicParsing="false" text="Account verwalten" />
                                 <MenuItem mnemonicParsing="false" onAction="#logoutButtonPress" text="Logout" />
                             </items>
@@ -328,7 +329,7 @@
                     <Button layoutX="75.0" layoutY="370.0" mnemonicParsing="false" onAction="#registrationButtonPress" prefHeight="50.0" prefWidth="100.0" styleClass="changeCursor, no_focuesdHover, btn_favorit" text="Registrieren" />
                 </children>
             </AnchorPane>
-            <ScrollPane fx:id="favoriteViewLogin" visible="false" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover">
+            <ScrollPane fx:id="favoriteViewLogin" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" visible="false">
                 <content>
                     <VBox fx:id="favoriteContainer">
                         <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="216.0" styleClass="h2" text="Deine Lieblingsrezepte">
@@ -338,14 +339,14 @@
                         </Label>
                         <HBox alignment="BOTTOM_LEFT" prefWidth="245.0">
                             <children>
-                                <Label fx:id="titleFavorite" text="Titel" style="-fx-font-weight:700">
+                                <Label fx:id="titleFavorite" style="-fx-font-weight:700" text="Titel">
                                 </Label>
-                                <Label text="hinzugefügt am.." style="-fx-font-weight:700">
+                                <Label style="-fx-font-weight:700" text="hinzugefügt am..">
                                     <HBox.margin>
                                         <Insets right="8" />
                                     </HBox.margin>
                                 </Label>
-                                <Label text="löschen" style="-fx-font-weight:700"/>
+                                <Label style="-fx-font-weight:700" text="löschen" />
                             </children>
                         </HBox>
                     </VBox>
