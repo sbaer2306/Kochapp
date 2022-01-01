@@ -46,7 +46,6 @@ public class UserRecipeListController {
         } catch(SQLException e){
             e.printStackTrace();
         }
-        System.out.println("Preview Nr. " + i + " wäre gelöscht worden");
     }
 
     public void showFullRecipe(int i){
