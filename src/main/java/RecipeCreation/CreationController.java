@@ -23,10 +23,19 @@ public class CreationController {
                 new RecipeDBController().InsertRecipe(recipe);
                 note.title("Rezepterstellung abgeschlossen");
                 note.text("Dein Rezept wird verarbeitet und gespeichert!");
-            } catch (SQLException | FileNotFoundException throwables) {
+            } catch ( FileNotFoundException throwables) {
                 throwables.printStackTrace();
                 note.title("Fehler bei Rezepterstellung");
-                note.text("Es ist ein Fehler beim Speichern deinen Rezeptes passiert!\nDein Rezept wurde nicht erstellt!");
+                note.text("Das angegebene Bild wurde nicht gefunden!\nDein Rezept wurde nicht erstellt!");
+            }
+            catch(SQLException e){
+                String state = e.getSQLState();
+
+                //PK Constraint
+                if (state.startsWith("23")){
+                    note.title("Du hast dieses Rezept schon einmal hochgeladen!");
+                    note.text("Das Rezept wurde nicht hochgeladen und die Rezepterstellung beendet.");
+                }
             }
         }
         else{

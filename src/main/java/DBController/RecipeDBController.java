@@ -46,8 +46,9 @@ public class RecipeDBController extends DBConnectionController{
 
     }
 
-    private String createRecipeID(String author, String title) {
-        return author+title;
+    public static String createRecipeID(String author, String title) {
+        String newID = (author+title).replace(" ", "");
+        return newID.toLowerCase();
     }
 
     private boolean insertRecipeCategories(Recipe recipe) throws SQLException {
