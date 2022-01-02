@@ -11,19 +11,23 @@
 }
 
 .btn_banner{
-    -fx-border-color: black;
-    -fx-background-color: #c8ff96;
+    -fx-border-color: none;
+    -fx-background-color: #009933;
 }
 
 .btn_banner:hover{
-    -fx-background-color: #F5FFFA;
+    -fx-background-color: #00cc44;
 }
 
 .btn_favorit{
     -fx-font-size: 13;
     -fx-font-weight: 700;
-    -fx-background-color: #c8ff96;
-    -fx-border-color: black;
+    -fx-background-color: #009933;
+    -fx-border-color: none;
+}
+
+.btn_login:hover, .btn_registration:hover{
+    -fx-background-color: #00cc44;
 }
 
 .changeCursor{
@@ -67,11 +71,11 @@
 }
 
 .colorBoxes2{
-    -fx-background-color: #c8ff96;
+    -fx-background-color:#99ffbb;
 }
 
 .colorLabel{
-    -fx-background-color: #fdffc3;
+    -fx-background-color: #009933;
 }
 
 .box{
@@ -80,7 +84,7 @@
 }
 
 .scroll-bar:vertical .thumb{
-    -fx-background-color: #c8ff96;
+    -fx-background-color: #009933;
 }
 
 .scroll-bar:vertical{

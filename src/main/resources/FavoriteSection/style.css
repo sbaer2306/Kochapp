@@ -3,13 +3,12 @@
 }
 
 .btn{
-    -fx-border-color: transparent transparent transparent black;
-    -fx-background-color: #c8ff96;
-    -fx-border-color: black;
+    -fx-background-color:  #ff6666;
+    -fx-border-color: none;
 }
 
 .btn:hover{
-    -fx-background-color: #F5FFFA;
+    -fx-background-color: #ff4d4d;
 }
 
 .lbl{
