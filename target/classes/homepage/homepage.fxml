@@ -256,9 +256,9 @@
             <left>
                 <Button mnemonicParsing="false" onAction="#loadHomePage" prefHeight="100" prefWidth="100" styleClass="no_focusedHover, backgroundColor, changeCursor">
                     <graphic>
-                        <ImageView fitHeight="100" fitWidth="150" pickOnBounds="true" preserveRatio="true" styleClass="no_focusedHover, backgroundColor, btn_home" BorderPane.alignment="CENTER">
+                        <ImageView fitHeight="100.0" fitWidth="150" pickOnBounds="true" preserveRatio="true" styleClass="no_focusedHover, backgroundColor, btn_home" BorderPane.alignment="CENTER">
                             <image>
-                                <Image url="@fx-images/foodhub.png" />
+                                <Image url="@fx-images/Food Hub Logo no background.png" />
                             </image>
                         </ImageView>
                     </graphic>
