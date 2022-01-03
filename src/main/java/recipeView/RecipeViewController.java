@@ -77,6 +77,7 @@ public class RecipeViewController {
             String text = commentField.getText();
             if(text.length() > 400) {
                 createAndShowNotification("Kommentar zu lang!", "Schreibe weniger als 400 Zeichen...");
+                return;
             }
 
             if(commentController.insertNewComment(userModel, recipe, text)){
