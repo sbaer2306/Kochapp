@@ -3,6 +3,7 @@ package CommentSection;
 import DBController.RatingDBController;
 import Datastructures.Recipe;
 import Datastructures.RecipeComment;
+import Datastructures.UserModel;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.Notifications;
@@ -10,7 +11,6 @@ import org.controlsfx.control.Notifications;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CommentController {
 
@@ -55,6 +55,15 @@ public class CommentController {
             notification.show();
 
         });
+    }
+
+    public boolean insertNewComment(UserModel user, Recipe recipe, String text) {
+        RecipeComment comment = new RecipeComment(user, recipe,text);
+        try {
+            return ratingDBController.insertComment(comment);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
 }

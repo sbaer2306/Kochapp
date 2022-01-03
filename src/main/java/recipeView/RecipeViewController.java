@@ -37,7 +37,6 @@ public class RecipeViewController {
     private UserModel userModel;
     private RatingDBController ratingDBController;
     private CommentController commentController;
-    private CommentViewController commentViewController;
     private FavoriteController favoriteController;
     private boolean isFavorite;
 
@@ -53,8 +52,6 @@ public class RecipeViewController {
     @FXML
     private Button thumbDownBlack;
     @FXML
-    private Button favorite;
-    @FXML
     private Label likesNumber;
     @FXML
     private Label dislikesNumber;
@@ -68,40 +65,38 @@ public class RecipeViewController {
     private Label favoriteLabel;
 
     public RecipeViewController() {
-        // this.ratingController = new RatingController(userModel);
-        // this.userSession = new UserSession();
         this.userModel = new UserSession().getUserSession();
         this.ratingDBController = new RatingDBController();
+        this.commentController = new CommentController();
     }
 
-    public void createRecipeComment() throws SQLException, IOException {
-        RecipeComment recipeComment;
-        if(userModel != null) {
-            if(!commentField.getText().isEmpty()) {
-                recipeComment = new RecipeComment(userModel, recipe, commentField.getText());
-                ratingDBController.insertComment(recipeComment);
+    public void createRecipeComment() throws IOException {
+        if(userModel != null){
+            if(commentField.getText().isEmpty()) return;
 
-                Notifications notification = Notifications.create();
-                notification.title("Der Kommentar wurde erfolgreich hinzugefügt.");
-                notification.text("Danke für deinen Kommentar :)");
-                notification.show();
+            String text = commentField.getText();
+            if(text.length() > 400) {
+                createAndShowNotification("Kommentar zu lang!", "Schreibe weniger als 400 Zeichen...");
+            }
 
+            if(commentController.insertNewComment(userModel, recipe, text)){
                 displayComments();
+                commentField.clear();
+                return;
             }
-            else {
-                Notifications notification = Notifications.create();
-                notification.title("Ouch, das ging ziemlich in die Hose!");
-                notification.text("Du hast vergessen einen Text zu verfassen ;)");
-                notification.show();
-            }
+            createAndShowNotification("Oops, das sieht schlecht aus...","Da ging leider etwas schief :(");
+
+        }else {
+            createAndShowNotification("Du kannst noch keinen Kommentar verfassen!", "Bitte logge dich dazu ein...");
         }
-        else {
-            Notifications notification = Notifications.create();
-            notification.title("Woooooah, das ging wohl in die Hose!");
-            notification.text("Bitte melde dich an, um einen Kommentar zu veröffentlichen.. :)");
-            notification.show();
-        }
-        commentField.clear();
+
+    }
+
+    private void createAndShowNotification(String title, String text) {
+        Notifications notification = Notifications.create();
+        notification.title(title);
+        notification.text(text);
+        notification.show();
     }
 
     public void cancelCommenting() {
@@ -119,7 +114,7 @@ public class RecipeViewController {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root, 600, 600);
-        stage.setTitle("Kommentar Sektion");
+        stage.setTitle("Top 10 Kommentare");
         stage.setScene(scene);
 
         con.showComments();
@@ -138,14 +133,12 @@ public class RecipeViewController {
             displayFavorite();
 
         }else{
-            Notifications notification = Notifications.create();
-            notification.title("Oops, das ging wohl schief :(");
-            notification.text("Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
-            notification.show();
+            createAndShowNotification("Oops, das ging wohl schief :(","Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
         }
     }
 
     public void like() throws SQLException {
+
         if(userModel != null) {
             if(userModel.getLikedRecipeIDs().contains(recipe.getId())) {
                 boolean revoked = ratingDBController.revokeLike(userModel, recipe);
@@ -160,10 +153,7 @@ public class RecipeViewController {
             }
             else {
                 if(userModel.getDislikedRecipeIDs().contains(recipe.getId())) {
-                    Notifications notification = Notifications.create();
-                    notification.title("Oops, das ging wohl schief :(");
-                    notification.text("Setze dein dislike zurück um das Rezept zu liken.. :)");
-                    notification.show();
+                    createAndShowNotification("Oops, das ging wohl schief :(", "Setze dein dislike zurück um das Rezept zu liken.. :)");
                 }
                 else {
                     boolean liked = ratingDBController.insertNewLike(userModel, recipe);
@@ -179,10 +169,7 @@ public class RecipeViewController {
             }
         }
         else {
-            Notifications notification = Notifications.create();
-            notification.title("Oops, das ging wohl schief :(");
-            notification.text("Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
-            notification.show();
+            createAndShowNotification("Oops, das ging wohl schief :(", "Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
         }
     }
 
@@ -200,10 +187,7 @@ public class RecipeViewController {
             }
             else {
                 if(userModel.getLikedRecipeIDs().contains(recipe.getId())) {
-                    Notifications notification = Notifications.create();
-                    notification.title("Oops, das ging wohl schief :(");
-                    notification.text("Setze dein like zurück um das Rezept zu disliken.. :)");
-                    notification.show();
+                    createAndShowNotification("Oops, das ging wohl schief :(","Setze dein like zurück um das Rezept zu disliken.. :)");
                 }
                 else {
                     boolean disliked= ratingDBController.insertNewDisLike(userModel, recipe);
@@ -218,10 +202,7 @@ public class RecipeViewController {
             }
         }
         else {
-            Notifications notification = Notifications.create();
-            notification.title("Oops, das ging wohl schief :(");
-            notification.text("Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
-            notification.show();
+            createAndShowNotification("Oops, das ging wohl schief :(","Bitte logge dich ein, um diese Funktion zu nutzen.. :)");
         }
     }
 
@@ -262,7 +243,6 @@ public class RecipeViewController {
             }
         }
     }
-
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
