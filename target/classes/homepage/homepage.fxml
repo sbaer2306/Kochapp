@@ -237,7 +237,7 @@
                                     <content>
                                         <HBox>
                                             <children>
-                                                <Button mnemonicParsing="false" text="Zurücksetzen">
+                                                <Button mnemonicParsing="false" text="Zurücksetzen" onAction="#clearExtendedSearch">
                                                     <HBox.margin>
                                                         <Insets left="5.0" />
                                                     </HBox.margin></Button>
