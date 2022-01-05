@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import recipeView.RecipeViewController;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -78,7 +77,6 @@ public class RecipeOfWeekViewController {
 
         RecipeViewController con  = fxmlRecipeView.getController();
         con.setRecipe(recipe);
-        System.out.println(recipe.getTitle());
         Stage stage = new Stage();
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle(recipe.getTitle());

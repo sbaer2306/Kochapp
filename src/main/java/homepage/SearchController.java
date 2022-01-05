@@ -2,7 +2,6 @@ package homepage;
 
 import DBController.DBSearchController;
 import Datastructures.Recipe;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package homepage;
 
 import DBController.DBSearchController;
 import Datastructures.Recipe;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class TopFiveController {
     public ArrayList<Recipe> getMostLikedRecipes() {
         ArrayList<Recipe> recipes = new ArrayList<>();
         try {
-            recipes =  dbSearchController.getTopFiveRecipes();
+                recipes =  dbSearchController.getTopFiveRecipes();
         } catch (SQLException | IOException | NullPointerException e) {
             e.printStackTrace();
         }

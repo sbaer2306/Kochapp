@@ -324,21 +324,9 @@
                 <children>
                     <Label alignment="TOP_LEFT" layoutX="25.0" layoutY="14.0" prefHeight="69.0" prefWidth="189.0" styleClass="h2" text="Willst du deine Favoriten sehen?" wrapText="true" />
                     <Label layoutX="25.0" layoutY="142.0" styleClass="h3" text="Bitte hier einloggen:" />
-                    <Button layoutX="75.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="50.0" prefWidth="100.0" text="Login">
-                  <styleClass>
-                     <String fx:value="changeCursor" />
-                     <String fx:value="no_focuesdHover" />
-                     <String fx:value="btn_favorit" />
-                     <String fx:value="btn_login" />
-                  </styleClass></Button>
+                    <Button layoutX="75.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginButtonPress" prefHeight="50.0" prefWidth="100.0" text="Login" styleClass="no_focusedHover, btn_favorite, changeCursor"/>
                     <Label layoutX="25.0" layoutY="310.0" prefHeight="45.0" prefWidth="204.0" styleClass="h3" text="Du bist noch nicht registriert?" />
-                    <Button layoutX="75.0" layoutY="370.0" mnemonicParsing="false" onAction="#registrationButtonPress" prefHeight="50.0" prefWidth="100.0" text="Registrieren">
-                  <styleClass>
-                     <String fx:value="changeCursor" />
-                     <String fx:value="no_focuesdHover" />
-                     <String fx:value="btn_favorit" />
-                     <String fx:value="btn_registration" />
-                  </styleClass></Button>
+                    <Button layoutX="75.0" layoutY="370.0" mnemonicParsing="false" onAction="#registrationButtonPress" prefHeight="50.0" prefWidth="100.0" text="Registrieren" styleClass="no_focusedHover, btn_favorite, changeCursor"/>
                 </children>
             </AnchorPane>
             <ScrollPane fx:id="favoriteViewLogin" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" visible="false">

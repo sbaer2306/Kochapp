@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import login.Login;
 import registration.Registration;
 import FavoriteSection.FavoriteViewController;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -276,6 +275,7 @@ public class HomepageViewController {
             favoriteViewLogin.setVisible(true);
 
             favorites = ratingDBController.getUsersFavorites(user.getUserSession().getUsername());
+
             if(favorites.size() == 0){
                 Label lbl = new Label("Sie haben noch keine Liebilingsrezepte...");
                 lbl.setPadding(new Insets(100,0,0,0));
@@ -305,7 +305,7 @@ public class HomepageViewController {
                 con.setFavoriteInformation(favorites.get(i));
                 con.assembleFavorite(favoriteElement);
                 favoriteContainer.getChildren().add(favoriteElement);
-        }
+            }
 
         }
     }
