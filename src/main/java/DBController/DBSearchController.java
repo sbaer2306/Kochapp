@@ -2,8 +2,6 @@ package DBController;
 
 import Clerks.ErrorClerk;
 import Datastructures.Recipe;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,39 +12,50 @@ public class DBSearchController extends DBConnectionController{
     }
     //Simple Search Query for Recipe Title
     public ArrayList<Recipe> searchQuery(String buzzword, int returnQuantity) throws SQLException, IOException {
-        String sql = "select  *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference  from recipes where title LIKE '%"+ buzzword + "%' ORDER BY difference DESC LIMIT " + returnQuantity;
-        return this.getRecipesFromSQLStatement(sql);
+        String sql = "select  *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference  from recipes where title LIKE ? ORDER BY difference DESC LIMIT ?";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, "%" + buzzword + "%");
+        pstmt.setInt(2,returnQuantity);
+        return this.getRecipesFromSQLStatement(pstmt);
     }
-    //Get Top 5 Recipes for Startingpage
+    //Get Top 5 most liked recipes for startingpage
     public ArrayList<Recipe> getTopFiveRecipes() throws SQLException, IOException{
         String sql ="SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ORDER BY difference DESC LIMIT 5";
-        return this.getRecipesFromSQLStatement(sql);
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        return this.getRecipesFromSQLStatement(pstmt);
     }
+    //get recipe of the week based on most liked recipe of the last week
     public Recipe getRecipeOfTheWeek() throws SQLException, IOException{
         String sql ="SELECT * FROM recipes WHERE recipe_rid=(SELECT recipe_rid FROM user_recipes_ratings WHERE liked_time between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1) ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
         Recipe recipe = new Recipe();
-        ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(sql);
+        ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(pstmt);
         if(recipes.isEmpty()) {
             sql="SELECT * FROM recipes LIMIT 1";
-            recipe=this.getRecipesFromSQLStatement(sql).get(0);
+            recipe=this.getRecipesFromSQLStatement(pstmt).get(0);
         }
         else {
             recipe=recipes.get(0);
         }
         return recipe;
     }
-
+    //make extendedsearch based on parameters of extended search
     public ArrayList<Recipe> extendedSearchQuery(String buzzword, String priceMax, int durationMax,String difficulty, ArrayList<String> categories) throws SQLException, IOException{
         StringBuilder SBsql = new StringBuilder();
         SBsql.append("SELECT *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference FROM `recipes` ");
-        if(!priceMax.isEmpty()){
-            SBsql.append( "WHERE (ingredients_cost BETWEEN 0.00 AND " + priceMax+   " ) ");
+        SBsql.append("WHERE TRUE ");
+        if(!priceMax.equals("0")){
+            SBsql.append( "AND (ingredients_cost BETWEEN 0.00 AND " + priceMax+   " ) ");
         }
         if(!buzzword.isEmpty()){
             SBsql.append( "AND (title LIKE '%"+ buzzword + "%' ) ");
         }
-        SBsql.append("AND (duration BETWEEN 0 AND " + durationMax + " ) ");
-        SBsql.append(  "AND (difficulty_did ='" + difficulty + "' ) ");
+        if(durationMax!=0){
+            SBsql.append("AND (duration BETWEEN 0 AND " + durationMax + " ) ");
+        }
+        if(!difficulty.isEmpty()){
+            SBsql.append(  "AND (difficulty_did ='" + difficulty + "' ) ");
+        }
         StringBuilder SBcategories = new StringBuilder();
         if(!categories.isEmpty()){
             if(!(categories.get(0)=="")){
@@ -56,13 +65,13 @@ public class DBSearchController extends DBConnectionController{
             }
         }
         String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC LIMIT 5";
-        System.out.println(sql);
-        return this.getRecipesFromSQLStatement(sql);
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        return this.getRecipesFromSQLStatement(pstmt);
     }
     //Search a recipe by using a simple sql statement
-    private ArrayList<Recipe> getRecipesFromSQLStatement(String sql){
+    private ArrayList<Recipe> getRecipesFromSQLStatement(PreparedStatement preparedStatement){
         try {
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
             ArrayList<Recipe> recipeArrayList = new ArrayList<Recipe>();
             while (resultSet.next()) {
                 Recipe recipe = new Recipe();
@@ -79,9 +88,10 @@ public class DBSearchController extends DBConnectionController{
                 recipe.setCreationTime(resultSet.getString("creation_time"));
                 recipe.setDifficulty(resultSet.getString("difficulty_did"));
                 recipe.setAuthor(resultSet.getString("author_uid"));
-                String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=" +"\""+recipe.getId()+"\"";
-                Statement statement1 = connection.createStatement();
-                ResultSet resultSetCategories = statement1.executeQuery(sqlCategories);
+                String sqlCategories = "SELECT * FROM `recipe_categories` WHERE `recipe_rid`=?";
+                PreparedStatement pstmt = connection.prepareStatement(sqlCategories);
+                pstmt.setString(1,recipe.getId());
+                ResultSet resultSetCategories = pstmt.executeQuery();
                 ArrayList<String> categories = new ArrayList<String>();
                 while (resultSetCategories.next()) {
                     categories.add(resultSetCategories.getString(2));
