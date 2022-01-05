@@ -4,30 +4,20 @@ import Datastructures.Recipe;
 import Datastructures.RecipeComment;
 import Datastructures.UserModel;
 import Session.UserSession;
-import javafx.application.Preloader;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.Notifications;
-import recipeView.RecipeViewController;
-
-import java.awt.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class CommentViewController {
 
     @FXML
     private VBox section;
-
     @FXML
     private Label commentLabel;
-
     private Label deleteLabel;
-
     private Recipe recipe;
     private CommentController commentController;
     private UserModel userModel;

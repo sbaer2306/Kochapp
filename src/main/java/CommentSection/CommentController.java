@@ -7,7 +7,6 @@ import Datastructures.UserModel;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.Notifications;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +26,6 @@ public class CommentController {
         return comments;
     }
 
-    // Delete comment
     public void deleteComment(Label label, ArrayList<RecipeComment> comments) {
         label.setOnMouseClicked(e -> {
 

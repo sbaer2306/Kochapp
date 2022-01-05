@@ -69,6 +69,21 @@ public class HomepageViewController {
         displayMostLikedRecipes();
     }
 
+    public void clearExtendedSearch() {
+        keywordField.clear();
+        priceField.clear();
+        durationField.clear();
+        for(int i = 0; i < categoriesMenuButton.getItems().size(); i++) {
+            CustomMenuItem custom = (CustomMenuItem) categoriesMenuButton.getItems().get(i);
+            CheckBox checkBox = (CheckBox) custom.getContent();
+            if(checkBox.isSelected()) checkBox.setSelected(false);
+        }
+        for(int i = 0; i < difficultyHBox.getChildren().size(); i++) {
+            RadioButton r = (RadioButton) difficultyHBox.getChildren().get(i);
+            if(r.isSelected()) r.setSelected(false);
+        }
+    }
+
     //Zeigt das Rezept der Woche an
     public void displayRecipeOfWeek(){
         FXMLLoader recipeOfWeekFXML = new FXMLLoader(getClass().getResource("/homepage/recipeOfWeek.fxml"));
@@ -153,6 +168,7 @@ public class HomepageViewController {
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
+        keywordField.clear();
     }
 
     //Es wird nach erweiternden Eigenschaften des Rezepts gesucht
@@ -207,6 +223,7 @@ public class HomepageViewController {
         for(int i = 0; i < displayedRecipe.size(); i++) {
             displayPreview(i);
         }
+        clearExtendedSearch();
     }
 
     //Verbindet einen User

@@ -3,33 +3,22 @@ package recipeView;
 import CommentSection.CommentController;
 import CommentSection.CommentViewController;
 import DBController.RatingDBController;
-import Datastructures.FavoriteInformation;
 import Datastructures.Recipe;
-import Datastructures.RecipeComment;
 import Datastructures.UserModel;
 import FavoriteSection.FavoriteController;
 import Session.UserSession;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class RecipeViewController {
 
@@ -42,7 +31,6 @@ public class RecipeViewController {
 
     @FXML
     private AnchorPane container;
-
     @FXML
     private Button thumbUpWhite;
     @FXML
@@ -105,7 +93,6 @@ public class RecipeViewController {
     }
 
     public void displayComments() throws IOException {
-        // commentController = new CommentController(recipe);
 
         FXMLLoader commentSection = new FXMLLoader(getClass().getResource("/CommentSection/commentSection.fxml"));
         ScrollPane root = commentSection.load();
