@@ -6,6 +6,8 @@ import Datastructures.Recipe;
 import RecipeCreation.CreationController;
 import Session.UserSession;
 import UserRecipeView.UserRecipeListController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +69,14 @@ public class HomepageViewController {
     public void initialize() {
         displayRecipeOfWeek();
         displayMostLikedRecipes();
+        priceField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.matches("\\d*")) return;
+            priceField.setText(newValue.replaceAll("[^\\d]", ""));
+        });
+        durationField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.matches("\\d*")) return;
+            durationField.setText(newValue.replaceAll("[^\\d]", ""));
+        });
     }
 
     public void clearExtendedSearch() {
@@ -150,9 +160,9 @@ public class HomepageViewController {
 
     //Es wird nach den Rezepten gesucht, welche in der Suchleiste eingegeben wurden
     public void displayKeywordSearchResults() {
+
         String buzzword = keywordField.getText();
         displayedRecipe = searchController.getKeywordSearchResult(buzzword);
-
         clearPreview();
 
         switch(displayedRecipe.size()){
@@ -173,6 +183,7 @@ public class HomepageViewController {
 
     //Es wird nach erweiternden Eigenschaften des Rezepts gesucht
     public void displayExtendedSearchResults() {
+
         String buzzword = keywordField.getText();
 
         String price = priceField.getText();
