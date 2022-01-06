@@ -246,7 +246,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Button>
-                        <Label text="Füge ein Bild hinzu (.jpg/.png, max 1,5MB)" GridPane.halignment="RIGHT">
+                        <Label text="Füge ein Bild hinzu (.jpg, max 1,5MB)" GridPane.halignment="RIGHT">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>

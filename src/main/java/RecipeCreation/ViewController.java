@@ -57,7 +57,7 @@ public class ViewController {
     public void addImageButtonPressed(ActionEvent actionEvent) { //Lässt den Nutzer ein Bild für das Rezept auswählen
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter ef =
-                new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg");
+                new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg");
         fc.getExtensionFilters().add(ef);
 
         image = fc.showOpenDialog((Stage)addImageButton.getScene().getWindow());
