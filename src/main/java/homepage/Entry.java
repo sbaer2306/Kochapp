@@ -26,6 +26,5 @@ public class Entry extends Application {
 
     public static void launchApplication(String[] args) {
         launch(args);
-
     }
 }

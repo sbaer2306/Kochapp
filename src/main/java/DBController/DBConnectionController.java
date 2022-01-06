@@ -20,14 +20,4 @@ public abstract class DBConnectionController {
             ErrorClerk.getInstance().showErrorMessage(e.toString());
         }
     }
-
-    //Zum testen der Datenbankverbindung
-    public boolean connectionUp(){
-        try {
-            return statement.execute("SELECT * FROM difficulties");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

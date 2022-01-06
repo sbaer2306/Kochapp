@@ -49,7 +49,7 @@ public class CommentController {
 
             Notifications notification = Notifications.create();
             notification.title("Dein Kommentar wurde erfolgreich gelöscht.");
-            notification.text("Schade, wir werden dein Feedback vermissen.. :(");
+            notification.text("Andere Nutzer können den Kommentar jetzt nicht mehr sehen...");
             notification.show();
 
         });

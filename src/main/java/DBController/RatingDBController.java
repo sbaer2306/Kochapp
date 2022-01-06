@@ -1,11 +1,10 @@
 package DBController;
 
 import Datastructures.FavoriteInformation;
-import Datastructures.RecipeComment;
 import Datastructures.Recipe;
+import Datastructures.RecipeComment;
 import Datastructures.UserModel;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,14 +18,43 @@ public class RatingDBController extends DBConnectionController {
 
     //Bewerten
 
-    //Like von user auf likedRecipe eintragen
+    //Like
     public boolean insertNewLike(UserModel user, Recipe likedRecipe) {
         return rateRecipe(user, likedRecipe, true);
     }
 
-    //Like von user auf dislikedRecipe eintragen
+    //Dislike
     public boolean insertNewDisLike(UserModel user, Recipe dislikedRecipe) {
         return rateRecipe(user, dislikedRecipe, false);
+    }
+
+    public boolean incrementLikes(String recipeId) throws SQLException {
+        String sql = "UPDATE recipes SET likes=likes+1 WHERE recipe_rid=?";
+
+        PreparedStatement pstmt = null;
+
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, recipeId);
+        int affected = pstmt.executeUpdate();
+
+        return affected == 1;
+
+    }
+
+    private boolean incrementDislikes(String recipeId) {
+        String sql = "UPDATE recipes SET dislikes=dislikes+1 WHERE recipe_rid=?";
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, recipeId);
+            int affected = pstmt.executeUpdate();
+
+            return affected == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
     }
 
     //like == true --> user hat geliked
@@ -62,36 +90,6 @@ public class RatingDBController extends DBConnectionController {
             return false;
         }
     }
-
-    public boolean incrementLikes(String recipeId) throws SQLException {
-        String sql = "UPDATE recipes SET likes=likes+1 WHERE recipe_rid=?";
-
-        PreparedStatement pstmt = null;
-
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setString(1, recipeId);
-        int affected = pstmt.executeUpdate();
-
-        return affected == 1;
-
-    }
-
-    private boolean incrementDislikes(String recipeId) {
-        String sql = "UPDATE recipes SET dislikes=dislikes+1 WHERE recipe_rid=?";
-
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, recipeId);
-            int affected = pstmt.executeUpdate();
-
-            return affected == 1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return false;
-        }
-    }
-
 
     //Ratings rückgängig machen
 
@@ -257,7 +255,7 @@ public class RatingDBController extends DBConnectionController {
         }
     }
 
-    //Helferfunktion für Kommentarerstellung
+    //Kommentarerstellung
     private ArrayList<RecipeComment> getCommentList(ResultSet resultSet) throws SQLException {
     ArrayList<RecipeComment> comments= new ArrayList<>();
 

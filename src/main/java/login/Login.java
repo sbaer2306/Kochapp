@@ -1,10 +1,8 @@
 package login;
 
-import Session.UserSession;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.sql.SQLException;

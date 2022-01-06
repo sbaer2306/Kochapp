@@ -12,9 +12,6 @@ public class UsersRecipeInformation {
         this.uploadDatetime = uploadDatetime;
     }
 
-    //Nur Getter, da das Rezept nicht geändert werden kann/soll--> nur zum Löschen des Rezeptes in der DB
-    //notwendig
-
     public String getRecipeId() {
         return recipeId;
     }

@@ -1,8 +1,5 @@
 package Datastructures;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class FavoriteInformation {
 
     private String ownerId;
@@ -16,12 +13,6 @@ public class FavoriteInformation {
         this.ownerId = owner.getUsername();
         this.recipeId = recipe.getId();
         this.recipeTitle = recipe.getTitle();
-
-        //TODO
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-
-        this.addedDatetime= formatter.format(date);
     }
 
 

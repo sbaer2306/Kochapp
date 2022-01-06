@@ -8,25 +8,7 @@ public class RecipeComment {
     private String text;
     private String datetime;
 
-    //nur zum testen da
-    @Override
-    public String toString() {
-        return "RecipeComment{" +
-                "commentID='" + commentID + '\'' +
-                ", author_uid='" + author_uid + '\'' +
-                ", recipe_rid='" + recipe_rid + '\'' +
-                ", text='" + text + '\'' +
-                ", datetime='" + datetime + '\'' +
-                '}';
-    }
-
     public RecipeComment(){}
-
-    public RecipeComment(String author_uid, String recipe_rid, String text) {
-        this.author_uid = author_uid;
-        this.recipe_rid = recipe_rid;
-        this.text = text;
-    }
 
     public RecipeComment(UserModel user, Recipe recipe, String text) {
         this.author_uid = user.getUsername();

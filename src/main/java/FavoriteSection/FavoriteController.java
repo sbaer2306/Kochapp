@@ -13,7 +13,6 @@ public class FavoriteController {
     private UserModel userModel;
     private Recipe recipe;
 
-
     public FavoriteController(UserModel user, Recipe recipe) {
         this.ratingDBController = new RatingDBController();
         this.userModel = user;

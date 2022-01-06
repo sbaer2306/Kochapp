@@ -5,13 +5,12 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Recipe {
