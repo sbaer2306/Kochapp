@@ -72,8 +72,6 @@ public class RatingDBController extends DBConnectionController {
             pstmt.setString(1, username);
             pstmt.setString(2, recipeid);
 
-            //tinyint in DB --> 0 gleich false, positive Werte gleich true
-            //--> liked == Wert in DB
             int liked = 1;
             if (!like) liked = 0;
             pstmt.setString(3, String.valueOf(liked));
