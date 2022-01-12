@@ -8,7 +8,7 @@
    <children>
       <Label layoutX="28.0" layoutY="20.0" prefHeight="36.0" prefWidth="132.0" styleClass="h3" text="Rezept der Woche:" />
       <!--Titel-->
-      <Label layoutX="185.0" layoutY="20.0" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse" prefHeight="36.0" prefWidth="500.0" styleClass="h2, changeCursor" text="Beispiel" />
+      <Label layoutX="185.0" layoutY="20.0" onMouseClicked="#createRecipeViewStage" onMouseEntered="#underlineTrue" onMouseExited="#underlineFalse" prefHeight="36.0" prefWidth="550.0" styleClass="h2, changeCursor" text="Beispiel" />
 
       <!--Bild-->
       <Button layoutX="88.0" layoutY="70.0" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" mnemonicParsing="false" onAction="#createRecipeViewStage" prefHeight="0.0" prefWidth="0.0" styleClass="no_focusedHover, roundCorners, changeCursor">
