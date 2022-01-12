@@ -20,11 +20,6 @@ public class PreviewViewController {
 
     private Recipe recipe;
 
-    /*
-    public void setTitleText(String title) {
-        this.title.setText(title);
-    }*/
-
     public Recipe getRecipe() {
         return recipe;
     }

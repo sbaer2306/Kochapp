@@ -26,7 +26,7 @@ public class DBSearchController extends DBConnectionController{
     }
     //get recipe of the week based on most liked recipe of the last week
     public Recipe getRecipeOfTheWeek() throws SQLException, IOException{
-        String sql ="SELECT * FROM recipes WHERE recipe_rid=(SELECT recipe_rid FROM user_recipes_ratings WHERE liked_time between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1) ";
+        String sql ="SELECT * FROM recipes WHERE recipe_rid=(SELECT recipe_rid FROM user_recipes_ratings WHERE (liked_time between date_sub(now(),INTERVAL 1 WEEK) and now()) AND liked=1 GROUP BY recipe_rid ORDER BY COUNT(*) DESC LIMIT 1)";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         Recipe recipe = new Recipe();
         ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(pstmt);

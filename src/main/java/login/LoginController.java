@@ -49,6 +49,7 @@ public class LoginController {
             stage.close();
         }
     }
+
     private boolean checkForEmptyTextFields(){ //Überprüft, ob eine Eingabe in den Textfeldern gemacht wurde.
         if(usernameField.getText().equals("") || passwordField.getText().equals("")){
             notificationLabel.setText("Alle Felder müssen ausgefüllt sein!");
@@ -70,14 +71,10 @@ public class LoginController {
     }
 
     public void login() {    //Öffnet das UI und wartet bis der Nutzer den Login eingibt.
-        //TODO: Session establishen
-
         if(loginConfirmed){
             new UserSession().loginSession(user);
             note.text("Sie wurden erfolgreich als " + usernameField.getText() + " angemeldet!");
             note.show();
-
-
         }
         else {
             note.show();

@@ -267,7 +267,6 @@ public class HomepageViewController {
 
     //Wenn ein User eingeloggt ist, wird die Favoritenliste angezeigt
     public void favoriteView(){
-
         if(user.sessionExists()){
             clearFavorite();
 

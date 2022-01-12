@@ -6,10 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-
-import java.util.List;
 import java.util.stream.Stream;
 
 public class ErrorClerk {

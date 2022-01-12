@@ -1,6 +1,7 @@
 package registration;
 
 import DBController.UserDBController;
+import Datastructures.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import Datastructures.*;
 
 public class RegistrationController {
 
@@ -35,8 +35,8 @@ public class RegistrationController {
     private Label notificationLabel;
 
 
-    private boolean checkUserExists(UserModel user){ //Überprüft, ob ein Account mit den angegebenen Nutzernamen und E-Mail bereits existiert
-        if(dbController.checkUserExists(user.getUsername())){ //Überprüft ob Nutzername schon existiert
+    private boolean checkUserExists(UserModel user){
+        if(dbController.checkUserExists(user.getUsername())){
             notificationLabel.setText("Nutzername bereits vergeben!");
             return false;
         }
