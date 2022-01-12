@@ -11,7 +11,7 @@
 }
 
 .btn_banner{
-    -fx-border-color: none;
+    -fx-border-color: black;
     -fx-background-color: #009933;
 }
 
@@ -19,14 +19,14 @@
     -fx-background-color: #00cc44;
 }
 
-.btn_favorit{
+.btn_favorite{
     -fx-font-size: 13;
     -fx-font-weight: 700;
     -fx-background-color: #009933;
-    -fx-border-color: none;
+    -fx-border-color: black;
 }
 
-.btn_login:hover, .btn_registration:hover{
+.btn_favorite:hover{
     -fx-background-color: #00cc44;
 }
 
