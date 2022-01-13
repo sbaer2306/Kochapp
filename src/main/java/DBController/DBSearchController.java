@@ -31,7 +31,8 @@ public class DBSearchController extends DBConnectionController{
         Recipe recipe = new Recipe();
         ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(pstmt);
         if(recipes.isEmpty()) {
-            sql="SELECT * FROM recipes LIMIT 1";
+            sql="select *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference from recipes ORDER BY difference DESC LIMIT 1 ";
+            pstmt = connection.prepareStatement(sql);
             recipe=this.getRecipesFromSQLStatement(pstmt).get(0);
         }
         else {
