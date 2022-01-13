@@ -31,7 +31,8 @@ public class DBSearchController extends DBConnectionController{
         Recipe recipe = new Recipe();
         ArrayList<Recipe> recipes = this.getRecipesFromSQLStatement(pstmt);
         if(recipes.isEmpty()) {
-            sql="SELECT * FROM recipes LIMIT 1";
+            sql="select *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference from recipes ORDER BY difference DESC LIMIT 1 ";
+            pstmt = connection.prepareStatement(sql);
             recipe=this.getRecipesFromSQLStatement(pstmt).get(0);
         }
         else {
@@ -64,7 +65,7 @@ public class DBSearchController extends DBConnectionController{
                 }
             }
         }
-        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC LIMIT 5";
+        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         return this.getRecipesFromSQLStatement(pstmt);
     }

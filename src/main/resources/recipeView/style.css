@@ -21,3 +21,12 @@
 .changeCursor{
     -fx-cursor: hand;
 }
+
+#saveComment{
+    -fx-background-color: #009933;
+    -fx-text-fill: white;
+}
+
+#saveComment:hover{
+    -fx-background-color: #00cc44;
+}
