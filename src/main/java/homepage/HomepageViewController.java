@@ -276,9 +276,12 @@ public class HomepageViewController {
             favorites = ratingDBController.getUsersFavorites(user.getUserSession().getUsername());
 
             if(favorites.size() == 0){
+                favoriteContainer.getChildren().get(1).setVisible(false);
                 Label lbl = new Label("Sie haben noch keine Liebilingsrezepte...");
                 lbl.setPadding(new Insets(100,0,0,0));
                 favoriteContainer.getChildren().add(lbl);
+            }else{
+                favoriteContainer.getChildren().get(1).setVisible(true);
             }
 
             for(int i = 0; i < favorites.size(); i++){

@@ -313,7 +313,7 @@
     <center>
         <ScrollPane prefWidth="750.0" style="-fx-background: FFFFFF; -fx-border-color: #FFFFFF;" styleClass="no_focusedHover" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <content>
-                <VBox fx:id="recipesContainer" prefWidth="733.0" styleClass="backgroundColor">
+                <VBox fx:id="recipesContainer" prefWidth="730.0" styleClass="backgroundColor">
                 </VBox>
             </content>
         </ScrollPane>
