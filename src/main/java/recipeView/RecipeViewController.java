@@ -244,8 +244,9 @@ public class RecipeViewController {
         Label title = (Label) container.getChildren().get(1);
         title.setText(recipe.getTitle());
 
-        Label description = (Label) container.getChildren().get(2);
-        description.setText(recipe.getDescription());
+        ScrollPane description = (ScrollPane) container.getChildren().get(2);
+        Label desc = (Label)description.getContent();
+        desc.setText(recipe.getDescription());
 
         Label likes = (Label) container.getChildren().get(6);
         likes.setText(recipe.getLikes());
@@ -272,8 +273,8 @@ public class RecipeViewController {
         Label authorAndDate = (Label) container.getChildren().get(11);
         authorAndDate.setText("Von: " + recipe.getAuthor() + ", " + recipe.getCreationTime());
 
-        ListView ingredients = (ListView) container.getChildren().get(12);
-        ingredients.getItems().add(recipe.getIngredients());
+        Label ingredients = (Label) container.getChildren().get(12);
+        ingredients.setText(recipe.getIngredients());
 
         displayRating();
         displayFavorite();
