@@ -18,7 +18,7 @@ public class SearchController {
     public ArrayList<Recipe> getKeywordSearchResult(String buzzword) {
         recipes = new ArrayList<Recipe>();
         try {
-            recipes = dbSearchController.searchQuery(buzzword, 100);
+            recipes = dbSearchController.searchQuery(buzzword);
         }catch(SQLException | IOException | NullPointerException e) {
             e.printStackTrace();
         }

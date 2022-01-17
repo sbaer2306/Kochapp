@@ -11,11 +11,10 @@ public class DBSearchController extends DBConnectionController{
         super();
     }
     //Simple Search Query for Recipe Title
-    public ArrayList<Recipe> searchQuery(String buzzword, int returnQuantity) throws SQLException, IOException {
-        String sql = "select  *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference  from recipes where title LIKE ? ORDER BY difference DESC LIMIT ?";
+    public ArrayList<Recipe> searchQuery(String buzzword) throws SQLException, IOException {
+        String sql = "select  *, (CAST(likes AS SIGNED) - CAST(dislikes AS SIGNED)) AS difference  from recipes where title LIKE ? ORDER BY difference DESC LIMIT 20";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, "%" + buzzword + "%");
-        pstmt.setInt(2,returnQuantity);
         return this.getRecipesFromSQLStatement(pstmt);
     }
     //Get Top 5 most liked recipes for startingpage
@@ -65,7 +64,7 @@ public class DBSearchController extends DBConnectionController{
                 }
             }
         }
-        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC";
+        String sql = SBsql.toString() + SBcategories.toString() + "ORDER BY difference DESC LIMIT 20";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         return this.getRecipesFromSQLStatement(pstmt);
     }
