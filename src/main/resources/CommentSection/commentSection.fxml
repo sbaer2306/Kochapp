@@ -10,7 +10,7 @@
 
 <ScrollPane fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CommentSection.CommentViewController">
    <content>
-      <VBox fx:id="section" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+      <VBox fx:id="section" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="592.0" spacing="20.0">
          <children>
             <HBox>
                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="42.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
